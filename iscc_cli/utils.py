@@ -62,6 +62,6 @@ def get_title(tika_result: dict):
 
     if not title:
         content = tika_result.get("content", "")
-        if content:
+        if hasattr(content, 'strip'):
             title = content.strip().splitlines()[0]
     return title
