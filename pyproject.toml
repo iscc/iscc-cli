@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "iscc-cli"
+version = "0.1.0"
+description = "ISCC Command Line Tool"
+authors = ["Titusz Pan <tp@py7.de>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/iscc/iscc-cli"
+keywords = ["packaging", "dependency", "poetry"]
+
+[tool.poetry.scripts]
+iscc = 'iscc_cli.main:cli'
+
+[tool.poetry.dependencies]
+python = "^3.5"
+click = "^7.0"
+iscc = "^1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
