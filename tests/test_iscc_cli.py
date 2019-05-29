@@ -29,12 +29,12 @@ def test_gen_single_file():
 
 
 def test_gen_directory():
-    result = r.invoke(cli, ["gen", "tests"])
+    result = r.invoke(cli, ["gen", "./tests"])
     assert result.exit_code == 0
     assert "ISCC:CCL9Aeao56G1R" in result.output
 
 
 def test_gen_directory_recursive():
-    result = r.invoke(cli, ["gen", "-r", "."])
+    result = r.invoke(cli, ["gen", "-r", "./"])
     assert result.exit_code == 0
     assert "ISCC:CCL9Aeao56G1R" in result.output
