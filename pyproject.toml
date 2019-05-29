@@ -6,7 +6,7 @@ authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/iscc/iscc-cli"
-keywords = ["packaging", "dependency", "poetry"]
+keywords = ["iscc", "identifier", "blockchain", "cli"]
 
 [tool.poetry.scripts]
 iscc = 'iscc_cli.main:cli'
@@ -18,6 +18,9 @@ iscc = "^1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
+black = { version = "^19.3b0", python = "^3.6" }
+pre-commit = "^1.10"
+tox = "^3.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
