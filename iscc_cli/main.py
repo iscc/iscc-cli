@@ -40,7 +40,7 @@ def gen(path, recursive):
         elif gmt == GMT.TEXT:
             text = tika_result["content"]
             if not text:
-                click.echo('Coult not extract text from {}'.format(basename(f)))
+                click.echo("Could not extract text from {}".format(basename(f)))
                 continue
             cid = iscc.content_id_text(tika_result["content"])
 
