@@ -1,3 +1,4 @@
 # ISCC - Command Line Tool
 
-[![Linux Build](https://travis-ci.org/iscc/iscc-cli.svg?branch=master)](https://travis-ci.org/iscc/iscc-cli)
+[![Linux Build Status](https://img.shields.io/travis/iscc/iscc-cli.svg?label=Linux)](https://travis-ci.org/iscc/iscc-cli)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/iscc/iscc-cli.svg?label=Windows)](https://ci.appveyor.com/project/iscc/iscc-cli)
