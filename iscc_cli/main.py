@@ -4,8 +4,8 @@ import click
 
 @click.command()
 def cli():
-    click.echo('Hello ISCC!')
+    click.echo("Hello ISCC!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
