@@ -1,14 +1,9 @@
 language: python
 
-stages:
-  - linting
-  - test
-
 cache:
   pip: true
   directories:
     - "$HOME/.cache/pypoetry"
-    - "$HOME/.cache/pre-commit"
 
 install:
   - pip install pip==18.1
@@ -18,17 +13,9 @@ install:
 
 script: pytest -q tests/
 
-jobs:
+matrix:
   include:
     - python: "3.5"
     - python: "3.6"
     - python: "3.7"
       dist: xenial
-
-    - stage: linting
-      python: "3.6"
-      install:
-        - pip install pre-commit
-        - pre-commit install-hooks
-      script:
-        - pre-commit run --all-files
