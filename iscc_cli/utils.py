@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from tika import detector
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
 
-from iscc_cli.const import SUPPORTED_EXTENSIONS
+from iscc_cli.const import SUPPORTED_EXTENSIONS, GMT
 
 
 def iter_files(root, exts=None, recursive=False):
@@ -39,3 +40,26 @@ def get_files(path, recursive=False):
     if isfile(path):
         return [path]
     return iter_files(path, exts=SUPPORTED_EXTENSIONS, recursive=recursive)
+
+
+def get_gmt(fp):
+    """Return Generic Media Type"""
+    mime_type = detector.from_file(fp)
+    if mime_type.startswith("image"):
+        return GMT.IMAGE
+    else:
+        return GMT.TEXT
+
+
+def get_title(tika_result: dict):
+    title = ""
+    meta = tika_result.get("metadata")
+    if meta:
+        title = meta.get("dc:title", "")
+        if not title:
+            title = meta.get("title", "")
+        if not title:
+            content = tika_result.get("content", "")
+            if content:
+                title = content.strip().splitlines()[0]
+    return title

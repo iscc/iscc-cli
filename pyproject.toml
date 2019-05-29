@@ -15,6 +15,7 @@ iscc = 'iscc_cli.main:cli'
 python = "^3.5"
 click = "^7.0"
 iscc = "^1.0"
+tika = "^1.19"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
