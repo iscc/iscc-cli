@@ -38,6 +38,10 @@ def gen(path, recursive):
         if gmt == GMT.IMAGE:
             cid = iscc.content_id_image(f)
         elif gmt == GMT.TEXT:
+            text = tika_result["content"]
+            if not text:
+                click.echo('Coult not extract text from {}'.format(basename(f)))
+                continue
             cid = iscc.content_id_text(tika_result["content"])
 
         did = iscc.data_id(f)

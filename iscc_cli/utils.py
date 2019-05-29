@@ -53,13 +53,15 @@ def get_gmt(fp):
 
 def get_title(tika_result: dict):
     title = ""
+
     meta = tika_result.get("metadata")
     if meta:
         title = meta.get("dc:title", "")
         if not title:
             title = meta.get("title", "")
-        if not title:
-            content = tika_result.get("content", "")
-            if content:
-                title = content.strip().splitlines()[0]
+
+    if not title:
+        content = tika_result.get("content", "")
+        if content:
+            title = content.strip().splitlines()[0]
     return title
