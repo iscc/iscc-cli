@@ -24,3 +24,6 @@ install:
 
 test_script:
   - "poetry run pytest tests/"
+
+after_test:
+  - "taskkill /F /T /IM java.exe"
