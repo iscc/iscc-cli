@@ -61,7 +61,11 @@ def get_title(tika_result: dict):
             title = meta.get("title", "")
 
     if not title:
-        content = tika_result.get("content", "")
-        if hasattr(content, "strip"):
+        content = tika_result.get("content")
+        if content:
             title = content.strip().splitlines()[0]
+
+    if isinstance(title, list):
+        title = title[0]
+
     return title
