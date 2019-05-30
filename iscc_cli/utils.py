@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from tika import detector
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
 
@@ -42,9 +41,7 @@ def get_files(path, recursive=False):
     return iter_files(path, exts=SUPPORTED_EXTENSIONS, recursive=recursive)
 
 
-def get_gmt(fp):
-    """Return Generic Media Type"""
-    mime_type = detector.from_file(fp)
+def mime_to_gmt(mime_type):
     if mime_type.startswith("image"):
         return GMT.IMAGE
     else:

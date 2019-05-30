@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from os.path import join
-
 from iscc_cli.const import GMT
 from tests import TEST_DIR
 from iscc_cli import utils
@@ -35,6 +33,6 @@ def test_get_files():
     assert len(list(result)) == 4
 
 
-def test_get_gmt():
-    result = utils.get_gmt(join(TEST_DIR, "demo.jpg"))
+def test_mime_to_gmt():
+    result = utils.mime_to_gmt("image/jpeg")
     assert result == GMT.IMAGE
