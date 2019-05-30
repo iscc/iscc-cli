@@ -1,8 +1,10 @@
 import os
+import platform
 from tests import ROOT_DIR
 from iscc_cli import __version__
 from iscc_cli.cli import cli
 from click.testing import CliRunner
+import pytest
 
 
 os.chdir(ROOT_DIR)
@@ -57,3 +59,15 @@ def test_batch_recursive():
     result = r.invoke(cli, ["batch", "-r", "./"])
     assert result.exit_code == 0
     assert "ISCC:CCL9Aeao56G1R" in result.output
+
+
+@pytest.fixture(scope='session', autouse=True)
+def terminate_java():
+    p = platform.system()
+    yield p
+    if p == 'Windows':
+        import subprocess
+        print('Terminate Java')
+        subprocess.call('taskkill /F /T /IM java.exe')
+
+
