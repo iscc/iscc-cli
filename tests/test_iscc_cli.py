@@ -18,8 +18,14 @@ def test_iscc_no_args():
 def test_version():
     result = r.invoke(cli, ["--version"])
     assert result.exit_code == 0
-    assert 'ISCC' in result.output
+    assert "ISCC" in result.output
     assert __version__ in result.output
+
+
+def test_debug():
+    result = r.invoke(cli, ["debug"])
+    assert result.exit_code == 0
+    assert result.output.startswith("Tika TikaVersion: 1.21")
 
 
 def test_gen_single_file():

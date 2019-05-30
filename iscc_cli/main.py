@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from os.path import basename
-from tika import detector, parser
+from tika import detector, parser, tika
 import click
 import iscc
 import iscc_cli
@@ -53,6 +53,24 @@ def gen(path, recursive):
         )
 
 
+@click.command()
+def debug():
+    click.echo("Tika TikaVersion: {}".format(tika.TikaVersion))
+    click.echo("Tika TikaJarPath: {}".format(tika.TikaJarPath))
+    click.echo("Tika TikaServerLogFilePath: {}".format(tika.TikaServerLogFilePath))
+    click.echo("Tika TikaServerJar: {}".format(tika.TikaServerJar))
+    click.echo("Tika ServerHost: {}".format(tika.ServerHost))
+    click.echo("Tika Port: {}".format(tika.Port))
+    click.echo("Tika ServerEndpoint: {}".format(tika.ServerEndpoint))
+    click.echo("Tika Translator: {}".format(tika.Translator))
+    click.echo("Tika TikaClientOnly: {}".format(tika.TikaClientOnly))
+    click.echo("Tika TikaServerClasspath: {}".format(tika.TikaServerClasspath))
+    click.echo("Tika TikaStartupSleep: {}".format(tika.TikaStartupSleep))
+    click.echo("Tika TikaStartupMaxRetry: {}".format(tika.TikaStartupMaxRetry))
+    click.echo("Tika TikaJava: {}".format(tika.TikaJava))
+
+
+cli.add_command(debug)
 cli.add_command(gen)
 
 
