@@ -1,12 +1,32 @@
 [tool.poetry]
 name = "iscc-cli"
 version = "0.1.0"
-description = "ISCC - Command Line Tool"
+description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://iscc.codes/"
 repository = "https://github.com/iscc/iscc-cli"
-keywords = ["iscc", "identifier", "blockchain", "cli"]
+keywords = ["iscc", "media", "identifier", "blockchain", "cli", "generator"]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    "Topic :: Multimedia",
+    "Topic :: System :: Archiving",
+    "Topic :: Utilities",
+    "Topic :: Software Development",
+]
 
 [tool.poetry.scripts]
 iscc = 'iscc_cli.cli:cli'

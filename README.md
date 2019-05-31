@@ -29,7 +29,7 @@ This tool depends on [tika-python](<https://github.com/chrismattmann/tika-python
 
 ## Install
 
-The ISCC command line tool is published with the package name `iscc-cli` on the [Python Package Index](https://pypi.python.org/pypi/iscc-cli). If you have Python (>3.5) on your system you can install it with pip:
+The ISCC command line tool is published with the package name `iscc-cli` on the [Python Package Index](https://pypi.python.org/pypi/iscc-cli) and can be installed with pip:
 
 ```console
 $ pip3 install iscc-cli
