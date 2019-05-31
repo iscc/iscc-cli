@@ -23,4 +23,4 @@ install:
   - "poetry install -v"
 
 test_script:
-  - "poetry run pytest tests/"
+  - "poetry run pytest -v --terminate tests"
