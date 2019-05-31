@@ -71,15 +71,18 @@ def init():
 
 @click.command()
 @click.argument("path", type=click.Path(exists=True))
-@click.option("-r", "--recursive", is_flag=True)
+@click.option("-r", "--recursive", is_flag=True, help="Recurse into subdirectories.")
 def batch(path, recursive):
-    """Generate ISCC Codes for multiple files."""
+    """Batch create ISCC Codes.
+
+    Generates ISCC Codes for all media files in <PATH>.
+    """
     for f in get_files(path, recursive=recursive):
         media_type = detector.from_file(f)
         if media_type not in SUPPORTED_MIME_TYPES:
             fname = basename(f)
             click.echo(
-                "Unsupported file {} with mime type: {}".format(fname, mime_type)
+                "Unsupported file {} with mime type: {}".format(fname, media_type)
             )
             continue
 
