@@ -102,6 +102,19 @@ Please make sure to update tests as appropriate.
 
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
+## Change Log
+
+### [0.2.0] - 2019-05-31
+
+- Add support for doc, docx and rtf documents
+- Update to ISCC 1.0.4 (fixes whitespace bug)
+
+
+### [0.1.0] - 2019-05-31
+
+- Basic ISCC Code creation
+- Supported file types: jpg, png, pdf, epub
+
 ## License
 
 MIT © 2019 Titusz Pan
