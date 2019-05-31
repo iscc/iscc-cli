@@ -2,7 +2,7 @@
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
 
-from iscc_cli.const import SUPPORTED_EXTENSIONS, GMT
+from iscc_cli.const import SUPPORTED_EXTENSIONS, SUPPORTED_MIME_TYPES
 
 
 def iter_files(root, exts=None, recursive=False):
@@ -42,10 +42,9 @@ def get_files(path, recursive=False):
 
 
 def mime_to_gmt(mime_type):
-    if mime_type.startswith("image"):
-        return GMT.IMAGE
-    else:
-        return GMT.TEXT
+    entry = SUPPORTED_MIME_TYPES.get(mime_type)
+    if entry:
+        return entry["gmt"]
 
 
 def get_title(tika_result: dict):

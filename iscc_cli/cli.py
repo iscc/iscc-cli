@@ -19,7 +19,7 @@ def cli():
 
 
 @click.command()
-@click.argument("file", required=False, type=click.File("rb"))
+@click.argument("file", type=click.File("rb"))
 @click.option("-t", "--title", type=click.STRING)
 @click.option("-e", "--extra", type=click.STRING, default="")
 @click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode")

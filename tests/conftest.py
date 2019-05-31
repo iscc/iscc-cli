@@ -9,7 +9,8 @@ def pytest_addoption(parser):
 
 def pytest_unconfigure(config):
     if platform.system() == "Windows":
-        terminate = config.getoption('--terminate')
+        terminate = config.getoption("--terminate")
         if terminate:
             import subprocess
+
             subprocess.call("taskkill /F /T /IM java.exe")
