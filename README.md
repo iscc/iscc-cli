@@ -100,6 +100,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
+
 ## License
 
 MIT © 2019 Titusz Pan
