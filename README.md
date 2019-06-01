@@ -38,7 +38,9 @@ $ pip3 install iscc-cli
 
 ## Usage
 
-Show help by calling `iscc` without any arguments:
+### Getting Help
+
+Show help overview by calling `iscc` without any arguments:
 
 ```console
 $ iscc
@@ -50,9 +52,27 @@ Options:
 
 Commands:
   gen*   Generate ISCC Code for a single media file.
-  batch  Generate ISCC Codes for multiple files.
+  batch  Batch create ISCC Codes.
   init   Inititalize and check Tika server.
+  sim    Estimate Similarity of ISCC Codes.
 ```
+
+Get help for a specific command by entering `iscc <command>`:
+
+```console
+$ iscc gen
+Usage: iscc gen [OPTIONS] FILE
+
+  Generate ISCC Code for FILE.
+
+Options:
+  -t, --title TEXT  Title for Meta-ID creation.
+  -e, --extra TEXT  Extra text for Meta-ID creation.
+  -v, --verbose     Enables verbose mode.
+  -h, --help        Show this message and exit.
+```
+
+### Generating ISCC Codes
 
 The `gen` command generates an ISCC Code for a single file:
 
@@ -74,21 +94,20 @@ Filepath:   tests/demo.jpg
 GMT:        image
 ```
 
-Get help for a specific command:
+See `iscc batch` for help on how to generate ISCC codes for multiple files at once.
+
+
+### Similarity of ISCC Codes
+
+The `sim` command computes estimated similarity of two ISCC Codes:
 
 ```console
-$ iscc batch --help
-Usage: iscc batch [OPTIONS] PATH
-
-  Batch create ISCC Codes.
-
-  Generates ISCC Codes for all media files in <PATH>.
-
-Options:
-  -r, --recursive  Recurse into subdirectories.
-  --help           Show this message and exit.
-
+$ iscc sim CCUcKwdQc1jUM CCjMmrCsKWu1D
+Estimated Similarity of Meta-ID: 87.50 %
 ```
+
+You may also compare full four-component ISCC Codes.
+
 
 ## Maintainers
 
@@ -103,6 +122,10 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.3.0] - 2019-06-01
+
+- Add `sim` command similarity comparison of ISCC Codes
 
 ### [0.2.0] - 2019-05-31
 
