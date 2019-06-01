@@ -20,6 +20,7 @@ SUPPORTED_MIME_TYPES = {
     "image/png": {"gmt": GMT.IMAGE, "ext": "png"},
     "application/pdf": {"gmt": GMT.TEXT, "ext": "pdf"},
     "application/epub+zip": {"gmt": GMT.TEXT, "ext": "epub"},
+    "application/xml": {"gmt": GMT.TEXT, "ext": "xml"},
 }
 
 
