@@ -3,7 +3,7 @@ import click
 import iscc
 from tika import detector, parser
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from utils import get_title, mime_to_gmt
+from iscc_cli.utils import get_title, mime_to_gmt
 
 
 @click.command()

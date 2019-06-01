@@ -34,7 +34,7 @@ iscc = 'iscc_cli.cli:cli'
 [tool.poetry.dependencies]
 python = "^3.5"
 click = "^7.0"
-iscc = "^1.0"
+iscc = "^1.0.4"
 tika = "^1.19"
 click-default-group = "^1.2"
 

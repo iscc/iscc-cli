@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import pytest
+
 from iscc_cli.const import GMT
 from tests import TEST_DIR
 from iscc_cli import utils
@@ -36,3 +38,30 @@ def test_get_files():
 def test_mime_to_gmt():
     result = utils.mime_to_gmt("image/jpeg")
     assert result == GMT.IMAGE
+
+
+def test_iscc_clean():
+    assert utils.iscc_clean("ISCC: SOME-CODE") == "SOMECODE"
+    assert utils.iscc_clean(" SOMECODE ") == "SOMECODE"
+    assert utils.iscc_clean("ISCC:") == ""
+
+
+def test_iscc_verify():
+    with pytest.raises(ValueError):
+        utils.iscc_verify("I")
+
+
+def test_iscc_split():
+    i = "ISCC:CCcdAr6GDoF3p-CTMjk4o5H96BV-CD6XL9SFyWgsW-CR28vgw3inZGw"
+    assert utils.iscc_split(i) == [
+        "CCcdAr6GDoF3p",
+        "CTMjk4o5H96BV",
+        "CD6XL9SFyWgsW",
+        "CR28vgw3inZGw",
+    ]
+
+    i = "ISCC:CCcdAr6GDoF3p"
+    assert utils.iscc_split(i) == ["CCcdAr6GDoF3p"]
+
+    i = "CCcdAr6GDoF3p"
+    assert utils.iscc_split(i) == ["CCcdAr6GDoF3p"]

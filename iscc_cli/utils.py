@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
+import textwrap
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
 
-from iscc_cli.const import SUPPORTED_EXTENSIONS, SUPPORTED_MIME_TYPES
+import click
+import iscc
+
+from iscc_cli.const import (
+    SUPPORTED_EXTENSIONS,
+    SUPPORTED_MIME_TYPES,
+    ISCC_COMPONENT_CODES,
+)
 
 
 def iter_files(root, exts=None, recursive=False):
@@ -65,3 +73,49 @@ def get_title(tika_result: dict):
         title = title[0]
 
     return title
+
+
+class DefaultHelp(click.Command):
+    def __init__(self, *args, **kwargs):
+        context_settings = kwargs.setdefault("context_settings", {})
+        if "help_option_names" not in context_settings:
+            context_settings["help_option_names"] = ["-h", "--help"]
+        self.help_flag = context_settings["help_option_names"][0]
+        super(DefaultHelp, self).__init__(*args, **kwargs)
+
+    def parse_args(self, ctx, args):
+        if not args:
+            args = [self.help_flag]
+        return super(DefaultHelp, self).parse_args(ctx, args)
+
+
+def iscc_clean(i):
+    """Remove leading scheme and dashes"""
+    return i.split(":")[-1].strip().replace("-", "")
+
+
+def iscc_verify(i):
+    i = iscc_clean(i)
+    for c in i:
+        if c not in iscc.SYMBOLS:
+            raise ValueError('Illegal character "{}" in ISCC Code'.format(c))
+    for component_code in iscc_split(i):
+        iscc_verify_component(component_code)
+
+
+def iscc_verify_component(component_code):
+
+    if not len(component_code) == 13:
+        raise ValueError(
+            "Illegal component length {} for {}".format(
+                len(component_code), component_code
+            )
+        )
+
+    header_code = component_code[:2]
+    if header_code not in ISCC_COMPONENT_CODES.keys():
+        raise ValueError("Illegal component header {}".format(header_code))
+
+
+def iscc_split(i):
+    return textwrap.wrap(iscc_clean(i), 13)

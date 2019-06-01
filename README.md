@@ -104,6 +104,10 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.3.0] - 2019-06-01
+
+- Add `sim` command similarity comparison of ISCC Codes
+
 ### [0.2.0] - 2019-05-31
 
 - Add support for doc, docx and rtf documents
