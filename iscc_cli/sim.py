@@ -50,5 +50,6 @@ def sim(a, b):
                 click.echo(
                     "Estimated Similarity of {}: {:.2f} %".format(type_a, similarity)
                 )
-            if type_a == type_b and type_a == "Instance-ID":
-                click.echo("Identical Instance-ID")
+            if type_a == "Instance-ID" and type_b == "Instance-ID":
+                if ca == cb:
+                    click.echo("Identical Instance-ID")
