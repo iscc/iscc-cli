@@ -11,11 +11,11 @@ from iscc_cli.utils import DefaultHelp, iscc_verify, iscc_split, iscc_clean
 @click.argument("a", nargs=1)
 @click.argument("b", nargs=1)
 def sim(a, b):
-    """Estimate Similarity of ISCC Codes.
+    """Estimate Similarity of ISCC Codes A & B.
 
     Example:
 
-        $ iscc sim CCTcjug7rM3Da CCL9Aeao56G1R
+        $ iscc sim CCUcKwdQc1jUM CCjMmrCsKWu1D
 
     You may also compare fully qualified ISCC Codes with each other.
     """

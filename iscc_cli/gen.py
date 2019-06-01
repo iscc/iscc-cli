@@ -3,16 +3,18 @@ import click
 import iscc
 from tika import detector, parser
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from iscc_cli.utils import get_title, mime_to_gmt
+from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 
 
-@click.command()
+@click.command(cls=DefaultHelp)
 @click.argument("file", type=click.File("rb"))
-@click.option("-t", "--title", type=click.STRING)
-@click.option("-e", "--extra", type=click.STRING, default="")
-@click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode")
+@click.option("-t", "--title", type=click.STRING, help="Title for Meta-ID creation.")
+@click.option(
+    "-e", "--extra", type=click.STRING, help="Extra text for Meta-ID creation."
+)
+@click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode.")
 def gen(file, title, extra, verbose):
-    """Generate ISCC Code for a single media file."""
+    """Generate ISCC Code for FILE."""
     media_type = detector.from_file(file.name)
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
@@ -21,6 +23,9 @@ def gen(file, title, extra, verbose):
     tika_result = parser.from_file(file.name)
     if not title:
         title = get_title(tika_result)
+
+    if not extra:
+        extra = ""
 
     mid, norm_title, _ = iscc.meta_id(title, extra)
     gmt = mime_to_gmt(media_type)

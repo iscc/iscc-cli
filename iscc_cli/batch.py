@@ -4,16 +4,19 @@ import click
 from tika import detector, parser
 import iscc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from iscc_cli.utils import get_files, mime_to_gmt, get_title
+from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp
 
 
-@click.command()
+@click.command(cls=DefaultHelp)
 @click.argument("path", type=click.Path(exists=True))
 @click.option("-r", "--recursive", is_flag=True, help="Recurse into subdirectories.")
 def batch(path, recursive):
-    """Batch create ISCC Codes.
+    """Create ISCC Codes for all files in PATH.
 
-    Generates ISCC Codes for all media files in <PATH>.
+    Example:
+
+      $ iscc batch ~/Documents
+
     """
     for f in get_files(path, recursive=recursive):
         media_type = detector.from_file(f)
