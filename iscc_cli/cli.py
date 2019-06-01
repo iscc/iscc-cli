@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import click
-from iscc_cli import __version__, init, gen, batch, sim
+from iscc_cli import __version__, init, gen, batch, sim, info
 from click_default_group import DefaultGroup
 
 
@@ -14,6 +14,7 @@ cli.add_command(init.init)
 cli.add_command(gen.gen)
 cli.add_command(batch.batch)
 cli.add_command(sim.sim)
+cli.add_command(info.info)
 
 
 if __name__ == "__main__":
