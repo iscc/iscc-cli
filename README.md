@@ -19,12 +19,16 @@
 
 The **International Standard Content Code** is a proposal for an [open standard](https://en.wikipedia.org/wiki/Open_standard) for decentralized content identification. **ISCC Codes** are generated algorithmically **from the content itself** and offer many powerful features like content similarity clustering and partial integrity checks. If you want to learn more about the **ISCC** please check out https://iscc.codes.
 
+This tool offers an easy way to generate ISCC codes from the command line. It supports content extraction via [Apache Tika](https://tika.apache.org/) and uses the [ISCC reference implementation](https://github.com/iscc/iscc-specs).
+
+**Supported File Types**: doc, docx, epub, gif, html, jpg, odt, pdf, png, rtf, txt, xml
+
 ## Requirements
 
 | NOTE: Requires JAVA to be installed and on your path! |
 | --- |
 
-**iscc-cli** is tested on Linux and Windows with Python 3.5/3.6/3.7.
+**iscc-cli** is tested on Linux and Windows with Python 3.5/3.6/3.7 but should also work on macOS.
 
 This tool depends on [tika-python](<https://github.com/chrismattmann/tika-python>).  [Tika](<https://tika.apache.org/>)  is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
 
@@ -51,10 +55,11 @@ Options:
   --help     Show this message and exit.
 
 Commands:
-  gen*   Generate ISCC Code for a single media file.
-  batch  Batch create ISCC Codes.
+  gen*   Generate ISCC Code for FILE.
+  batch  Create ISCC Codes for all files in PATH.
+  info   Show information about environment.
   init   Inititalize and check Tika server.
-  sim    Estimate Similarity of ISCC Codes.
+  sim    Estimate Similarity of ISCC Codes A & B.
 ```
 
 Get help for a specific command by entering `iscc <command>`:
@@ -66,6 +71,7 @@ Usage: iscc gen [OPTIONS] FILE
   Generate ISCC Code for FILE.
 
 Options:
+  -g, --guess       Guess title (first line of text).
   -t, --title TEXT  Title for Meta-ID creation.
   -e, --extra TEXT  Extra text for Meta-ID creation.
   -v, --verbose     Enables verbose mode.
@@ -122,6 +128,13 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.4.0] - 2019-06-03
+
+- Added support for html, odt, txt, xml, gif
+- Added optional guessing of title (first line of text)
+- Added new info command
+- Fixed wrong detection of identical Instance-ID
 
 ### [0.3.0] - 2019-06-01
 

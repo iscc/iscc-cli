@@ -55,7 +55,7 @@ def mime_to_gmt(mime_type):
         return entry["gmt"]
 
 
-def get_title(tika_result: dict):
+def get_title(tika_result: dict, guess=False):
     title = ""
 
     meta = tika_result.get("metadata")
@@ -64,7 +64,7 @@ def get_title(tika_result: dict):
         if not title:
             title = meta.get("title", "")
 
-    if not title:
+    if not title and guess:
         content = tika_result.get("content")
         if content:
             title = content.strip().splitlines()[0]
