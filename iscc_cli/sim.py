@@ -40,6 +40,12 @@ def sim(a, b):
     a = iscc_split(a)
     b = iscc_split(b)
 
+    if len(a) == 1 and len(b) == 1:
+        type_a = ISCC_COMPONENT_CODES.get(a[0][:2])["name"]
+        type_b = ISCC_COMPONENT_CODES.get(b[0][:2])["name"]
+        if type_a != type_b:
+            click.echo("Incompatible component types ({} & {}).".format(type_a, type_b))
+
     for ca in a:
         for cb in b:
             type_a = ISCC_COMPONENT_CODES.get(ca[:2])["name"]
