@@ -8,12 +8,19 @@ from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 
 @click.command(cls=DefaultHelp)
 @click.argument("file", type=click.File("rb"))
+@click.option(
+    "-g",
+    "--guess",
+    is_flag=True,
+    default=False,
+    help="Guess title (first line of text).",
+)
 @click.option("-t", "--title", type=click.STRING, help="Title for Meta-ID creation.")
 @click.option(
     "-e", "--extra", type=click.STRING, help="Extra text for Meta-ID creation."
 )
 @click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode.")
-def gen(file, title, extra, verbose):
+def gen(file, guess, title, extra, verbose):
     """Generate ISCC Code for FILE."""
     media_type = detector.from_file(file.name)
     if media_type not in SUPPORTED_MIME_TYPES:
@@ -22,7 +29,7 @@ def gen(file, title, extra, verbose):
 
     tika_result = parser.from_file(file.name)
     if not title:
-        title = get_title(tika_result)
+        title = get_title(tika_result, guess=guess)
 
     if not extra:
         extra = ""
@@ -41,12 +48,16 @@ def gen(file, title, extra, verbose):
     did = iscc.data_id(file.name)
     iid, tophash = iscc.instance_id(file.name)
 
-    click.echo(
-        "ISCC:{mid}-{cid}-{did}-{iid}".format(mid=mid, cid=cid, did=did, iid=iid)
-    )
+    if not norm_title:
+        click.echo("ISCC:{cid}-{did}-{iid}".format(cid=cid, did=did, iid=iid))
+    else:
+        click.echo(
+            "ISCC:{mid}-{cid}-{did}-{iid}".format(mid=mid, cid=cid, did=did, iid=iid)
+        )
 
     if verbose:
-        click.echo("Norm Title: %s" % norm_title)
+        if norm_title:
+            click.echo("Norm Title: %s" % norm_title)
         click.echo("Tophash:    %s" % tophash)
         click.echo("Filepath:   %s" % file.name)
         click.echo("GMT:        %s" % gmt)
