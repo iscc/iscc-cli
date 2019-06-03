@@ -21,7 +21,7 @@ The **International Standard Content Code** is a proposal for an [open standard]
 
 This tool offers an easy way to generate ISCC codes from the command line. It supports content extraction via [Apache Tika](https://tika.apache.org/) and uses the [ISCC reference implementation](https://github.com/iscc/iscc-specs).
 
-**Supported File Types**: doc, docx, epub, html, jpg, odt, pdf, png, rtf, txt, xml
+**Supported File Types**: doc, docx, epub, gif, html, jpg, odt, pdf, png, rtf, txt, xml
 
 ## Requirements
 
@@ -131,7 +131,7 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ### [0.4.0] - 2019-06-03
 
-- Added support for html, odt, txt, xml
+- Added support for html, odt, txt, xml, gif
 - Added optional guessing of title (first line of text)
 - Added new info command
 - Fixed wrong detection of identical Instance-ID

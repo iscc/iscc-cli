@@ -16,6 +16,7 @@ SUPPORTED_MIME_TYPES = {
         "gmt": GMT.TEXT,
         "ext": "docx",
     },
+    "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},
     "image/jpeg": {"gmt": GMT.IMAGE, "ext": "jpg"},
     "image/png": {"gmt": GMT.IMAGE, "ext": "png"},
     "application/pdf": {"gmt": GMT.TEXT, "ext": "pdf"},
