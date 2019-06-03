@@ -23,6 +23,7 @@ SUPPORTED_MIME_TYPES = {
     "application/xml": {"gmt": GMT.TEXT, "ext": "xml"},
     "application/vnd.oasis.opendocument.text": {"gmt": GMT.TEXT, "ext": "odt"},
     "text/html": {"gmt": GMT.TEXT, "ext": "html"},
+    "text/plain": {"gmt": GMT.TEXT, "ext": "txt"},
 }
 
 
