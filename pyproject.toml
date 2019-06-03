@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "0.3.0"
+version = "0.4.0"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -10,7 +10,7 @@ repository = "https://github.com/iscc/iscc-cli"
 keywords = ["iscc", "media", "identifier", "blockchain", "cli", "generator"]
 
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Information Technology",
     "Environment :: Console",
