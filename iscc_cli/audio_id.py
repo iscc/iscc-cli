@@ -19,7 +19,7 @@ def content_id_audio(features, partial=False):
 
 def get_chroma_vector(filepath):
     """Returns 32-bit (4 byte) integers as features"""
-    cmd = [fpcalc.exe_path(), filepath, "-raw", "-json", "-algorithm", "5"]
+    cmd = [fpcalc.exe_path(), filepath, "-raw", "-json"]
     res = subprocess.run(cmd, stdout=subprocess.PIPE)
     vec = json.loads(res.stdout.decode("utf-8"))["fingerprint"]
     return vec
