@@ -148,7 +148,9 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ### [0.5.0] - 2019-06-06
 
-- Added experimental support for mp3
+- Added experimental support for aif, mp3, ogg, wav
+- More verbose batch output
+- Fix batch output default Meta-ID
 
 ### [0.4.0] - 2019-06-03
 
