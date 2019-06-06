@@ -37,6 +37,7 @@ click = "^7.0"
 iscc = "^1.0.4"
 tika = "^1.19"
 click-default-group = "^1.2"
+colorama = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
