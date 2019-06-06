@@ -6,7 +6,7 @@ from iscc_cli import fpcalc
 
 
 def test_exe_path():
-    assert 'fpcalc' in fpcalc.exe_path()
+    assert "fpcalc" in fpcalc.exe_path()
 
 
 def test_is_installed():

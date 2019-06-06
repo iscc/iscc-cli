@@ -47,7 +47,7 @@ def download():
     file_name = FPCALC_OS_MAP[platform.system()]
     out_path = os.path.join(iscc_cli.APP_DIR, file_name)
     if os.path.exists(out_path):
-        click.echo('Fpcalc already downloaded: {}'.format(out_path))
+        click.echo("Fpcalc already downloaded: {}".format(out_path))
         return out_path
 
     os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
@@ -99,5 +99,5 @@ def install():
 
 def get_version_info() -> bytes:
     """Get fpcalc version"""
-    r = subprocess.run([exe_path(), '-v'], stdout=subprocess.PIPE)
+    r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
     return r.stdout
