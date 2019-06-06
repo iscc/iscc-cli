@@ -7,7 +7,7 @@ import shutil
 import tarfile
 import zipfile
 import subprocess
-
+import stat
 import click
 import requests
 import iscc_cli
@@ -93,6 +93,8 @@ def install():
         return exe_path()
     archive_path = download()
     extract(archive_path)
+    st = os.stat(exe_path())
+    os.chmod(exe_path(), st.st_mode | stat.S_IEXEC)
     assert is_installed()
     return exe_path()
 
