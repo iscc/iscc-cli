@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "0.4.0"
+version = "0.5.0"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -37,6 +37,7 @@ click = "^7.0"
 iscc = "^1.0.4"
 tika = "^1.19"
 click-default-group = "^1.2"
+colorama = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

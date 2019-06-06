@@ -21,7 +21,24 @@ The **International Standard Content Code** is a proposal for an [open standard]
 
 This tool offers an easy way to generate ISCC codes from the command line. It supports content extraction via [Apache Tika](https://tika.apache.org/) and uses the [ISCC reference implementation](https://github.com/iscc/iscc-specs).
 
-**Supported File Types**: doc, docx, epub, gif, html, jpg, odt, pdf, png, rtf, txt, xml
+
+### Supported Media File Types
+
+#### Text
+
+doc, docx, epub, html, odt, pdf, rtf, txt, xml
+
+
+#### Image
+
+gif, jpg, png
+
+#### Audio
+
+aif, mp3, ogg, wav
+
+
+**Note**: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
 
 ## Requirements
 
@@ -128,6 +145,12 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.5.0] - 2019-06-06
+
+- Added experimental support for aif, mp3, ogg, wav
+- More verbose batch output
+- Fix batch output default Meta-ID
 
 ### [0.4.0] - 2019-06-03
 

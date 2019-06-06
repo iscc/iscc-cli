@@ -5,12 +5,20 @@ from tika import detector, parser
 import iscc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp
+from iscc_cli import audio_id, fpcalc
 
 
 @click.command(cls=DefaultHelp)
 @click.argument("path", type=click.Path(exists=True))
 @click.option("-r", "--recursive", is_flag=True, help="Recurse into subdirectories.")
-def batch(path, recursive):
+@click.option(
+    "-g",
+    "--guess",
+    is_flag=True,
+    default=False,
+    help="Guess title (first line of text).",
+)
+def batch(path, recursive, guess):
     """Create ISCC Codes for all files in PATH.
 
     Example:
@@ -27,11 +35,11 @@ def batch(path, recursive):
             )
             continue
 
-        gmt = mime_to_gmt(media_type)
         tika_result = parser.from_file(f)
-        title = get_title(tika_result)
-        mid, norm_title, norm_extra = iscc.meta_id(title)
+        title = get_title(tika_result, guess=guess)
 
+        mid, norm_title, _ = iscc.meta_id(title)
+        gmt = mime_to_gmt(media_type)
         if gmt == GMT.IMAGE:
             cid = iscc.content_id_image(f)
         elif gmt == GMT.TEXT:
@@ -40,11 +48,27 @@ def batch(path, recursive):
                 click.echo("Could not extract text from {}".format(basename(f)))
                 continue
             cid = iscc.content_id_text(tika_result["content"])
+        elif gmt == GMT.AUDIO:
+            if not fpcalc.is_installed():
+                fpcalc.install()
+            features = audio_id.get_chroma_vector(f)
+            cid = audio_id.content_id_audio(features)
 
         did = iscc.data_id(f)
-        iid, _ = iscc.instance_id(f)
+        iid, tophash = iscc.instance_id(f)
+        if not norm_title:
+            iscc_code = "ISCC:{cid}-{did}-{iid}".format(cid=cid, did=did, iid=iid)
+        else:
+            iscc_code = "ISCC:{mid}-{cid}-{did}-{iid}".format(
+                mid=mid, cid=cid, did=did, iid=iid
+            )
+
         click.echo(
-            "ISCC:{mid}-{cid}-{did}-{iid},{fname},{title}".format(
-                mid=mid, cid=cid, did=did, iid=iid, fname=basename(f), title=norm_title
+            "{iscc_code},{tophash},{fname},{gmt},{title}".format(
+                iscc_code=iscc_code,
+                tophash=tophash,
+                fname=basename(f),
+                gmt=gmt,
+                title=norm_title,
             )
         )

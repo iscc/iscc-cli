@@ -2,7 +2,6 @@
 import textwrap
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
-
 import click
 import iscc
 

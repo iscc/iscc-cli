@@ -2,6 +2,7 @@
 import click
 import iscc
 from tika import detector, parser
+from iscc_cli import audio_id, fpcalc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 
@@ -44,6 +45,11 @@ def gen(file, guess, title, extra, verbose):
             click.echo("Could not extract text from {}".format(file.name))
             return
         cid = iscc.content_id_text(tika_result["content"])
+    elif gmt == GMT.AUDIO:
+        if not fpcalc.is_installed():
+            fpcalc.install()
+        features = audio_id.get_chroma_vector(file.name)
+        cid = audio_id.content_id_audio(features)
 
     did = iscc.data_id(file.name)
     iid, tophash = iscc.instance_id(file.name)
