@@ -99,7 +99,7 @@ def install():
     return exe_path()
 
 
-def get_version_info() -> bytes:
+def get_version_info():
     """Get fpcalc version"""
     r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
-    return r.stdout
+    return r.stdout.decode('utf-8').strip()

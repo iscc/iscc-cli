@@ -32,4 +32,4 @@ def test_install():
 
 def test_get_version_info():
     vi = fpcalc.get_version_info()
-    assert vi.startswith(b"fpcalc version 1.4.3")
+    assert vi.startswith("fpcalc version 1.4.3")
