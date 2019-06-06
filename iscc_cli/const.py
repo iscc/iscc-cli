@@ -27,6 +27,9 @@ SUPPORTED_MIME_TYPES = {
     "text/html": {"gmt": GMT.TEXT, "ext": "html"},
     "text/plain": {"gmt": GMT.TEXT, "ext": "txt"},
     "audio/mpeg": {"gmt": GMT.AUDIO, "ext": "mp3"},
+    "audio/vnd.wave": {"gmt": GMT.AUDIO, "ext": "wav"},
+    "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
+    "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
 }
 
 
