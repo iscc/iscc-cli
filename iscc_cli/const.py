@@ -7,6 +7,7 @@ class GMT:
 
     IMAGE = "image"
     TEXT = "text"
+    AUDIO = "audio"
 
 
 SUPPORTED_MIME_TYPES = {
@@ -25,6 +26,7 @@ SUPPORTED_MIME_TYPES = {
     "application/vnd.oasis.opendocument.text": {"gmt": GMT.TEXT, "ext": "odt"},
     "text/html": {"gmt": GMT.TEXT, "ext": "html"},
     "text/plain": {"gmt": GMT.TEXT, "ext": "txt"},
+    "audio/mpeg": {"gmt": GMT.AUDIO, "ext": "mp3"},
 }
 
 
