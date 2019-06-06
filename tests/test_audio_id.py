@@ -16,4 +16,4 @@ def test_get_chroma_vector():
         fpcalc.install()
     r = audio_id.get_chroma_vector("tests/demo.mp3")
     assert isinstance(r, list)
-    assert r[0] == 1237561972
+    assert r[0] == 684003877
