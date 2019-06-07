@@ -17,9 +17,16 @@ def content_id_audio(features, partial=False):
     return iscc.encode(content_id_audio_digest)
 
 
-def get_chroma_vector(filepath):
+def get_chroma_vector(file):
     """Returns 32-bit (4 byte) integers as features"""
-    cmd = [fpcalc.exe_path(), filepath, "-raw", "-json"]
-    res = subprocess.run(cmd, stdout=subprocess.PIPE)
+
+    if hasattr(file, "read"):
+        file.seek(0)
+        cmd = [fpcalc.exe_path(), "-raw", "-json", "-"]
+        res = subprocess.run(cmd, stdout=subprocess.PIPE, input=file.read())
+    else:
+        cmd = [fpcalc.exe_path(), file, "-raw", "-json"]
+        res = subprocess.run(cmd, stdout=subprocess.PIPE)
+
     vec = json.loads(res.stdout.decode("utf-8"))["fingerprint"]
     return vec
