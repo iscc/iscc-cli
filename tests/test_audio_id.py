@@ -22,8 +22,7 @@ def test_get_chroma_vector_file_path():
 def test_get_chroma_vector_file_stream():
     if not fpcalc.is_installed():
         fpcalc.install()
-    with open("tests/demo.mp3", 'rb') as file_obj:
+    with open("tests/demo.mp3", "rb") as file_obj:
         r = audio_id.get_chroma_vector(file_obj)
     assert isinstance(r, list)
     assert r[0] == 684003877
-
