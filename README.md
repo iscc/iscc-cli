@@ -75,8 +75,9 @@ Commands:
   gen*   Generate ISCC Code for FILE.
   batch  Create ISCC Codes for all files in PATH.
   info   Show information about environment.
-  init   Inititalize and check Tika server.
+  init   Inititalize and check environment.
   sim    Estimate Similarity of ISCC Codes A & B.
+  web    Generate ISCC Code from URL.
 ```
 
 Get help for a specific command by entering `iscc <command>`:
@@ -146,6 +147,10 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.6.0] - 2019-06-11
+
+- Added new `web` command (creates ISCC Codes for URLs)
+
 ### [0.5.0] - 2019-06-06
 
 - Added experimental support for aif, mp3, ogg, wav
@@ -156,7 +161,7 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 - Added support for html, odt, txt, xml, gif
 - Added optional guessing of title (first line of text)
-- Added new info command
+- Added new `info` command
 - Fixed wrong detection of identical Instance-ID
 
 ### [0.3.0] - 2019-06-01
