@@ -4,7 +4,6 @@ import click
 import iscc
 import requests
 from tika import parser
-
 import iscc_cli
 from iscc_cli import fpcalc, audio_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
@@ -15,7 +14,7 @@ HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
 
 @click.command(cls=DefaultHelp)
-@click.argument("url")
+@click.argument("url", type=click.STRING)
 @click.option(
     "-g",
     "--guess",
@@ -23,10 +22,19 @@ HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
     default=False,
     help="Guess title (first line of text).",
 )
+@click.option("-t", "--title", type=click.STRING, help="Title for Meta-ID creation.")
+@click.option(
+    "-e", "--extra", type=click.STRING, help="Extra text for Meta-ID creation."
+)
 @click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode.")
-def web(url, guess, verbose):
+def web(url, guess, title, extra, verbose):
+    """Generate ISCC Code from URL."""
 
-    resp = requests.get(url, headers=HEADERS, stream=True)
+    try:
+        resp = requests.get(url, headers=HEADERS, stream=True)
+    except Exception as e:
+        raise click.BadArgumentUsage(e)
+
     media_type = resp.headers.get("Content-Type", "").split(";")[0]
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
@@ -34,8 +42,13 @@ def web(url, guess, verbose):
 
     data = BytesIO(resp.content)
     tika_result = parser.from_buffer(data)
-    title = get_title(tika_result, guess=guess)
-    mid, norm_title, _ = iscc.meta_id(title)
+    if not title:
+        title = get_title(tika_result, guess=guess)
+
+    if not extra:
+        extra = ""
+
+    mid, norm_title, _ = iscc.meta_id(title, extra)
     gmt = mime_to_gmt(media_type)
     if gmt == GMT.IMAGE:
         data.seek(0)
