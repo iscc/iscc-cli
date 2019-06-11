@@ -1,9 +1,5 @@
 language: python
 
-os:
-  - linux
-  - osx
-
 cache:
   pip: true
   directories:
