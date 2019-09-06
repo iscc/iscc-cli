@@ -60,16 +60,17 @@ def get_title(tika_result: dict, guess=False):
     meta = tika_result.get("metadata")
     if meta:
         title = meta.get("dc:title", "")
+        title = title[0].strip() if isinstance(title, list) else title.strip()
         if not title:
-            title = meta.get("title", "")
+            title = meta.get("title", "").strip()
 
-    if not title and guess:
-        content = tika_result.get("content")
+    # See if string would survive normalization
+    norm_title = iscc.text_normalize(title, keep_ws=True)
+
+    if not norm_title and guess:
+        content = tika_result.get("content", "")
         if content:
-            title = content.strip().splitlines()[0]
-
-    if isinstance(title, list):
-        title = title[0]
+            title = iscc.text_trim(iscc.text_normalize(content, keep_ws=True))
 
     return title
 
