@@ -27,7 +27,7 @@ def test_gen_single_guess():
     result = r.invoke(cli, ["gen", "-g", "tests/demo.txt"])
     assert result.exit_code == 0
     assert (
-        "ISCC:CCTmdKuAHDJ4a-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX" in result.output
+        "ISCC:CCcdAr6GDoF3p-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX" in result.output
     )
 
 
