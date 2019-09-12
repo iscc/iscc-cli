@@ -26,6 +26,7 @@ def batch(path, recursive, guess):
       $ iscc batch ~/Documents
 
     """
+    results = []
     for f in get_files(path, recursive=recursive):
         media_type = detector.from_file(f)
         if media_type not in SUPPORTED_MIME_TYPES:
@@ -56,15 +57,14 @@ def batch(path, recursive, guess):
 
         did = iscc.data_id(f)
         iid, tophash = iscc.instance_id(f)
+
         if not norm_title:
-            iscc_code = "ISCC:{cid}-{did}-{iid}".format(cid=cid, did=did, iid=iid)
+            iscc_code = "-".join((cid, did, iid))
         else:
-            iscc_code = "ISCC:{mid}-{cid}-{did}-{iid}".format(
-                mid=mid, cid=cid, did=did, iid=iid
-            )
+            iscc_code = "-".join((mid, cid, did, iid))
 
         click.echo(
-            "{iscc_code},{tophash},{fname},{gmt},{title}".format(
+            "ISCC:{iscc_code},{tophash},{fname},{gmt},{title}".format(
                 iscc_code=iscc_code,
                 tophash=tophash,
                 fname=basename(f),
@@ -72,3 +72,14 @@ def batch(path, recursive, guess):
                 title=norm_title,
             )
         )
+        results.append(
+            dict(
+                iscc=iscc_code,
+                norm_title=norm_title,
+                tophash=tophash,
+                gmt=gmt,
+                file_name=basename(f),
+            )
+        )
+
+    return results

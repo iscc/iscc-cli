@@ -55,11 +55,11 @@ def gen(file, guess, title, extra, verbose):
     iid, tophash = iscc.instance_id(file.name)
 
     if not norm_title:
-        click.echo("ISCC:{cid}-{did}-{iid}".format(cid=cid, did=did, iid=iid))
+        iscc_code = "-".join((cid, did, iid))
     else:
-        click.echo(
-            "ISCC:{mid}-{cid}-{did}-{iid}".format(mid=mid, cid=cid, did=did, iid=iid)
-        )
+        iscc_code = "-".join((mid, cid, did, iid))
+
+    click.echo("ISCC:{}".format(iscc_code))
 
     if verbose:
         if norm_title:
@@ -67,3 +67,5 @@ def gen(file, guess, title, extra, verbose):
         click.echo("Tophash:    %s" % tophash)
         click.echo("Filepath:   %s" % file.name)
         click.echo("GMT:        %s" % gmt)
+
+    return dict(iscc=iscc_code, norm_title=norm_title, tophash=tophash, gmt=gmt)

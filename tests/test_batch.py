@@ -21,5 +21,9 @@ def test_batch_recursive():
     assert "ISCC:CCL9Aeao56G1R" in result.output
 
 
-if __name__ == "__main__":
-    main()
+def test_batch_python_call():
+    from iscc_cli.batch import batch
+
+    result = batch.callback("./tests/subdir", False, False)
+    assert isinstance(result, list)
+    assert len(result) == 1
