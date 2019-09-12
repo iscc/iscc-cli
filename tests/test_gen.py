@@ -29,3 +29,12 @@ def test_gen_single_guess():
     assert (
         "ISCC:CCcdAr6GDoF3p-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX" in result.output
     )
+
+
+def test_gen_python_call():
+    from iscc_cli.gen import gen
+
+    file = open("tests/demo.txt")
+    result = gen.callback(file, True, "", "", True)
+    assert result["iscc"] == "CCcdAr6GDoF3p-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX"
+    assert result["norm_title"] == "iscc test document"

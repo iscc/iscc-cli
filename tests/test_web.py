@@ -17,16 +17,22 @@ def test_iscc_web_no_args():
 
 def test_iscc_web_image():
     result = r.invoke(
-        cli, ['web', 'https://iscc.foundation/news/images/lib-arch-ottawa.jpg']
+        cli, ["web", "https://iscc.foundation/news/images/lib-arch-ottawa.jpg"]
     )
     assert result.exit_code == 0
     assert "ISCC:CCbU23e7E8LAR" in result.output
 
 
 def test_iscc_web_invalid_url():
-    result = r.invoke(cli, ['web', 'heise.de'])
+    result = r.invoke(cli, ["web", "heise.de"])
     assert result.exit_code == 2
     assert "Error: Invalid URL" in result.output
 
 
+def test_iscc_web_python_call():
+    from iscc_cli.web import web
 
+    url = "https://iscc.foundation/news/images/lib-arch-ottawa.jpg"
+    result = web.callback(url=url, guess=False, title="", extra="", verbose=False)
+    assert "CCbU23e7E8LAR" in result["iscc"]
+    assert result["norm_title"] == "library and archives canada ottawa"
