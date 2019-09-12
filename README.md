@@ -136,10 +136,12 @@ You may also compare full four-component ISCC Codes.
 
 While this package is not built to be used as a library, some of the high level commands to generate ISCC Codes are exposed as vanilla python functions:
 
-```pydocstring
->>>from iscc_cli import lib
->>>from pprint import pprint
->>>pprint(lib.iscc_from_url("https://iscc.foundation/news/images/lib-arch-ottawa.jpg"))
+```python
+from iscc_cli import lib
+from pprint import pprint
+
+pprint(lib.iscc_from_url("https://iscc.foundation/news/images/lib-arch-ottawa.jpg"))
+
 {'gmt': 'image',
  'iscc': 'CCbU23e7E8LAR-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy',
  'norm_title': 'library and archives canada ottawa',
