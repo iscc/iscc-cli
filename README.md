@@ -132,6 +132,19 @@ Estimated Similarity of Meta-ID: 87.50 %
 
 You may also compare full four-component ISCC Codes.
 
+### Using from your python code
+
+While this package is not built to be used as a library, some of the high level commands to generate ISCC Codes are exposed as vanilla python functions:
+
+```pydocstring
+>>>from iscc_cli import lib
+>>>from pprint import pprint
+>>>pprint(lib.iscc_from_url("https://iscc.foundation/news/images/lib-arch-ottawa.jpg"))
+{'gmt': 'image',
+ 'iscc': 'CCbU23e7E8LAR-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy',
+ 'norm_title': 'library and archives canada ottawa',
+ 'tophash': 'e264cc07209bfaecc291f97c7f8765229ce4c1d36ac6901c477e05b2422eea3e'}
+```
 
 ## Maintainers
 
@@ -146,6 +159,9 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.7.0] - 2019-09-12
+- Expose commands as python API
 
 ### [0.6.0] - 2019-06-11
 
