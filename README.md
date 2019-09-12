@@ -162,6 +162,7 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ### [0.7.0] - 2019-09-12
 - Expose commands as python API
+- Fix title guessing bug
 
 ### [0.6.0] - 2019-06-11
 
