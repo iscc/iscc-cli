@@ -6,3 +6,4 @@ __version__ = "0.7.0"
 
 APP_NAME = "iscc-cli"
 APP_DIR = click.get_app_dir(APP_NAME)
+TIKA_PATH = APP_DIR
