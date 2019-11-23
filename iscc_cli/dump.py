@@ -17,7 +17,7 @@ def dump(file, strip, meta, content):
     """Dump Tika extraction results for FILE."""
     tika_result = parser.from_file(file.name)
     if all([meta, content]):
-        raise UsageError("Use either --meta or --content for selecitve output.")
+        raise UsageError("Use either --meta or --content for selective output.")
 
     if strip:
         tika_result["content"] = tika_result.get("content", "")[:strip]
