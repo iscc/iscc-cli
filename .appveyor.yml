@@ -15,7 +15,7 @@ install:
 
   # Installing Poetry
   - "curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py"
-  - "python get-poetry.py --preview"
+  - "python get-poetry.py --preview --yes"
   - "SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%"
 
   # Ensure latest pip in Poetry's virtualenv

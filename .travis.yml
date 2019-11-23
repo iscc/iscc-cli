@@ -7,7 +7,7 @@ cache:
 
 install:
   - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
-  - python get-poetry.py --preview
+  - python get-poetry.py --preview -yes
   - source $HOME/.poetry/env
   - poetry install
 
