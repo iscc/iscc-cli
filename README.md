@@ -57,7 +57,8 @@ The ISCC command line tool is published with the package name `iscc-cli` on the 
 $ pip3 install iscc-cli
 ```
 
-Self-contained Windows binary executables are available for dowanload at: <https://github.com/iscc/iscc-cli/releases/> 
+Self-contained Windows binary executables are available for download at: 
+<https://github.com/iscc/iscc-cli/releases/> 
 
 ## Usage
 
