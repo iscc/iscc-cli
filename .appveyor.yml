@@ -14,7 +14,7 @@ install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
   # Installing Poetry
-  - "curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py"
+  - "curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py"
   - "python get-poetry.py --preview"
   - "SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%"
 
