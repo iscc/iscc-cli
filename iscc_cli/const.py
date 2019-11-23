@@ -30,6 +30,7 @@ SUPPORTED_MIME_TYPES = {
     "audio/vnd.wave": {"gmt": GMT.AUDIO, "ext": "wav"},
     "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
     "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
+    "application/x-ibooks+zip": {"gmt": GMT.TEXT, "ext": "ibooks"},
 }
 
 

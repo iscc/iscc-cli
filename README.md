@@ -26,7 +26,7 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks
 
 
 #### Image
@@ -47,7 +47,7 @@ aif, mp3, ogg, wav
 
 **iscc-cli** is tested on Linux and Windows with Python 3.5/3.6/3.7 but should also work on macOS.
 
-This tool depends on [tika-python](<https://github.com/chrismattmann/tika-python>).  [Tika](<https://tika.apache.org/>)  is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
+This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/)  is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
 
 ## Install
 
@@ -56,6 +56,9 @@ The ISCC command line tool is published with the package name `iscc-cli` on the 
 ```console
 $ pip3 install iscc-cli
 ```
+
+Self-contained Windows binary executables are available for download at: 
+<https://github.com/iscc/iscc-cli/releases/> 
 
 ## Usage
 
@@ -74,6 +77,7 @@ Options:
 Commands:
   gen*   Generate ISCC Code for FILE.
   batch  Create ISCC Codes for all files in PATH.
+  dump   Dump Tika extraction results for FILE.
   info   Show information about environment.
   init   Inititalize and check environment.
   sim    Estimate Similarity of ISCC Codes A & B.
@@ -161,6 +165,12 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.8.0] - 2019-11-23
+- Add new `dump` command (dumps extraction results)
+- Add support for iBooks files
+- Fix error with tika 1.22 dependency
+- Store tika server in non-volatile storage
 
 ### [0.7.0] - 2019-09-12
 - Expose commands as python API

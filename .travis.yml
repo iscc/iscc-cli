@@ -6,7 +6,8 @@ cache:
     - "$HOME/.cache/pypoetry"
 
 install:
-  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
+  - python get-poetry.py --preview --yes
   - source $HOME/.poetry/env
   - poetry install
 
@@ -18,3 +19,5 @@ matrix:
     - python: "3.6"
     - python: "3.7"
       dist: xenial
+    - python: "3.8"
+      dist: bionic
