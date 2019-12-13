@@ -33,7 +33,7 @@ doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks
 
 gif, jpg, png, tif, eps
 
-**Note**: EPS (postcript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
+**Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
 
 
 #### Audio
