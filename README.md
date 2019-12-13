@@ -31,7 +31,10 @@ doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks
 
 #### Image
 
-gif, jpg, png
+gif, jpg, png, tif, eps
+
+**Note**: EPS (postcript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
+
 
 #### Audio
 
@@ -57,8 +60,8 @@ The ISCC command line tool is published with the package name `iscc-cli` on the 
 $ pip3 install iscc-cli
 ```
 
-Self-contained Windows binary executables are available for download at: 
-<https://github.com/iscc/iscc-cli/releases/> 
+Self-contained Windows binary executables are available for download at:
+<https://github.com/iscc/iscc-cli/releases/>
 
 ## Usage
 
@@ -109,7 +112,7 @@ $ iscc gen tests/demo.jpg
 ISCC:CCTcjug7rM3Da-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
 ```
 
-The `gen` command is default so you can skip it and simply do `$ iscc tests/demo.jpg` 
+The `gen` command is default so you can skip it and simply do `$ iscc tests/demo.jpg`
 
 To get a more detailed result use the `-v` (`--verbose`) option:
 
@@ -165,6 +168,11 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.8.1] - 2019-12-13
+- Add support for tif files
+- Add support for eps files
+- Set application directory to non-roaming path
 
 ### [0.8.0] - 2019-11-23
 - Add new `dump` command (dumps extraction results)

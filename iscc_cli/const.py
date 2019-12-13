@@ -20,6 +20,8 @@ SUPPORTED_MIME_TYPES = {
     "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},
     "image/jpeg": {"gmt": GMT.IMAGE, "ext": "jpg"},
     "image/png": {"gmt": GMT.IMAGE, "ext": "png"},
+    "image/tiff": {"gmt": GMT.IMAGE, "ext": "tif"},
+    "application/postscript": {"gmt": GMT.IMAGE, "ext": "eps"},
     "application/pdf": {"gmt": GMT.TEXT, "ext": "pdf"},
     "application/epub+zip": {"gmt": GMT.TEXT, "ext": "epub"},
     "application/xml": {"gmt": GMT.TEXT, "ext": "xml"},
