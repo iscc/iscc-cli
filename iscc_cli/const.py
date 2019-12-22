@@ -59,3 +59,5 @@ ISCC_COMPONENT_CODES = {
     value["code"]: {"name": value["name"], "marker": key}
     for key, value in ISCC_COMPONENT_TYPES.items()
 }
+
+TEST_DATA_URL = "https://raw.githubusercontent.com/iscc/iscc-specs/master/tests/"
