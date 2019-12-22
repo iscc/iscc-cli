@@ -20,7 +20,7 @@ def test_iscc_web_image():
         cli, ["web", "https://iscc.foundation/news/images/lib-arch-ottawa.jpg"]
     )
     assert result.exit_code == 0
-    assert "ISCC:CCbU23e7E8LAR" in result.output
+    assert "CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy" in result.output
 
 
 def test_iscc_web_invalid_url():
@@ -34,5 +34,5 @@ def test_iscc_web_python_call():
 
     url = "https://iscc.foundation/news/images/lib-arch-ottawa.jpg"
     result = web.callback(url=url, guess=False, title="", extra="", verbose=False)
-    assert "CCbU23e7E8LAR" in result["iscc"]
+    assert "CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy" in result["iscc"]
     assert result["norm_title"] == "library and archives canada ottawa"

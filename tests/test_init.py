@@ -11,4 +11,4 @@ r = CliRunner()
 def test_init():
     result = r.invoke(cli, ["init"])
     assert result.exit_code == 0
-    assert "Apache Tika 1.22" in result.output
+    assert "Apache Tika 1.23" in result.output
