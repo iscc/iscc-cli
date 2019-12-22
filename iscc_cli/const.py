@@ -33,6 +33,7 @@ SUPPORTED_MIME_TYPES = {
     "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
     "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
     "application/x-ibooks+zip": {"gmt": GMT.TEXT, "ext": "ibooks"},
+    "text/x-web-markdown": {"gmt": GMT.TEXT, "ext": "md"},
 }
 
 

@@ -30,9 +30,9 @@ def test_iter_files_recursive():
 
 def test_get_files():
     result = utils.get_files(TEST_DIR)
-    assert len(list(result)) == 16
-    result = utils.get_files(TEST_DIR, recursive=True)
     assert len(list(result)) == 17
+    result = utils.get_files(TEST_DIR, recursive=True)
+    assert len(list(result)) == 19
 
 
 def test_mime_to_gmt():
