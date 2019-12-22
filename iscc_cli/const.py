@@ -33,6 +33,7 @@ SUPPORTED_MIME_TYPES = {
     "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
     "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
     "application/x-ibooks+zip": {"gmt": GMT.TEXT, "ext": "ibooks"},
+    "text/x-web-markdown": {"gmt": GMT.TEXT, "ext": "md"},
 }
 
 
@@ -59,3 +60,5 @@ ISCC_COMPONENT_CODES = {
     value["code"]: {"name": value["name"], "marker": key}
     for key, value in ISCC_COMPONENT_TYPES.items()
 }
+
+TEST_DATA_URL = "https://raw.githubusercontent.com/iscc/iscc-specs/master/tests/"

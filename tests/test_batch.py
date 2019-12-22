@@ -12,13 +12,13 @@ r = CliRunner()
 def test_batch():
     result = r.invoke(cli, ["batch", "./tests"])
     assert result.exit_code == 0
-    assert "ISCC:CCL9Aeao56G1R" in result.output
+    assert "ISCC:CAtCPh3qhGXcV" in result.output
 
 
 def test_batch_recursive():
     result = r.invoke(cli, ["batch", "-r", "./"])
     assert result.exit_code == 0
-    assert "ISCC:CCL9Aeao56G1R" in result.output
+    assert "ISCC:CAtCPh3qhGXcV" in result.output
 
 
 def test_batch_python_call():

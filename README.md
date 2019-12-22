@@ -26,7 +26,7 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md
 
 
 #### Image
@@ -84,6 +84,7 @@ Commands:
   info   Show information about environment.
   init   Inititalize and check environment.
   sim    Estimate Similarity of ISCC Codes A & B.
+  test   Test conformance with latest reference data.
   web    Generate ISCC Code from URL.
 ```
 
@@ -109,7 +110,7 @@ The `gen` command generates an ISCC Code for a single file:
 
 ```console
 $ iscc gen tests/demo.jpg
-ISCC:CCTcjug7rM3Da-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
+ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
 ```
 
 The `gen` command is default so you can skip it and simply do `$ iscc tests/demo.jpg`
@@ -118,7 +119,7 @@ To get a more detailed result use the `-v` (`--verbose`) option:
 
 ```console
 $ iscc -v tests/demo.jpg
-ISCC:CCTcjug7rM3Da-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
+ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
 Norm Title: concentrated cat
 Tophash:    7a8d0c513142c45f417e761355bf71f11ad61d783cd8958ffc0712d00224a4d0
 Filepath:   tests/demo.jpg
@@ -150,7 +151,7 @@ from pprint import pprint
 pprint(lib.iscc_from_url("https://iscc.foundation/news/images/lib-arch-ottawa.jpg"))
 
 {'gmt': 'image',
- 'iscc': 'CCbU23e7E8LAR-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy',
+ 'iscc': 'CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy',
  'norm_title': 'library and archives canada ottawa',
  'tophash': 'e264cc07209bfaecc291f97c7f8765229ce4c1d36ac6901c477e05b2422eea3e'}
 ```
@@ -168,6 +169,13 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.8.2] - 2019-12-22
+- Add new `test` command for confromance testing
+- Add support for .md (Markdown) files
+- Update to ISCC v1.0.5
+- Update to Apache Tika 1.23
+- Fix issue with non-conformant Meta-ID
 
 ### [0.8.1] - 2019-12-13
 - Add support for tif files
