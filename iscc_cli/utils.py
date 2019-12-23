@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import io
+import os
 import textwrap
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
+from urllib.parse import urlparse
 import click
 import iscc
-
+import requests
+import iscc_cli
 from iscc_cli.const import (
     SUPPORTED_EXTENSIONS,
     SUPPORTED_MIME_TYPES,
@@ -119,3 +123,27 @@ def iscc_verify_component(component_code):
 
 def iscc_split(i):
     return textwrap.wrap(iscc_clean(i), 13)
+
+
+def download_file(url):
+    """Download file to app dir and return path."""
+    url_obj = urlparse(url)
+    file_name = os.path.basename(url_obj.path)
+    out_path = os.path.join(iscc_cli.APP_DIR, file_name)
+    if os.path.exists(out_path):
+        click.echo("Already downloaded: %s" % file_name)
+        return out_path
+    os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
+    r = requests.get(url, stream=True)
+    length = int(r.headers["content-length"])
+    chunk_size = 512
+    iter_size = 0
+    with io.open(out_path, "wb") as fd:
+        with click.progressbar(
+            length=length, label="Downloading %s" % file_name
+        ) as bar:
+            for chunk in r.iter_content(chunk_size):
+                fd.write(chunk)
+                iter_size += chunk_size
+                bar.update(chunk_size)
+    return out_path
