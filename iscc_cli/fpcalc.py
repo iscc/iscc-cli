@@ -9,7 +9,7 @@ import subprocess
 import stat
 import click
 import iscc_cli
-from utils import download_file
+from iscc_cli.utils import download_file
 
 
 FPCALC_VERSION = "1.4.3"

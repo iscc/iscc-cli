@@ -9,7 +9,7 @@ import zipfile
 import stat
 import click
 import iscc_cli
-from utils import download_file
+from iscc_cli.utils import download_file
 
 
 FFMPEG_OS_MAP = {
