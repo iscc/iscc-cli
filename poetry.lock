@@ -111,6 +111,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.8"
 
 [[package]]
+category = "main"
+description = "FFMPEG wrapper for Python"
+name = "imageio-ffmpeg"
+optional = false
+python-versions = ">=3.4"
+version = "0.3.0"
+
+[[package]]
 category = "dev"
 description = "Read metadata from Python packages"
 marker = "python_version < \"3.8\""
@@ -382,7 +390,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "60800572b420304fe06b6ee619e748f07723ccc9a6fed7601b80ad644440e466"
+content-hash = "46fe2a0f35bbdcadaa1b7eb78398bca0c84f2142c2f11342d68a8586a003da84"
 python-versions = "^3.5"
 
 [metadata.files]
@@ -428,6 +436,13 @@ colorama = [
 idna = [
     {file = "idna-2.8-py2.py3-none-any.whl", hash = "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"},
     {file = "idna-2.8.tar.gz", hash = "sha256:c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407"},
+]
+imageio-ffmpeg = [
+    {file = "imageio-ffmpeg-0.3.0.tar.gz", hash = "sha256:28500544acdebc195159d53a4670b76d596f368b218317bad5d3cbf43b00d6c2"},
+    {file = "imageio_ffmpeg-0.3.0-py3-none-macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:f99476aa42aac2ca0657483b417874a825b2f526aaa8a7a823b8a803f366caab"},
+    {file = "imageio_ffmpeg-0.3.0-py3-none-manylinux2010_x86_64.whl", hash = "sha256:f3d4096bf6e211540c4f6b9628c56d8e700cf12027ed842724173ab9c6666d1a"},
+    {file = "imageio_ffmpeg-0.3.0-py3-none-win32.whl", hash = "sha256:400345dd194f2cb2b424294aa0f3c90afce1de96879ffe3266afeece3494d93c"},
+    {file = "imageio_ffmpeg-0.3.0-py3-none-win_amd64.whl", hash = "sha256:991416c0eed0d221229e67342b8264a8b9defdec61d8a9e7688b90dbb838fb1e"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-1.3.0-py2.py3-none-any.whl", hash = "sha256:d95141fbfa7ef2ec65cfd945e2af7e5a6ddbd7c8d9a25e66ff3be8e3daf9f60f"},

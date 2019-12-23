@@ -38,6 +38,7 @@ iscc = "1.0.5"
 tika = "1.23"
 click-default-group = "^1.2"
 colorama = "^0.4.1"
+imageio-ffmpeg = "^0.3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0"
