@@ -18,6 +18,10 @@ FFMPEG_OS_MAP = {
     "Windows": "https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-4.2.1-win64-static.zip",
 }
 
+FFMPEG_MD5_MAP = {
+    "Linux": "d20e007536c6a7ab2ee63ea66c97472b",
+}
+
 
 def exe_path():
     """Returns path to ffmpeg executable."""
@@ -39,7 +43,8 @@ def download_url():
 
 def download():
     """Download ffmpeg and return path to archive file"""
-    return download_file(download_url())
+    md5 = FFMPEG_MD5_MAP.get(platform.system(), None)
+    return download_file(download_url(), md5=md5)
 
 
 def extract(archive):
