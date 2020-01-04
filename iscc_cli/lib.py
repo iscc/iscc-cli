@@ -4,7 +4,6 @@ from typing import List, Dict
 from iscc_cli.gen import gen
 from iscc_cli.batch import batch
 from iscc_cli.web import web
-import click
 
 
 def iscc_from_file(file, guess=False, title="", extra="") -> Dict:
