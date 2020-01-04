@@ -40,7 +40,7 @@ def gen(file, guess, title, extra, verbose):
         extra = ""
 
     mid, norm_title, _ = iscc.meta_id(title, extra)
-    gmt = mime_to_gmt(media_type)
+    gmt = mime_to_gmt(media_type, file_path=file.name)
     if gmt == GMT.IMAGE:
         cid = iscc.content_id_image(file.name)
     elif gmt == GMT.TEXT:

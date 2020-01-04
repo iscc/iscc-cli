@@ -44,7 +44,7 @@ def batch(path, recursive, guess):
         title = get_title(tika_result, guess=guess)
 
         mid, norm_title, _ = iscc.meta_id(title)
-        gmt = mime_to_gmt(media_type)
+        gmt = mime_to_gmt(media_type, file_path=f)
         if gmt == GMT.IMAGE:
             cid = iscc.content_id_image(f)
         elif gmt == GMT.TEXT:

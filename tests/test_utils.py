@@ -42,6 +42,16 @@ def test_mime_to_gmt():
     assert result == GMT.IMAGE
 
 
+def test_mime_to_gmt_gif_image():
+    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "image", 'demo.gif'))
+    assert result == GMT.IMAGE
+
+
+def test_mime_to_gmt_gif_video():
+    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "video", 'demo.gif'))
+    assert result == GMT.VIDEO
+
+
 def test_iscc_clean():
     assert utils.iscc_clean("ISCC: SOME-CODE") == "SOMECODE"
     assert utils.iscc_clean(" SOMECODE ") == "SOMECODE"

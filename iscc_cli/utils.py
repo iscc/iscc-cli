@@ -9,12 +9,14 @@ from urllib.parse import urlparse
 import click
 import iscc
 import requests
+from PIL import Image
+
 import iscc_cli
 from iscc_cli.const import (
     SUPPORTED_EXTENSIONS,
     SUPPORTED_MIME_TYPES,
     ISCC_COMPONENT_CODES,
-)
+    GMT)
 
 
 def iter_files(root, exts=None, recursive=False):
@@ -53,7 +55,16 @@ def get_files(path, recursive=False):
     return iter_files(path, exts=SUPPORTED_EXTENSIONS, recursive=recursive)
 
 
-def mime_to_gmt(mime_type):
+def mime_to_gmt(mime_type, file_path=None):
+    # Assume we support all videos (there to many crazy video media types)
+    if mime_type.startswith('video'):
+        return GMT.VIDEO
+    if mime_type == 'image/gif' and file_path:
+        img = Image.open(file_path)
+        if img.is_animated:
+            return GMT.VIDEO
+        else:
+            return GMT.IMAGE
     entry = SUPPORTED_MIME_TYPES.get(mime_type)
     if entry:
         return entry["gmt"]
