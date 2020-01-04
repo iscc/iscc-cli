@@ -23,6 +23,14 @@ def test_iscc_web_image():
     assert "CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy" in result.output
 
 
+def test_iscc_web_video():
+    result = r.invoke(
+        cli, ["web", "https://craft.de/iscc-grinder.mp4"]
+    )
+    assert result.exit_code == 0
+    assert "CV2TgqeKWE7K8-CDKaC252w9QKN-CRYKUhn2RpzF4" in result.output
+
+
 def test_iscc_web_invalid_url():
     result = r.invoke(cli, ["web", "heise.de"])
     assert result.exit_code == 2
