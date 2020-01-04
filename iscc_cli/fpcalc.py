@@ -82,4 +82,4 @@ def install():
 def get_version_info():
     """Get fpcalc version"""
     r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
-    return r.stdout.decode("utf-8").strip()
+    return r.stdout.decode("utf-8").strip().split()[-1]

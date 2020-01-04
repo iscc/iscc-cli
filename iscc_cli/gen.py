@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+from os.path import abspath
+
 import click
 import iscc
 from tika import detector, parser
-from iscc_cli import audio_id, fpcalc
+
+from iscc_cli import audio_id, video_id, fpcalc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 
@@ -50,6 +53,9 @@ def gen(file, guess, title, extra, verbose):
             fpcalc.install()
         features = audio_id.get_chroma_vector(file.name)
         cid = audio_id.content_id_audio(features)
+    elif gmt == GMT.VIDEO:
+        features = video_id.get_frame_vectors(abspath(file.name))
+        cid = video_id.content_id_video(features)
 
     did = iscc.data_id(file.name)
     iid, tophash = iscc.instance_id(file.name)
