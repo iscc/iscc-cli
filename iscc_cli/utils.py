@@ -56,9 +56,6 @@ def get_files(path, recursive=False):
 
 
 def mime_to_gmt(mime_type, file_path=None):
-    # Assume we support all videos (there to many crazy video media types)
-    if mime_type.startswith('video'):
-        return GMT.VIDEO
     if mime_type == 'image/gif' and file_path:
         img = Image.open(file_path)
         if img.is_animated:
@@ -68,6 +65,10 @@ def mime_to_gmt(mime_type, file_path=None):
     entry = SUPPORTED_MIME_TYPES.get(mime_type)
     if entry:
         return entry["gmt"]
+    gmt = mime_type.split('/')[0]
+    if gmt in (GMT.TEXT, GMT.IMAGE, GMT.AUDIO, GMT.VIDEO):
+        click.echo('WARNING: Attempting to process unsupported media type %s' % mime_type)
+        return gmt
 
 
 def get_title(tika_result: dict, guess=False):

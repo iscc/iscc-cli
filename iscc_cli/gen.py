@@ -30,7 +30,6 @@ def gen(file, guess, title, extra, verbose):
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}.".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
-        return
 
     tika_result = parser.from_file(file.name)
     if not title:
