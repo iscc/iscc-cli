@@ -8,15 +8,15 @@ os.chdir(ROOT_DIR)
 
 
 def test_iscc_from_file():
-    res = lib.iscc_from_file("./tests/demo.jpg")
+    res = lib.iscc_from_file("./tests/image/demo.jpg")
     assert isinstance(res, dict)
     assert res["iscc"] == "CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv"
 
 
 def test_iscc_from_dir():
-    res = lib.isccs_from_dir("./tests/subdir")
+    res = lib.isccs_from_dir("./tests/batch/subdir")
     assert isinstance(res, list)
-    assert res[0]["iscc"] == "CYDfTq7Qc7Fre-CDij3vGU1BkCZ-CRNssh4Qc1x5B"
+    assert res[0]["iscc"] == "CTtW9UFoNJdXK-CDTp4cPJGiHfD-CRWoD5RiqBvNo"
 
 
 def test_iscc_from_url():

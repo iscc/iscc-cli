@@ -29,13 +29,13 @@ def test_version():
 
 
 def test_no_command_with_valid_file():
-    result = r.invoke(cli, ["tests/demo.jpg"])
+    result = r.invoke(cli, ["tests/image/demo.jpg"])
     assert result.exit_code == 0
     assert "CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv" in result.output
     assert "7a8d0c513142c45f" not in result.output
 
 
 def test_no_command_with_valid_file_verbose():
-    result = r.invoke(cli, ["-v", "tests/demo.jpg"])
+    result = r.invoke(cli, ["-v", "tests/image/demo.jpg"])
     assert result.exit_code == 0
     assert "7a8d0c513142c45f" in result.output
