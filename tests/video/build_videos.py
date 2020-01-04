@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Build supported mediatype list based on ffmpeg & tika support"""
+"""Build supported mediatype list based on ffmpeg & tika support.
+
+See: https://en.wikipedia.org/wiki/Video_file_format
+"""
 import os
 import subprocess
 from collections import defaultdict
@@ -9,6 +12,8 @@ from iscc_cli import ffmpeg
 from iscc_cli import video_id
 
 FORMATS = (
+    "rm",
+    "drc",
     "3gp",
     "3g2",
     "asf",
@@ -63,7 +68,7 @@ def build_media_types():
         media_type = detector.from_file(abspath(outf))
         sigs = video_id.get_frame_vectors(abspath(outf))
         vid = video_id.content_id_video(sigs)
-        os.remove(outf)
+        # os.remove(outf)
         print("{} -> {} -> {}".format(vid, outf, media_type))
         mt[media_type].append(fmt)
     for m, e in mt.items():
