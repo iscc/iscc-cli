@@ -21,23 +21,26 @@ SUPPORTED_MIME_TYPES = {
     "application/vnd.oasis.opendocument.text": {"gmt": GMT.TEXT, "ext": "odt"},
     "text/html": {"gmt": GMT.TEXT, "ext": "html"},
     "text/plain": {"gmt": GMT.TEXT, "ext": "txt"},
+    "application/x-ibooks+zip": {"gmt": GMT.TEXT, "ext": "ibooks"},
+    "text/x-web-markdown": {"gmt": GMT.TEXT, "ext": "md"},
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
         "gmt": GMT.TEXT,
         "ext": "docx",
     },
+
     # Image Formats
     "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},
     "image/jpeg": {"gmt": GMT.IMAGE, "ext": ["jpg", "jpeg"]},
     "image/png": {"gmt": GMT.IMAGE, "ext": "png"},
     "image/tiff": {"gmt": GMT.IMAGE, "ext": "tif"},
     "application/postscript": {"gmt": GMT.IMAGE, "ext": "eps"},
+
     # Audio Formats
     "audio/mpeg": {"gmt": GMT.AUDIO, "ext": "mp3"},
     "audio/vnd.wave": {"gmt": GMT.AUDIO, "ext": "wav"},
     "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
     "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
-    "application/x-ibooks+zip": {"gmt": GMT.TEXT, "ext": "ibooks"},
-    "text/x-web-markdown": {"gmt": GMT.TEXT, "ext": "md"},
+
     # Video Formats
     "application/vnd.rn-realmedia": {"gmt": GMT.VIDEO, "ext": "rm"},
     "video/x-dirac": {"gmt": GMT.VIDEO, "ext": "drc"},
