@@ -38,6 +38,7 @@ def web(url, guess, title, extra, verbose):
     media_type = resp.headers.get("Content-Type", "").split(";")[0]
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
+        click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
         return
 
     data = BytesIO(resp.content)

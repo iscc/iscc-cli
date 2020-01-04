@@ -28,7 +28,8 @@ def gen(file, guess, title, extra, verbose):
     """Generate ISCC Code for FILE."""
     media_type = detector.from_file(file.name)
     if media_type not in SUPPORTED_MIME_TYPES:
-        click.echo("Unsupported media type {}".format(media_type))
+        click.echo("Unsupported media type {}.".format(media_type))
+        click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
         return
 
     tika_result = parser.from_file(file.name)
