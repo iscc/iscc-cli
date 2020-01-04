@@ -16,7 +16,7 @@ def test_iscc_from_file():
 def test_iscc_from_dir():
     res = lib.isccs_from_dir("./tests/batch/subdir")
     assert isinstance(res, list)
-    assert res[0]["iscc"] == "CTtW9UFoNJdXK-CDTp4cPJGiHfD-CRWoD5RiqBvNo"
+    assert res[0]["iscc"] == "CYDfTq7Qc7Fre-CDij3vGU1BkCZ-CRNssh4Qc1x5B"
 
 
 def test_iscc_from_url():

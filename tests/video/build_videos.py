@@ -6,7 +6,7 @@ from collections import defaultdict
 from os.path import exists, abspath
 from tika import detector
 from iscc_cli import ffmpeg
-from video_id import content_id_video
+from iscc_cli import video_id
 
 FORMATS = (
     "3gp",
@@ -61,7 +61,8 @@ def build_media_types():
                 cmd = [ffmpeg.exe_path(), "-i", "master.3gp", "-loglevel", "2", outf]
             subprocess.run(cmd)
         media_type = detector.from_file(abspath(outf))
-        vid = content_id_video(abspath(outf))
+        sigs = video_id.get_frame_vectors(abspath(outf))
+        vid = video_id.content_id_video(sigs)
         os.remove(outf)
         print("{} -> {} -> {}".format(vid, outf, media_type))
         mt[media_type].append(fmt)
