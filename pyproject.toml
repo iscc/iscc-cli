@@ -19,9 +19,9 @@ classifiers = [
     "Operating System :: POSIX",
     "Operating System :: Microsoft :: Windows",
     'Programming Language :: Python',
-    'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
     "Topic :: Multimedia",
     "Topic :: System :: Archiving",
     "Topic :: Utilities",
@@ -32,7 +32,7 @@ classifiers = [
 iscc = 'iscc_cli.cli:cli'
 
 [tool.poetry.dependencies]
-python = "^3.5"
+python = "^3.6"
 click = "^7.0"
 iscc = "1.0.5"
 tika = "1.23"
@@ -48,5 +48,5 @@ pyinstaller = "^3.4"
 pytest-ordering = "^0.6"
 
 [build-system]
-requires = ["poetry==1.0.0b7"]
+requires = ["poetry==1.0.0"]
 build-backend = "poetry.masonry.api"
