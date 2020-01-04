@@ -37,7 +37,8 @@ def batch(path, recursive, guess):
                 "Unsupported file {} with mime type: {}".format(fname, media_type)
             )
             click.echo(
-                "Please request support at https://github.com/iscc/iscc-cli/issues")
+                "Please request support at https://github.com/iscc/iscc-cli/issues"
+            )
             continue
 
         tika_result = parser.from_file(f)

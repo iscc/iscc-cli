@@ -16,7 +16,8 @@ from iscc_cli.const import (
     SUPPORTED_EXTENSIONS,
     SUPPORTED_MIME_TYPES,
     ISCC_COMPONENT_CODES,
-    GMT)
+    GMT,
+)
 
 
 def iter_files(root, exts=None, recursive=False):
@@ -56,7 +57,7 @@ def get_files(path, recursive=False):
 
 
 def mime_to_gmt(mime_type, file_path=None):
-    if mime_type == 'image/gif' and file_path:
+    if mime_type == "image/gif" and file_path:
         img = Image.open(file_path)
         if img.is_animated:
             return GMT.VIDEO
@@ -65,9 +66,11 @@ def mime_to_gmt(mime_type, file_path=None):
     entry = SUPPORTED_MIME_TYPES.get(mime_type)
     if entry:
         return entry["gmt"]
-    gmt = mime_type.split('/')[0]
+    gmt = mime_type.split("/")[0]
     if gmt in (GMT.TEXT, GMT.IMAGE, GMT.AUDIO, GMT.VIDEO):
-        click.echo('WARNING: Attempting to process unsupported media type %s' % mime_type)
+        click.echo(
+            "WARNING: Attempting to process unsupported media type %s" % mime_type
+        )
         return gmt
 
 
