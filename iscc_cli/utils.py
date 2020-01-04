@@ -134,7 +134,7 @@ def download_file(url, md5=None):
     if os.path.exists(out_path):
         click.echo("Already downloaded: %s" % file_name)
         if md5:
-            md5_calc = hashlib.md5(open(out_path, 'rb').read()).hexdigest()
+            md5_calc = hashlib.md5(open(out_path, "rb").read()).hexdigest()
             assert md5 == md5_calc
         return out_path
     os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
@@ -151,6 +151,20 @@ def download_file(url, md5=None):
                 iter_size += chunk_size
                 bar.update(chunk_size)
     if md5:
-        md5_calc = hashlib.md5(open(out_path, 'rb').read()).hexdigest()
+        md5_calc = hashlib.md5(open(out_path, "rb").read()).hexdigest()
         assert md5 == md5_calc
     return out_path
+
+
+class cd:
+    """Context manager for changing the current working directory"""
+
+    def __init__(self, newPath):
+        self.newPath = os.path.expanduser(newPath)
+
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
