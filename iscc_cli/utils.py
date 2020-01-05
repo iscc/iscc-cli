@@ -11,6 +11,7 @@ import click
 import iscc
 import requests
 from PIL import Image
+from pytube.helpers import safe_filename
 
 import iscc_cli
 from iscc_cli.const import (
@@ -142,10 +143,12 @@ def iscc_split(i):
     return textwrap.wrap(iscc_clean(i), 13)
 
 
-def download_file(url, md5=None):
+def download_file(url, md5=None, sanitize=False):
     """Download file to app dir and return path."""
     url_obj = urlparse(url)
     file_name = os.path.basename(url_obj.path)
+    if sanitize:
+        file_name = safe_filename(file_name)
     out_path = os.path.join(iscc_cli.APP_DIR, file_name)
     if os.path.exists(out_path):
         click.echo("Already downloaded: %s" % file_name)
@@ -187,7 +190,7 @@ class cd:
 
 
 YOUTUBE_URL_REGEX = re.compile(
-    "(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
+    r"(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
 )
 
 

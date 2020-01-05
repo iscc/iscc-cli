@@ -93,7 +93,7 @@ def web(url, guess, title, extra, verbose):
         features = audio_id.get_chroma_vector(data)
         cid = audio_id.content_id_audio(features)
     elif gmt == GMT.VIDEO:
-        local_path = download_file(url)
+        local_path = download_file(url, sanitize=True)
         features = video_id.get_frame_vectors(local_path)
         cid = video_id.content_id_video(features)
         os.remove(local_path)
