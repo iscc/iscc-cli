@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from os.path import join
+
 import pytest
 
 from iscc_cli.const import GMT
@@ -17,7 +19,7 @@ def test_iter_files_empty():
 
 
 def test_iter_files_filter():
-    result = utils.iter_files(TEST_DIR, exts=("jpg",))
+    result = utils.iter_files(join(TEST_DIR, "image"), exts=("jpg",))
     assert list(result)[0].endswith("demo.jpg")
 
 
@@ -29,15 +31,25 @@ def test_iter_files_recursive():
 
 
 def test_get_files():
-    result = utils.get_files(TEST_DIR)
-    assert len(list(result)) == 17
-    result = utils.get_files(TEST_DIR, recursive=True)
-    assert len(list(result)) == 18
+    result = utils.get_files(join(TEST_DIR, "batch"))
+    assert len(list(result)) == 2
+    result = utils.get_files(join(TEST_DIR, "batch"), recursive=True)
+    assert len(list(result)) == 3
 
 
 def test_mime_to_gmt():
     result = utils.mime_to_gmt("image/jpeg")
     assert result == GMT.IMAGE
+
+
+def test_mime_to_gmt_gif_image():
+    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "image", 'demo.gif'))
+    assert result == GMT.IMAGE
+
+
+def test_mime_to_gmt_gif_video():
+    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "video", 'demo.gif'))
+    assert result == GMT.VIDEO
 
 
 def test_iscc_clean():

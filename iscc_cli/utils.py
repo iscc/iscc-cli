@@ -1,14 +1,24 @@
 # -*- coding: utf-8 -*-
+import hashlib
+import io
+import os
+import re
 import textwrap
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
+from urllib.parse import urlparse
 import click
 import iscc
+import requests
+from PIL import Image
+from pytube.helpers import safe_filename
 
+import iscc_cli
 from iscc_cli.const import (
     SUPPORTED_EXTENSIONS,
     SUPPORTED_MIME_TYPES,
     ISCC_COMPONENT_CODES,
+    GMT,
 )
 
 
@@ -48,10 +58,22 @@ def get_files(path, recursive=False):
     return iter_files(path, exts=SUPPORTED_EXTENSIONS, recursive=recursive)
 
 
-def mime_to_gmt(mime_type):
+def mime_to_gmt(mime_type, file_path=None):
+    if mime_type == "image/gif" and file_path:
+        img = Image.open(file_path)
+        if img.is_animated:
+            return GMT.VIDEO
+        else:
+            return GMT.IMAGE
     entry = SUPPORTED_MIME_TYPES.get(mime_type)
     if entry:
         return entry["gmt"]
+    gmt = mime_type.split("/")[0]
+    if gmt in (GMT.TEXT, GMT.IMAGE, GMT.AUDIO, GMT.VIDEO):
+        click.echo(
+            "WARNING: Attempting to process unsupported media type %s" % mime_type
+        )
+        return gmt
 
 
 def get_title(tika_result: dict, guess=False):
@@ -119,3 +141,58 @@ def iscc_verify_component(component_code):
 
 def iscc_split(i):
     return textwrap.wrap(iscc_clean(i), 13)
+
+
+def download_file(url, md5=None, sanitize=False):
+    """Download file to app dir and return path."""
+    url_obj = urlparse(url)
+    file_name = os.path.basename(url_obj.path)
+    if sanitize:
+        file_name = safe_filename(file_name)
+    out_path = os.path.join(iscc_cli.APP_DIR, file_name)
+    if os.path.exists(out_path):
+        click.echo("Already downloaded: %s" % file_name)
+        if md5:
+            md5_calc = hashlib.md5(open(out_path, "rb").read()).hexdigest()
+            assert md5 == md5_calc
+        return out_path
+    os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
+    r = requests.get(url, stream=True)
+    length = int(r.headers["content-length"])
+    chunk_size = 512
+    iter_size = 0
+    with io.open(out_path, "wb") as fd:
+        with click.progressbar(
+            length=length, label="Downloading %s" % file_name
+        ) as bar:
+            for chunk in r.iter_content(chunk_size):
+                fd.write(chunk)
+                iter_size += chunk_size
+                bar.update(chunk_size)
+    if md5:
+        md5_calc = hashlib.md5(open(out_path, "rb").read()).hexdigest()
+        assert md5 == md5_calc
+    return out_path
+
+
+class cd:
+    """Context manager for changing the current working directory"""
+
+    def __init__(self, newPath):
+        self.newPath = os.path.expanduser(newPath)
+
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
+
+
+YOUTUBE_URL_REGEX = re.compile(
+    r"(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
+)
+
+
+def is_youtube_url(url):
+    return bool(YOUTUBE_URL_REGEX.match(url))

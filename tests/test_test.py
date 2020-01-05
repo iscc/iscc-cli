@@ -10,7 +10,7 @@ r = CliRunner()
 
 
 def test_test_conformance():
-    result = r.invoke(cli, ['test'])
+    result = r.invoke(cli, ["test"])
     assert result.exit_code == 0
-    assert 'PASSED' in result.output
-    assert 'FAILED' not in result.output
+    assert "PASSED" in result.output
+    assert "FAILED" not in result.output

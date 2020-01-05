@@ -26,31 +26,39 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md ...
 
 
 #### Image
 
-gif, jpg, png, tif, eps
+gif, jpg, png, tif, eps ...
 
 **Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
 
 
 #### Audio
 
-aif, mp3, ogg, wav
+aif, mp3, ogg, wav ...
 
 
 **Note**: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
+
+
+#### Video
+
+3gp, 3g2, asf, avi, flv, gif, mpg, mp4, mkv, mov, ogv, webm, wmv ...
+
+
+**Note**: Support for the Video-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
 
 ## Requirements
 
 | NOTE: Requires JAVA to be installed and on your path! |
 | --- |
 
-**iscc-cli** is tested on Linux and Windows with Python 3.5/3.6/3.7 but should also work on macOS.
+**iscc-cli** is tested on Linux and Windows with Python 3.6/3.7/3.8 but should also work on macOS.
 
-This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/)  is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
+This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/) is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
 
 ## Install
 
@@ -106,10 +114,12 @@ Options:
 
 ### Generating ISCC Codes
 
+#### For local files
+
 The `gen` command generates an ISCC Code for a single file:
 
 ```console
-$ iscc gen tests/demo.jpg
+$ iscc gen tests/image/demo.jpg
 ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
 ```
 
@@ -118,16 +128,34 @@ The `gen` command is default so you can skip it and simply do `$ iscc tests/demo
 To get a more detailed result use the `-v` (`--verbose`) option:
 
 ```console
-$ iscc -v tests/demo.jpg
+$ iscc -v tests/image/demo.jpg
 ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
 Norm Title: concentrated cat
 Tophash:    7a8d0c513142c45f417e761355bf71f11ad61d783cd8958ffc0712d00224a4d0
-Filepath:   tests/demo.jpg
+Filepath:   tests/image/demo.jpg
 GMT:        image
 ```
 
 See `iscc batch` for help on how to generate ISCC codes for multiple files at once.
 
+#### For web urls
+
+The `web` command allows you to create ISCC codes from URLs:
+
+```console
+$ iscc web https://iscc.foundation/news/images/lib-arch-ottawa.jpg
+ISCC:CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy
+```
+
+YouTube URLs will be auto-detected to create ISCC Video-IDs:
+
+```console
+$ iscc web -v https://www.youtube.com/watch?v=yJY-aLoEqDo
+Norm Title: anokato kali spiral sessions
+Tophash:    312554214e3d17e8aafc0d0bc54382b5b4c1b2ce0fa20d7bde1ff12aa34e911b
+Filepath:   https://www.youtube.com/watch?v=yJY-aLoEqDo
+GMT:        video
+```
 
 ### Similarity of ISCC Codes
 
@@ -169,6 +197,14 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.0] - 2020-01-05
+- Add experimental support for Video-ID
+- Add special handling of YouTube URLs
+- Add support for more Media Types (try & error)
+- Add support for Python 3.8
+- Remove support for Python 3.5
+
 
 ### [0.8.2] - 2019-12-22
 - Add new `test` command for confromance testing
@@ -217,7 +253,6 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 - Add support for doc, docx and rtf documents
 - Update to ISCC 1.0.4 (fixes whitespace bug)
-
 
 ### [0.1.0] - 2019-05-31
 

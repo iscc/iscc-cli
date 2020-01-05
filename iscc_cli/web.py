@@ -1,14 +1,22 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
 from io import BytesIO
 import click
 import iscc
 import requests
 from tika import parser
 import iscc_cli
-from iscc_cli import fpcalc, audio_id
+from iscc_cli import fpcalc, audio_id, video_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
-
+from iscc_cli.utils import (
+    get_title,
+    mime_to_gmt,
+    DefaultHelp,
+    download_file,
+    is_youtube_url,
+)
+import pytube
 
 HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
@@ -30,6 +38,27 @@ HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 def web(url, guess, title, extra, verbose):
     """Generate ISCC Code from URL."""
 
+    extra = extra or ""
+
+    if is_youtube_url(url):
+        try:
+            from iscc_cli.lib import iscc_from_file
+
+            yt = pytube.YouTube(url)
+            stream = yt.streams.filter(progressive=True).order_by("resolution").first()
+            file_path = stream.download(iscc_cli.APP_DIR)
+            r = iscc_from_file(file_path, guess, yt.title, extra)
+            if verbose:
+                click.echo("Norm Title: %s" % r["norm_title"])
+                click.echo("Tophash:    %s" % r["tophash"])
+                click.echo("Filepath:   %s" % url)
+                click.echo("GMT:        %s" % r["gmt"])
+            os.remove(file_path)
+            return
+        except Exception as e:
+            click.echo("YouTube URL failed with %s" % str(e))
+            click.echo("Falling back to Text-ID")
+
     try:
         resp = requests.get(url, headers=HEADERS, stream=True)
     except Exception as e:
@@ -38,15 +67,13 @@ def web(url, guess, title, extra, verbose):
     media_type = resp.headers.get("Content-Type", "").split(";")[0]
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
+        click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
         return
 
     data = BytesIO(resp.content)
     tika_result = parser.from_buffer(data)
     if not title:
         title = get_title(tika_result, guess=guess)
-
-    if not extra:
-        extra = ""
 
     mid, norm_title, _ = iscc.meta_id(title, extra)
     gmt = mime_to_gmt(media_type)
@@ -65,6 +92,12 @@ def web(url, guess, title, extra, verbose):
         data.seek(0)
         features = audio_id.get_chroma_vector(data)
         cid = audio_id.content_id_audio(features)
+    elif gmt == GMT.VIDEO:
+        local_path = download_file(url, sanitize=True)
+        features = video_id.get_frame_vectors(local_path)
+        cid = video_id.content_id_video(features)
+        os.remove(local_path)
+
     data.seek(0)
     did = iscc.data_id(data)
     data.seek(0)

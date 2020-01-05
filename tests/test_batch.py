@@ -10,20 +10,20 @@ r = CliRunner()
 
 
 def test_batch():
-    result = r.invoke(cli, ["batch", "./tests"])
+    result = r.invoke(cli, ["batch", "./tests/batch"])
     assert result.exit_code == 0
-    assert "ISCC:CAtCPh3qhGXcV" in result.output
+    assert "CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
 
 
 def test_batch_recursive():
-    result = r.invoke(cli, ["batch", "-r", "./"])
+    result = r.invoke(cli, ["batch", "-r", "./tests/batch"])
     assert result.exit_code == 0
-    assert "ISCC:CAtCPh3qhGXcV" in result.output
+    assert "CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
 
 
 def test_batch_python_call():
     from iscc_cli.batch import batch
 
-    result = batch.callback("./tests/subdir", False, False)
+    result = batch.callback("./tests/batch/subdir", False, False)
     assert isinstance(result, list)
     assert len(result) == 1

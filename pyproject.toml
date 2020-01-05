@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "0.8.2"
+version = "0.9.0"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -19,9 +19,9 @@ classifiers = [
     "Operating System :: POSIX",
     "Operating System :: Microsoft :: Windows",
     'Programming Language :: Python',
-    'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
     "Topic :: Multimedia",
     "Topic :: System :: Archiving",
     "Topic :: Utilities",
@@ -32,18 +32,22 @@ classifiers = [
 iscc = 'iscc_cli.cli:cli'
 
 [tool.poetry.dependencies]
-python = "^3.5"
+python = "^3.6"
 click = "^7.0"
 iscc = "1.0.5"
 tika = "1.23"
 click-default-group = "^1.2"
 colorama = "^0.4.1"
+imageio-ffmpeg = "^0.3.0"
+lxml = "^4.4.2"
+pytube = "^9.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0"
 black = { version = "^19.10b0", python = "^3.6" }
 pyinstaller = "^3.4"
+pytest-ordering = "^0.6"
 
 [build-system]
-requires = ["poetry==1.0.0b7"]
+requires = ["poetry==1.0.0"]
 build-backend = "poetry.masonry.api"

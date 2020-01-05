@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+from os.path import abspath
+
 import click
 import iscc
 from tika import detector, parser
-from iscc_cli import audio_id, fpcalc
+
+from iscc_cli import audio_id, video_id, fpcalc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 
@@ -25,8 +28,8 @@ def gen(file, guess, title, extra, verbose):
     """Generate ISCC Code for FILE."""
     media_type = detector.from_file(file.name)
     if media_type not in SUPPORTED_MIME_TYPES:
-        click.echo("Unsupported media type {}".format(media_type))
-        return
+        click.echo("Unsupported media type {}.".format(media_type))
+        click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
 
     tika_result = parser.from_file(file.name)
     if not title:
@@ -36,7 +39,7 @@ def gen(file, guess, title, extra, verbose):
         extra = ""
 
     mid, norm_title, _ = iscc.meta_id(title, extra)
-    gmt = mime_to_gmt(media_type)
+    gmt = mime_to_gmt(media_type, file_path=file.name)
     if gmt == GMT.IMAGE:
         cid = iscc.content_id_image(file.name)
     elif gmt == GMT.TEXT:
@@ -50,6 +53,9 @@ def gen(file, guess, title, extra, verbose):
             fpcalc.install()
         features = audio_id.get_chroma_vector(file.name)
         cid = audio_id.content_id_audio(features)
+    elif gmt == GMT.VIDEO:
+        features = video_id.get_frame_vectors(abspath(file.name))
+        cid = video_id.content_id_video(features)
 
     did = iscc.data_id(file.name)
     iid, tophash = iscc.instance_id(file.name)

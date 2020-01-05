@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """A thin cross plattform installer and wrapper around chromaprint fpcalc."""
-import io
 import os
 import platform
 import shutil
@@ -9,8 +8,8 @@ import zipfile
 import subprocess
 import stat
 import click
-import requests
 import iscc_cli
+from iscc_cli.utils import download_file
 
 
 FPCALC_VERSION = "1.4.3"
@@ -44,26 +43,7 @@ def download_url():
 
 def download():
     """Download fpcalc and return path to archive file."""
-    file_name = FPCALC_OS_MAP[platform.system()]
-    out_path = os.path.join(iscc_cli.APP_DIR, file_name)
-    if os.path.exists(out_path):
-        click.echo("Fpcalc already downloaded: {}".format(out_path))
-        return out_path
-
-    os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
-    url = download_url()
-
-    r = requests.get(url, stream=True)
-    length = int(r.headers["content-length"])
-    chunk_size = 512
-    iter_size = 0
-    with io.open(out_path, "wb") as fd:
-        with click.progressbar(length=length, label="Downloading fpcalc") as bar:
-            for chunk in r.iter_content(chunk_size):
-                fd.write(chunk)
-                iter_size += chunk_size
-                bar.update(chunk_size)
-    return out_path
+    return download_file(download_url())
 
 
 def extract(archive):
@@ -102,4 +82,4 @@ def install():
 def get_version_info():
     """Get fpcalc version"""
     r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
-    return r.stdout.decode("utf-8").strip()
+    return r.stdout.decode("utf-8").strip().split()[-1]

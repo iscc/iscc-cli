@@ -4,9 +4,9 @@ environment:
   PYTHONIOENCODING: "UTF-8"
 
   matrix:
-    - PYTHON: "C:/Python35-x64"
     - PYTHON: "C:/Python36-x64"
     - PYTHON: "C:/Python37-x64"
+    - PYTHON: "C:/Python38-x64"
 
 
 install:
@@ -14,7 +14,7 @@ install:
 
   # Installing Poetry
   - "curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py"
-  - "python get-poetry.py --preview --yes"
+  - "python get-poetry.py --yes"
   - "SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%"
 
   # Install dependencies

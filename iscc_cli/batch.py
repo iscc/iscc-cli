@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from os.path import basename
+from os.path import basename, abspath
 import click
 from tika import detector, parser
 import iscc
+
+from iscc_cli import video_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp
 from iscc_cli import audio_id, fpcalc
@@ -34,13 +36,16 @@ def batch(path, recursive, guess):
             click.echo(
                 "Unsupported file {} with mime type: {}".format(fname, media_type)
             )
+            click.echo(
+                "Please request support at https://github.com/iscc/iscc-cli/issues"
+            )
             continue
 
         tika_result = parser.from_file(f)
         title = get_title(tika_result, guess=guess)
 
         mid, norm_title, _ = iscc.meta_id(title)
-        gmt = mime_to_gmt(media_type)
+        gmt = mime_to_gmt(media_type, file_path=f)
         if gmt == GMT.IMAGE:
             cid = iscc.content_id_image(f)
         elif gmt == GMT.TEXT:
@@ -54,6 +59,9 @@ def batch(path, recursive, guess):
                 fpcalc.install()
             features = audio_id.get_chroma_vector(f)
             cid = audio_id.content_id_audio(features)
+        elif gmt == GMT.VIDEO:
+            features = video_id.get_frame_vectors(abspath(f))
+            cid = video_id.content_id_video(features)
 
         did = iscc.data_id(f)
         iid, tophash = iscc.instance_id(f)
