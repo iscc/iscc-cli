@@ -156,7 +156,6 @@ def download_file(url, md5=None, sanitize=False):
             md5_calc = hashlib.md5(open(out_path, "rb").read()).hexdigest()
             assert md5 == md5_calc
         return out_path
-    os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
     r = requests.get(url, stream=True)
     length = int(r.headers["content-length"])
     chunk_size = 512
