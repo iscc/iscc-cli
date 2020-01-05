@@ -186,7 +186,9 @@ class cd:
         os.chdir(self.savedPath)
 
 
-YOUTUBE_URL_REGEX = re.compile('(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?')
+YOUTUBE_URL_REGEX = re.compile(
+    "(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
+)
 
 
 def is_youtube_url(url):
