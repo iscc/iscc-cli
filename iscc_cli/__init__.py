@@ -1,3 +1,4 @@
+import iscc_cli.monkeys
 import os
 import click
 

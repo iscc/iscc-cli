@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 from io import BytesIO
 import click
 import iscc
@@ -44,7 +45,7 @@ def web(url, guess, title, extra, verbose):
             from iscc_cli.lib import iscc_from_file
 
             yt = pytube.YouTube(url)
-            stream = yt.streams.first()
+            stream = yt.streams.filter(progressive=True).order_by("resolution").first()
             file_path = stream.download(iscc_cli.APP_DIR)
             r = iscc_from_file(file_path, guess, yt.title, extra)
             if verbose:
