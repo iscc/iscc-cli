@@ -21,20 +21,20 @@ def test_gen_single_file():
 
 
 def test_gen_single_guess():
-    result = r.invoke(cli, ["gen", "tests/text/demo.txt"])
+    result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
-    assert "ISCC:CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX" in result.output
-    result = r.invoke(cli, ["gen", "-g", "tests/text/demo.txt"])
+    assert "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
+    result = r.invoke(cli, ["gen", "-g", "tests/text/demo.doc"])
     assert result.exit_code == 0
     assert (
-        "ISCC:CCFZWbGjth3qz-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX" in result.output
+        "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
     )
 
 
 def test_gen_python_call():
     from iscc_cli.gen import gen
 
-    file = open("tests/text/demo.txt")
+    file = open("tests/text/demo.doc")
     result = gen.callback(file, True, "", "", True)
-    assert result["iscc"] == "CCFZWbGjth3qz-CTMjk4o5H96BV-CDcDwBFVJ54fe-CR7LRzaAJGwqX"
-    assert result["norm_title"] == "iscc test document"
+    assert result["iscc"] == "CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye"
+    assert result["norm_title"] == "demo doc title from metadata"
