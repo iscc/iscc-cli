@@ -198,7 +198,7 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
-### [0.9.0] - 2020-01-04
+### [0.9.0] - 2020-01-05
 - Add experimental support for Video-ID
 - Add special handling of YouTube URLs
 - Add support for more Media Types (try & error)
