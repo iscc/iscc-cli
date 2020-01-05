@@ -114,6 +114,8 @@ Options:
 
 ### Generating ISCC Codes
 
+#### For local files
+
 The `gen` command generates an ISCC Code for a single file:
 
 ```console
@@ -136,6 +138,24 @@ GMT:        image
 
 See `iscc batch` for help on how to generate ISCC codes for multiple files at once.
 
+#### For web urls
+
+The `web` command allows you to create ISCC codes from URLs:
+
+```console
+$ iscc web https://iscc.foundation/news/images/lib-arch-ottawa.jpg
+ISCC:CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy
+```
+
+YouTube URLs will be auto-detected to create ISCC Video-IDs:
+
+```console
+$ iscc web -v https://www.youtube.com/watch?v=yJY-aLoEqDo
+Norm Title: anokato kali spiral sessions
+Tophash:    312554214e3d17e8aafc0d0bc54382b5b4c1b2ce0fa20d7bde1ff12aa34e911b
+Filepath:   https://www.youtube.com/watch?v=yJY-aLoEqDo
+GMT:        video
+```
 
 ### Similarity of ISCC Codes
 
