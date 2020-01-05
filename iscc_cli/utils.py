@@ -2,6 +2,7 @@
 import hashlib
 import io
 import os
+import re
 import textwrap
 from os import getcwd, listdir, walk
 from os.path import isfile, splitext, isdir, join
@@ -183,3 +184,10 @@ class cd:
 
     def __exit__(self, etype, value, traceback):
         os.chdir(self.savedPath)
+
+
+YOUTUBE_URL_REGEX = re.compile('(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?')
+
+
+def is_youtube_url(url):
+    return bool(YOUTUBE_URL_REGEX.match(url))

@@ -40,6 +40,7 @@ click-default-group = "^1.2"
 colorama = "^0.4.1"
 imageio-ffmpeg = "^0.3.0"
 lxml = "^4.4.2"
+pytube = "^9.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0"
