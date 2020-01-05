@@ -198,13 +198,15 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.1] - 2020-01-05
+- Fix issue with APP_DIR creation
+
 ### [0.9.0] - 2020-01-05
 - Add experimental support for Video-ID
 - Add special handling of YouTube URLs
 - Add support for more Media Types (try & error)
 - Add support for Python 3.8
 - Remove support for Python 3.5
-
 
 ### [0.8.2] - 2019-12-22
 - Add new `test` command for confromance testing
