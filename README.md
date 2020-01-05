@@ -26,19 +26,19 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md ...
 
 
 #### Image
 
-gif, jpg, png, tif, eps
+gif, jpg, png, tif, eps ...
 
 **Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
 
 
 #### Audio
 
-aif, mp3, ogg, wav
+aif, mp3, ogg, wav ...
 
 
 **Note**: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
@@ -46,7 +46,7 @@ aif, mp3, ogg, wav
 
 #### Video
 
-3gp, 3g2, asf, avi, flv, gif, mpg, mp4, mkv, mov, ogv, webm, wmv (and more)
+3gp, 3g2, asf, avi, flv, gif, mpg, mp4, mkv, mov, ogv, webm, wmv ...
 
 
 **Note**: Support for the Video-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
@@ -200,6 +200,11 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ### [0.9.0] - 2020-01-04
 - Add experimental support for Video-ID
+- Add special handling of YouTube URLs
+- Add support for more Media Types (try & error)
+- Add support for Python 3.8
+- Remove support for Python 3.5
+
 
 ### [0.8.2] - 2019-12-22
 - Add new `test` command for confromance testing
