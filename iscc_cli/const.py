@@ -27,6 +27,11 @@ SUPPORTED_MIME_TYPES = {
         "gmt": GMT.TEXT,
         "ext": "docx",
     },
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+        "gmt": GMT.TEXT,
+        "ext": "xlsx",
+    },
+    "application/vnd.ms-excel": {"gmt": GMT.TEXT, "ext": "xls",},
     # Image Formats
     "image/bmp": {"gmt": GMT.IMAGE, "ext": "bmp"},
     "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},

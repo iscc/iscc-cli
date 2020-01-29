@@ -23,7 +23,9 @@ def test_gen_single_file():
 def test_gen_single_guess():
     result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
-    assert "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
+    assert (
+        "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
+    )
     result = r.invoke(cli, ["gen", "-g", "tests/text/demo.doc"])
     assert result.exit_code == 0
     assert (
