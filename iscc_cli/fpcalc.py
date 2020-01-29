@@ -81,5 +81,8 @@ def install():
 
 def get_version_info():
     """Get fpcalc version"""
-    r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
-    return r.stdout.decode("utf-8").strip().split()[-1]
+    try:
+        r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
+        return r.stdout.decode("utf-8").strip().split()[-1]
+    except FileNotFoundError:
+        return 'WARNING: Not Installed - run "iscc init" to install!'
