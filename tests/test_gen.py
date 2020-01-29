@@ -32,7 +32,7 @@ def test_gen_single_guess():
 
 
 def test_gen_image_guess():
-    result = r.invoke(cli, ["gen", "-g", "tests/text/demo.tif"])
+    result = r.invoke(cli, ["gen", "-g", "tests/image/demo.bmp"])
     assert result.exit_code == 0
 
 

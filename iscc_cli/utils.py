@@ -90,8 +90,9 @@ def get_title(tika_result: dict, guess=False):
     norm_title = iscc.text_normalize(title, keep_ws=True)
 
     if not norm_title and guess:
-        first_line = tika_result.get("content", "").strip().splitlines()[0]
-        if first_line:
+        content = tika_result.get("content", "")
+        if content is not None:
+            first_line = content.strip().splitlines()[0]
             title = iscc.text_trim(iscc.text_normalize(first_line, keep_ws=True))
 
     return title

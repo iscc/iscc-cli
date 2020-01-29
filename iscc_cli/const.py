@@ -28,10 +28,12 @@ SUPPORTED_MIME_TYPES = {
         "ext": "docx",
     },
     # Image Formats
+    "image/bmp": {"gmt": GMT.IMAGE, "ext": "bmp"},
     "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},
     "image/jpeg": {"gmt": GMT.IMAGE, "ext": ["jpg", "jpeg"]},
     "image/png": {"gmt": GMT.IMAGE, "ext": "png"},
     "image/tiff": {"gmt": GMT.IMAGE, "ext": "tif"},
+    "image/vnd.adobe.photoshop": {"gmt": GMT.IMAGE, "ext": "psd"},
     "application/postscript": {"gmt": GMT.IMAGE, "ext": "eps"},
     # Audio Formats
     "audio/mpeg": {"gmt": GMT.AUDIO, "ext": "mp3"},
