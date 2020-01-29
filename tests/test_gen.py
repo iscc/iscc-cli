@@ -31,6 +31,11 @@ def test_gen_single_guess():
     )
 
 
+def test_gen_image_guess():
+    result = r.invoke(cli, ["gen", "-g", "tests/text/demo.tif"])
+    assert result.exit_code == 0
+
+
 def test_gen_python_call():
     from iscc_cli.gen import gen
 
