@@ -199,6 +199,11 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.2] - 2020-01-30
+- Add support for bmp, psd, xls, xlsx
+- Add tika server live testing
+- Fix error with title guess on image files
+
 ### [0.9.1] - 2020-01-05
 - Fix issue with APP_DIR creation
 
@@ -264,5 +269,5 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## License
 
-MIT © 2019 Titusz Pan
+MIT © 2019-2020 Titusz Pan
 
