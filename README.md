@@ -27,12 +27,12 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md ...
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md, xls ...
 
 
 #### Image
 
-gif, jpg, png, tif, eps ...
+gif, jpg, png, tif, bmp, psd, eps ...
 
 **Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
 
