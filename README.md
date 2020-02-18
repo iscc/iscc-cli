@@ -199,6 +199,10 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.3] - 2020-02-18
+- Add support for XHTML
+- Fix error on unsupported media types
+
 ### [0.9.2] - 2020-01-30
 - Add support for bmp, psd, xls, xlsx
 - Add tika server live testing
