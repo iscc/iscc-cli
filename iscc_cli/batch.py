@@ -62,6 +62,9 @@ def batch(path, recursive, guess):
         elif gmt == GMT.VIDEO:
             features = video_id.get_frame_vectors(abspath(f))
             cid = video_id.content_id_video(features)
+        else:
+            click.echo("Could not generate ISCC")
+            continue
 
         did = iscc.data_id(f)
         iid, tophash = iscc.instance_id(f)

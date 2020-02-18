@@ -56,6 +56,9 @@ def gen(file, guess, title, extra, verbose):
     elif gmt == GMT.VIDEO:
         features = video_id.get_frame_vectors(abspath(file.name))
         cid = video_id.content_id_video(features)
+    else:
+        click.echo("Could not generate ISCC")
+        return
 
     did = iscc.data_id(file.name)
     iid, tophash = iscc.instance_id(file.name)

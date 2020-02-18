@@ -11,3 +11,4 @@ r = CliRunner()
 def test_xhtml():
     result = r.invoke(cli, ["gen", "tests/text/demo.xhtml"])
     assert result.exit_code == 0
+    assert "CTMjk4o5H96BV" in result.output

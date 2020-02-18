@@ -18,6 +18,7 @@ SUPPORTED_MIME_TYPES = {
     "application/pdf": {"gmt": GMT.TEXT, "ext": "pdf"},
     "application/epub+zip": {"gmt": GMT.TEXT, "ext": "epub"},
     "application/xml": {"gmt": GMT.TEXT, "ext": "xml"},
+    "application/xhtml+xml": {"gmt": GMT.TEXT, "ext": "xhtml"},
     "application/vnd.oasis.opendocument.text": {"gmt": GMT.TEXT, "ext": "odt"},
     "text/html": {"gmt": GMT.TEXT, "ext": "html"},
     "text/plain": {"gmt": GMT.TEXT, "ext": "txt"},
