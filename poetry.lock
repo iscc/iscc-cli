@@ -358,7 +358,7 @@ description = "A pythonic library for downloading YouTube Videos."
 name = "pytube"
 optional = false
 python-versions = "*"
-version = "9.6.0"
+version = "9.5.3"
 
 [[package]]
 category = "dev"
@@ -480,7 +480,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "80b553d448b2d0297271aa9a0d21f2007218ab40db2d3e93458ec9ecb59e45d4"
+content-hash = "58ce3d9547fa86c8a2a75da84bdc14f8af35ebf97aca2d68717a5a515769357c"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -678,8 +678,8 @@ pytest-ordering = [
     {file = "pytest_ordering-0.6-py3-none-any.whl", hash = "sha256:3f314a178dbeb6777509548727dc69edf22d6d9a2867bf2d310ab85c403380b6"},
 ]
 pytube = [
-    {file = "pytube-9.6.0-py3-none-any.whl", hash = "sha256:19248f0494433ca7eb0f3103e478c64661a0d26b56921669632bc82d212f67e8"},
-    {file = "pytube-9.6.0.tar.gz", hash = "sha256:e123f826344fe8ab9dec940b79e2c378340cd99a2bfba869298a1ec60262517c"},
+    {file = "pytube-9.5.3-py3-none-any.whl", hash = "sha256:8ab0dc5e7443450361e2e6991c4df99ea37d109f42e6804933644821aa609b77"},
+    {file = "pytube-9.5.3.tar.gz", hash = "sha256:b95c9b836e557d5df126397dff997b73fe1786c8cb0ad598bf1d49e4046d9141"},
 ]
 regex = [
     {file = "regex-2020.2.20-cp27-cp27m-win32.whl", hash = "sha256:99272d6b6a68c7ae4391908fc15f6b8c9a6c345a46b632d7fdb7ef6c883a2bbb"},

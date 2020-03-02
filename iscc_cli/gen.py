@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import shutil
 from os.path import abspath
 
 import click
 import iscc
+import mobi
 from tika import detector, parser
 
 from iscc_cli import audio_id, video_id, fpcalc
@@ -31,7 +33,13 @@ def gen(file, guess, title, extra, verbose):
         click.echo("Unsupported media type {}.".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
 
-    tika_result = parser.from_file(file.name)
+    if media_type == "application/x-mobipocket-ebook":
+        tempdir, epub_filepath = mobi.extract(file.name)
+        tika_result = parser.from_file(epub_filepath)
+        shutil.rmtree(tempdir)
+    else:
+        tika_result = parser.from_file(file.name)
+
     if not title:
         title = get_title(tika_result, guess=guess)
 
