@@ -3,7 +3,7 @@ import os
 import click
 from tika import tika
 
-__version__ = "0.9.4"
+__version__ = "0.9.5"
 
 APP_NAME = "iscc-cli"
 APP_DIR = click.get_app_dir(APP_NAME, roaming=False)

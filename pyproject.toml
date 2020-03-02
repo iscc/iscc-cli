@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "0.9.4"
+version = "0.9.5"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"

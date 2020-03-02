@@ -228,10 +228,10 @@ description = "unpack unencrypted mobi files"
 name = "mobi"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "0.2.0"
+version = "0.3.0"
 
 [package.dependencies]
-loguru = ">=0.4.1,<0.5.0"
+loguru = ">=0.4,<0.5"
 
 [[package]]
 category = "dev"
@@ -606,8 +606,8 @@ lxml = [
     {file = "lxml-4.5.0.tar.gz", hash = "sha256:8620ce80f50d023d414183bf90cc2576c2837b88e00bea3f33ad2630133bbb60"},
 ]
 mobi = [
-    {file = "mobi-0.2.0-py3-none-any.whl", hash = "sha256:9ae7a4254e3a89a49aee6a9471b1a9edf29291e60cccec78b787c80c1344b8d5"},
-    {file = "mobi-0.2.0.tar.gz", hash = "sha256:6f50773a5abab388b9e7f65dade85bbf87ce42f930a31503867777c3e79a42e3"},
+    {file = "mobi-0.3.0-py3-none-any.whl", hash = "sha256:54425a9b7dba93b54386f580ec5540d8bf9069cb004828514bf2a3e41df46e14"},
+    {file = "mobi-0.3.0.tar.gz", hash = "sha256:bc430a4580c14fa9ead5872854a3819bc3bb74d26851ed5acfaa118db97d3cbd"},
 ]
 more-itertools = [
     {file = "more-itertools-8.2.0.tar.gz", hash = "sha256:b1ddb932186d8a6ac451e1d95844b382f55e12686d51ca0c68b6f61f2ab7a507"},

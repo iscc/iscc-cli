@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-import sys
+import shutil
 from io import BytesIO
 import click
 import iscc
+import mobi
 import requests
-from tika import parser
+from tika import parser, detector
 import iscc_cli
 from iscc_cli import fpcalc, audio_id, video_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
@@ -64,14 +65,22 @@ def web(url, guess, title, extra, verbose):
     except Exception as e:
         raise click.BadArgumentUsage(e)
 
-    media_type = resp.headers.get("Content-Type", "").split(";")[0]
+    data = BytesIO(resp.content)
+    media_type = detector.from_buffer(data)
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
         return
 
-    data = BytesIO(resp.content)
-    tika_result = parser.from_buffer(data)
+    if media_type == "application/x-mobipocket-ebook":
+        data.seek(0)
+        tempdir, filepath = mobi.extract(data)
+        tika_result = parser.from_file(filepath)
+        shutil.rmtree(tempdir)
+    else:
+        data.seek(0)
+        tika_result = parser.from_buffer(data)
+
     if not title:
         title = get_title(tika_result, guess=guess)
 

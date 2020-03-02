@@ -199,6 +199,11 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.5] - 2020-03-02
+- Support mobi7
+- Support mobi print replica
+- Support mobi wit web command
+
 ### [0.9.4] - 2020-03-02
 - Add experimental support for mobi files
 
