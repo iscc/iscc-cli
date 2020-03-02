@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import shutil
 from os.path import basename, abspath
 import click
+import mobi
 from tika import detector, parser
 import iscc
 
@@ -41,7 +43,17 @@ def batch(path, recursive, guess):
             )
             continue
 
-        tika_result = parser.from_file(f)
+        if media_type == "application/x-mobipocket-ebook":
+            try:
+                tempdir, epub_filepath = mobi.extract(f)
+                tika_result = parser.from_file(epub_filepath)
+                shutil.rmtree(tempdir)
+            except Exception as e:
+                click.echo("Error with mobi extraction %s" % f)
+                continue
+        else:
+            tika_result = parser.from_file(f)
+
         title = get_title(tika_result, guess=guess)
 
         mid, norm_title, _ = iscc.meta_id(title)

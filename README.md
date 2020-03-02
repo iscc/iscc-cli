@@ -27,7 +27,7 @@ This tool offers an easy way to generate ISCC codes from the command line. It su
 
 #### Text
 
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md, xls ...
+doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md, xls, mobi ...
 
 
 #### Image
@@ -198,6 +198,9 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.4] - 2020-03-02
+- Add experimental support for mobi files
 
 ### [0.9.3] - 2020-02-18
 - Add support for XHTML

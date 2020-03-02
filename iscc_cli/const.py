@@ -32,7 +32,11 @@ SUPPORTED_MIME_TYPES = {
         "gmt": GMT.TEXT,
         "ext": "xlsx",
     },
-    "application/vnd.ms-excel": {"gmt": GMT.TEXT, "ext": "xls",},
+    "application/vnd.ms-excel": {"gmt": GMT.TEXT, "ext": "xls"},
+    "application/x-mobipocket-ebook": {
+        "gmt": GMT.TEXT,
+        "ext": ["mobi", "prc", "azw", "azw3", "azw4"],
+    },
     # Image Formats
     "image/bmp": {"gmt": GMT.IMAGE, "ext": "bmp"},
     "image/gif": {"gmt": GMT.IMAGE, "ext": "gif"},
