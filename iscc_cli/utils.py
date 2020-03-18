@@ -84,7 +84,8 @@ def get_title(tika_result: dict, guess=False):
         title = meta.get("dc:title", "")
         title = title[0].strip() if isinstance(title, list) else title.strip()
         if not title:
-            title = meta.get("title", "").strip()
+            title = meta.get("title", "")
+            title = title[0].strip() if isinstance(title, list) else title.strip()
 
     # See if string would survive normalization
     norm_title = iscc.text_normalize(title, keep_ws=True)
