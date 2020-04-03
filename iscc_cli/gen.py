@@ -41,7 +41,7 @@ def gen(file, guess, title, extra, verbose):
         tika_result = parser.from_file(file.name)
 
     if not title:
-        title = get_title(tika_result, guess=guess)
+        title = get_title(tika_result, guess=guess, uri=file.name)
 
     if not extra:
         extra = ""

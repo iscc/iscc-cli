@@ -38,6 +38,11 @@ def test_gen_image_guess():
     assert result.exit_code == 0
 
 
+def test_gen_image_no_title():
+    result = r.invoke(cli, ["gen", "-g", "tests/image/demo.png"])
+    assert "CCh7QKroUdKnH-CYDfTq7Qc7Fre-CDij3vGU1BkCZ-CRNssh4Qc1x5B" in result.output
+
+
 def test_gen_python_call():
     from iscc_cli.gen import gen
 

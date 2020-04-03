@@ -54,7 +54,7 @@ def batch(path, recursive, guess):
         else:
             tika_result = parser.from_file(f)
 
-        title = get_title(tika_result, guess=guess)
+        title = get_title(tika_result, guess=guess, uri=f)
 
         mid, norm_title, _ = iscc.meta_id(title)
         gmt = mime_to_gmt(media_type, file_path=f)
