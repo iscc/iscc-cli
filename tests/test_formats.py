@@ -9,7 +9,7 @@ r = CliRunner()
 
 
 def test_unsupported():
-    result = r.invoke(cli, ["gen", "tests/text/demo.json"])
+    result = r.invoke(cli, ["gen", "tests/text/demo.sqlite"])
     assert result.exit_code == 0
     assert "Unsupported media type" in result.output
 
