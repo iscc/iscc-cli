@@ -12,7 +12,7 @@ import iscc_cli
 from iscc_cli.utils import download_file
 
 
-FPCALC_VERSION = "1.4.3"
+FPCALC_VERSION = "1.5.0"
 FPCALC_URL_BASE = "https://github.com/acoustid/chromaprint/releases/download/v{}/".format(
     FPCALC_VERSION
 )
@@ -24,10 +24,10 @@ FPCALC_OS_MAP = {
 
 
 def exe_path():
-    """Returns patth to fpcalc executable."""
+    """Returns path to fpcalc executable."""
     if platform.system() == "Windows":
-        return os.path.join(iscc_cli.APP_DIR, "fpcalc.exe")
-    return os.path.join(iscc_cli.APP_DIR, "fpcalc")
+        return os.path.join(iscc_cli.APP_DIR, "fpcalc-{}.exe".format(FPCALC_VERSION))
+    return os.path.join(iscc_cli.APP_DIR, "fpcalc-{}".format(FPCALC_VERSION))
 
 
 def is_installed():
@@ -47,6 +47,7 @@ def download():
 
 
 def extract(archive):
+    """Extract archive with fpcalc executable."""
     if archive.endswith(".zip"):
         with zipfile.ZipFile(archive, "r") as zip_file:
             for member in zip_file.namelist():
@@ -83,6 +84,6 @@ def get_version_info():
     """Get fpcalc version"""
     try:
         r = subprocess.run([exe_path(), "-v"], stdout=subprocess.PIPE)
-        return r.stdout.decode("utf-8").strip().split()[-1]
+        return r.stdout.decode("utf-8").strip().split()[2]
     except FileNotFoundError:
         return 'WARNING: Not Installed - run "iscc init" to install!'
