@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import shutil
 from os.path import basename, abspath
 import click
@@ -32,6 +33,11 @@ def batch(path, recursive, guess):
     """
     results = []
     for f in get_files(path, recursive=recursive):
+        filesize = os.path.getsize(f)
+        if not filesize:
+            click.echo("Cannot proccess empty file: {}".format(f))
+            continue
+
         media_type = detector.from_file(f)
         if media_type not in SUPPORTED_MIME_TYPES:
             fname = basename(f)
@@ -54,12 +60,16 @@ def batch(path, recursive, guess):
         else:
             tika_result = parser.from_file(f)
 
-        title = get_title(tika_result, guess=guess)
+        title = get_title(tika_result, guess=guess, uri=f)
 
         mid, norm_title, _ = iscc.meta_id(title)
         gmt = mime_to_gmt(media_type, file_path=f)
         if gmt == GMT.IMAGE:
-            cid = iscc.content_id_image(f)
+            try:
+                cid = iscc.content_id_image(f)
+            except Exception as e:
+                click.echo("Clould not proccess image: {} ({})".format(f, e))
+
         elif gmt == GMT.TEXT:
             text = tika_result["content"]
             if not text:

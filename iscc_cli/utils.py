@@ -5,7 +5,7 @@ import os
 import re
 import textwrap
 from os import getcwd, listdir, walk
-from os.path import isfile, splitext, isdir, join
+from os.path import isfile, splitext, isdir, join, basename
 from urllib.parse import urlparse
 import click
 import iscc
@@ -76,7 +76,7 @@ def mime_to_gmt(mime_type, file_path=None):
         return gmt
 
 
-def get_title(tika_result: dict, guess=False):
+def get_title(tika_result: dict, guess=False, uri=None):
     title = ""
 
     meta = tika_result.get("metadata")
@@ -84,7 +84,8 @@ def get_title(tika_result: dict, guess=False):
         title = meta.get("dc:title", "")
         title = title[0].strip() if isinstance(title, list) else title.strip()
         if not title:
-            title = meta.get("title", "").strip()
+            title = meta.get("title", "")
+            title = title[0].strip() if isinstance(title, list) else title.strip()
 
     # See if string would survive normalization
     norm_title = iscc.text_normalize(title, keep_ws=True)
@@ -95,6 +96,12 @@ def get_title(tika_result: dict, guess=False):
             first_line = content.strip().splitlines()[0]
             title = iscc.text_trim(iscc.text_normalize(first_line, keep_ws=True))
 
+    if not title and uri is not None:
+        result = urlparse(uri)
+        base = basename(result.path)
+        title = splitext(base)[0]
+        title = title.replace("-", " ")
+        title = title.replace("_", " ")
     return title
 
 

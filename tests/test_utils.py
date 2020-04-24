@@ -32,9 +32,9 @@ def test_iter_files_recursive():
 
 def test_get_files():
     result = utils.get_files(join(TEST_DIR, "batch"))
-    assert len(list(result)) == 2
-    result = utils.get_files(join(TEST_DIR, "batch"), recursive=True)
     assert len(list(result)) == 3
+    result = utils.get_files(join(TEST_DIR, "batch"), recursive=True)
+    assert len(list(result)) == 4
 
 
 def test_mime_to_gmt():

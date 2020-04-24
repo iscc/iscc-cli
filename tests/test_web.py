@@ -36,7 +36,7 @@ def test_iscc_web_invalid_url():
 
 
 def test_iscc_web_python_call():
-    from iscc_cli.web import web
+    from iscc_cli.commands.web import web
 
     url = "https://iscc.foundation/news/images/lib-arch-ottawa.jpg"
     result = web.callback(url=url, guess=False, title="", extra="", verbose=False)

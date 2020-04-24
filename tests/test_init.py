@@ -12,4 +12,4 @@ def test_init():
     result = r.invoke(cli, ["init"])
     assert result.exit_code == 0
     assert "Apache Tika 1." in result.output
-    assert "fpcalc installed: 1.4.3" in result.output
+    assert "fpcalc installed:" in result.output

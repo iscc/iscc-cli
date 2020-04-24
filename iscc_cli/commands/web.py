@@ -82,7 +82,7 @@ def web(url, guess, title, extra, verbose):
         tika_result = parser.from_buffer(data)
 
     if not title:
-        title = get_title(tika_result, guess=guess)
+        title = get_title(tika_result, guess=guess, uri=url)
 
     mid, norm_title, _ = iscc.meta_id(title, extra)
     gmt = mime_to_gmt(media_type)

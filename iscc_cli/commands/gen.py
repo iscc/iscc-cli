@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import shutil
 from os.path import abspath
 
@@ -28,6 +29,10 @@ from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
 @click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode.")
 def gen(file, guess, title, extra, verbose):
     """Generate ISCC Code for FILE."""
+    filesize = os.path.getsize(file.name)
+    if not filesize:
+        raise click.BadParameter("Cannot proccess empty file: {}".format(file.name))
+
     media_type = detector.from_file(file.name)
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}.".format(media_type))
@@ -41,7 +46,7 @@ def gen(file, guess, title, extra, verbose):
         tika_result = parser.from_file(file.name)
 
     if not title:
-        title = get_title(tika_result, guess=guess)
+        title = get_title(tika_result, guess=guess, uri=file.name)
 
     if not extra:
         extra = ""

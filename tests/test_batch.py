@@ -22,7 +22,7 @@ def test_batch_recursive():
 
 
 def test_batch_python_call():
-    from iscc_cli.batch import batch
+    from iscc_cli.commands.batch import batch
 
     result = batch.callback("./tests/batch/subdir", False, False)
     assert isinstance(result, list)

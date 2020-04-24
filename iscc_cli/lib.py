@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Expose cli commands with standard python api."""
 from typing import List, Dict
-from iscc_cli.gen import gen
-from iscc_cli.batch import batch
-from iscc_cli.web import web
+from iscc_cli.commands.gen import gen
+from iscc_cli.commands.batch import batch
+from iscc_cli.commands.web import web
 
 
 def iscc_from_file(file, guess=False, title="", extra="") -> Dict:

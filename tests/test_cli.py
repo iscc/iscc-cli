@@ -18,7 +18,7 @@ def test_iscc_no_args():
 def test_iscc_no_ars_but_opt():
     result = r.invoke(cli, ["-v"])
     assert result.exit_code == 2
-    assert 'Missing argument "FILE"' in result.output
+    assert "Error: Missing argument" in result.output
 
 
 def test_version():

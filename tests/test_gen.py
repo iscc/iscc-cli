@@ -20,6 +20,12 @@ def test_gen_single_file():
     assert "CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv" in result.output
 
 
+def test_gen_empty_file():
+    result = r.invoke(cli, ["gen", "tests/batch/empty.txt"])
+    assert result.exit_code == 2
+    assert "empty file" in result.output
+
+
 def test_gen_single_guess():
     result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
@@ -38,8 +44,13 @@ def test_gen_image_guess():
     assert result.exit_code == 0
 
 
+def test_gen_image_no_title():
+    result = r.invoke(cli, ["gen", "-g", "tests/image/demo.png"])
+    assert "CCh7QKroUdKnH-CYDfTq7Qc7Fre-CDij3vGU1BkCZ-CRNssh4Qc1x5B" in result.output
+
+
 def test_gen_python_call():
-    from iscc_cli.gen import gen
+    from iscc_cli.commands.gen import gen
 
     file = open("tests/text/demo.doc")
     result = gen.callback(file, True, "", "", True)

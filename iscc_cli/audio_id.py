@@ -22,10 +22,10 @@ def get_chroma_vector(file):
 
     if hasattr(file, "read"):
         file.seek(0)
-        cmd = [fpcalc.exe_path(), "-raw", "-json", "-"]
+        cmd = [fpcalc.exe_path(), "-raw", "-json", "-signed", "-"]
         res = subprocess.run(cmd, stdout=subprocess.PIPE, input=file.read())
     else:
-        cmd = [fpcalc.exe_path(), file, "-raw", "-json"]
+        cmd = [fpcalc.exe_path(), "-raw", "-json", "-signed", file]
         res = subprocess.run(cmd, stdout=subprocess.PIPE)
 
     vec = json.loads(res.stdout.decode("utf-8"))["fingerprint"]
