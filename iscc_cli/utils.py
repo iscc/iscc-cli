@@ -100,7 +100,8 @@ def get_title(tika_result: dict, guess=False, uri=None):
         result = urlparse(uri)
         base = basename(result.path)
         title = splitext(base)[0]
-
+        title = title.replace('-', ' ')
+        title = title.replace('_', ' ')
     return title
 
 
