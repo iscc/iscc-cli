@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import shutil
 from os.path import basename, abspath
 import click
@@ -32,6 +33,11 @@ def batch(path, recursive, guess):
     """
     results = []
     for f in get_files(path, recursive=recursive):
+        filesize = os.path.getsize(f)
+        if not filesize:
+            click.echo("Cannot proccess empty file: {}".format(f))
+            continue
+
         media_type = detector.from_file(f)
         if media_type not in SUPPORTED_MIME_TYPES:
             fname = basename(f)

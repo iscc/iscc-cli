@@ -20,6 +20,12 @@ def test_gen_single_file():
     assert "CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv" in result.output
 
 
+def test_gen_empty_file():
+    result = r.invoke(cli, ["gen", "tests/batch/empty.txt"])
+    assert result.exit_code == 2
+    assert "empty file" in result.output
+
+
 def test_gen_single_guess():
     result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
