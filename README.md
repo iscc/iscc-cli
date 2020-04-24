@@ -89,7 +89,7 @@ Options:
 Commands:
   gen*   Generate ISCC Code for FILE.
   batch  Create ISCC Codes for all files in PATH.
-  dump   Dump Tika extraction results for FILE.
+  dump   Dump Tika extraction results for PATH (file or url path).
   info   Show information about environment.
   init   Inititalize and check environment.
   sim    Estimate Similarity of ISCC Codes A & B.

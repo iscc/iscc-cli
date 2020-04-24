@@ -12,13 +12,19 @@ r = CliRunner()
 def test_dump_no_arg_shows_help():
     result = r.invoke(cli, ["dump"])
     assert result.exit_code == 0
-    assert "dump [OPTIONS] FILE" in result.output
+    assert "dump [OPTIONS] PATH" in result.output
 
 
 def test_dump_with_doc():
     result = r.invoke(cli, ["dump", "tests/text/demo.doc"])
     assert result.exit_code == 0
     assert '"status": 200' in result.output
+
+
+def test_dump_with_url():
+    result = r.invoke(cli, ["dump", "https://iscc.codes"])
+    assert result.exit_code == 0
+    assert "universal identifier" in result.output
 
 
 def test_dump_strip():
