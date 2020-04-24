@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import click
-from iscc_cli import __version__, init, gen, batch, sim, info, web, dump, test
+from iscc_cli import __version__
+from iscc_cli.commands import init, gen, batch, sim, info, web, dump, test
 from click_default_group import DefaultGroup
 
 

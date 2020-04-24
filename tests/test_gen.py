@@ -50,7 +50,7 @@ def test_gen_image_no_title():
 
 
 def test_gen_python_call():
-    from iscc_cli.gen import gen
+    from iscc_cli.commands.gen import gen
 
     file = open("tests/text/demo.doc")
     result = gen.callback(file, True, "", "", True)
