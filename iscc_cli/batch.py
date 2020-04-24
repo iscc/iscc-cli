@@ -59,7 +59,11 @@ def batch(path, recursive, guess):
         mid, norm_title, _ = iscc.meta_id(title)
         gmt = mime_to_gmt(media_type, file_path=f)
         if gmt == GMT.IMAGE:
-            cid = iscc.content_id_image(f)
+            try:
+                cid = iscc.content_id_image(f)
+            except Exception as e:
+                click.echo("Clould not proccess image: {} ({})".format(f, e))
+
         elif gmt == GMT.TEXT:
             text = tika_result["content"]
             if not text:
