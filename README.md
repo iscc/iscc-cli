@@ -204,6 +204,7 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 - Updated tika 1.24 and fpcalc 1.50
 - Use filename for meta-id as last resort
 - Switch to signed audio fingerprint (breaking change)
+- Bugfixes and stability improvements
 
 ### [0.9.5] - 2020-03-02
 - Support mobi7
