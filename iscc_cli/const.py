@@ -50,6 +50,8 @@ SUPPORTED_MIME_TYPES = {
     "audio/vnd.wave": {"gmt": GMT.AUDIO, "ext": "wav"},
     "audio/vorbis": {"gmt": GMT.AUDIO, "ext": "ogg"},
     "audio/x-aiff": {"gmt": GMT.AUDIO, "ext": "aif"},
+    "audio/x-flac": {"gmt": GMT.AUDIO, "ext": "flac"},
+    "audio/opus": {"gmt": GMT.AUDIO, "ext": "opus"},
     # Video Formats
     "application/vnd.rn-realmedia": {"gmt": GMT.VIDEO, "ext": "rm"},
     "video/x-dirac": {"gmt": GMT.VIDEO, "ext": "drc"},

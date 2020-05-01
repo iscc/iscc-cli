@@ -199,6 +199,10 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.7] - 2020-05-01
+- Add support for flac and opus audio formats
+- Update dependencies
+
 ### [0.9.6] - 2020-04-24
 - Support urls with dump command
 - Updated tika 1.24 and fpcalc 1.50
