@@ -78,8 +78,10 @@ def mime_to_gmt(mime_type, file_path=None):
 
 def get_title(tika_result: dict, guess=False, uri=None):
     title = ""
-
     meta = tika_result.get("metadata")
+    mime_type = meta.get("Content-Type")
+    gmt = mime_to_gmt(mime_type)
+
     if meta:
         title = meta.get("dc:title", "")
         title = title[0].strip() if isinstance(title, list) else title.strip()
@@ -90,7 +92,7 @@ def get_title(tika_result: dict, guess=False, uri=None):
     # See if string would survive normalization
     norm_title = iscc.text_normalize(title, keep_ws=True)
 
-    if not norm_title and guess:
+    if not norm_title and guess and gmt == GMT.TEXT:
         content = tika_result.get("content", "")
         if content is not None:
             first_line = content.strip().splitlines()[0]
