@@ -9,7 +9,7 @@ from iscc_cli import fpcalc
 def content_id_audio(features, partial=False):
     digests = []
     for a, b in iscc.sliding_window(features, 2):
-        digest = a.to_bytes(4, 'big', signed=True) + b.to_bytes(4, 'big', signed=True)
+        digest = a.to_bytes(4, "big", signed=True) + b.to_bytes(4, "big", signed=True)
         digests.append(digest)
     shash_digest = iscc.similarity_hash(digests)
     if partial:
