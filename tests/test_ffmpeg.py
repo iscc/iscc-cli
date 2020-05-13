@@ -8,4 +8,4 @@ def test_exe_path():
 
 def test_get_version_info():
     vi = ffmpeg.get_version_info()
-    assert vi.startswith("4.1")
+    assert vi.startswith("4.2")
