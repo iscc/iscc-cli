@@ -35,7 +35,9 @@ def sim(a, b):
         int_b = int.from_bytes(digest_b, "big", signed=False)
         dist = bin(int_a ^ int_b).count("1")
         similarity = ((192 - dist) / 192) * 100
-        avg_msg = "Average Estimated Similarity: {:.2f} % ({} of 192 bits differnt)".format(similarity, dist)
+        avg_msg = "Average Estimated Similarity: {:.2f} % ({} of 192 bits differnt)".format(
+            similarity, dist
+        )
 
     # Per Component Similarity
     a = iscc_split(a)
@@ -56,7 +58,9 @@ def sim(a, b):
                 hamming_sim = 64 - hamming_dist
                 similarity = round(hamming_sim / (2 * 64 - hamming_sim) * 100)
                 click.echo(
-                    "Estimated Similarity of {}: {:.2f} % ({} of 64 bits different)".format(type_a, similarity, hamming_dist)
+                    "Estimated Similarity of {}: {:.2f} % ({} of 64 bits different)".format(
+                        type_a, similarity, hamming_dist
+                    )
                 )
             if type_a == "Instance-ID" and type_b == "Instance-ID":
                 if ca == cb:
