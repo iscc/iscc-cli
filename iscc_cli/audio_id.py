@@ -7,13 +7,15 @@ from iscc_cli import fpcalc
 
 
 def content_id_audio(features, partial=False):
-    minhash = iscc.minimum_hash(features, n=64)
-    lsb = "".join([str(x & 1) for x in minhash])
-    digest = int(lsb, 2).to_bytes(8, "big", signed=False)
+    digests = []
+    for a, b in iscc.sliding_window(features, 2):
+        digest = a.to_bytes(4, 'big', signed=True) + b.to_bytes(4, 'big', signed=True)
+        digests.append(digest)
+    shash_digest = iscc.similarity_hash(digests)
     if partial:
-        content_id_audio_digest = iscc.HEAD_CID_A_PCF + digest
+        content_id_audio_digest = iscc.HEAD_CID_A_PCF + shash_digest
     else:
-        content_id_audio_digest = iscc.HEAD_CID_A + digest
+        content_id_audio_digest = iscc.HEAD_CID_A + shash_digest
     return iscc.encode(content_id_audio_digest)
 
 

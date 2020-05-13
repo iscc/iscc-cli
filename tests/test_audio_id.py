@@ -8,7 +8,7 @@ os.chdir(ROOT_DIR)
 
 
 def test_content_id_audio():
-    assert audio_id.content_id_audio([1, 2, 3]) == "CAFcywC1ZGJy9"
+    assert audio_id.content_id_audio([1, 2, 3]) == "CACCCCCidbPMJ"
 
 
 def test_get_chroma_vector_file_path():
