@@ -79,7 +79,10 @@ def mime_to_gmt(mime_type, file_path=None):
 def get_title(tika_result: dict, guess=False, uri=None):
     title = ""
     meta = tika_result.get("metadata")
+
+    # In contrast to tika.detect this may yield a list of mime-types!!!
     mime_type = meta.get("Content-Type")
+    mime_type = mime_type[0] if mime_type and isinstance(mime_type, list) else mime_type
     gmt = mime_to_gmt(mime_type)
 
     if meta:
