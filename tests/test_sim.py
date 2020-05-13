@@ -36,4 +36,4 @@ def test_sim_full_iscc():
         ],
     )
     assert result.exit_code == 0
-    assert "Estimated Total Similarity" in result.output
+    assert "Average" in result.output
