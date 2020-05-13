@@ -152,6 +152,7 @@ YouTube URLs will be auto-detected to create ISCC Video-IDs:
 
 ```console
 $ iscc web -v https://www.youtube.com/watch?v=yJY-aLoEqDo
+ISCC:CCjWDapxeWTnN-CVFUpwJuisZMt-CDhA7ieazQx8K-CR9ZnCAdvSyCy
 Norm Title: anokato kali spiral sessions
 Tophash:    312554214e3d17e8aafc0d0bc54382b5b4c1b2ce0fa20d7bde1ff12aa34e911b
 Filepath:   https://www.youtube.com/watch?v=yJY-aLoEqDo
@@ -164,7 +165,7 @@ The `sim` command computes estimated similarity of two ISCC Codes:
 
 ```console
 $ iscc sim CCUcKwdQc1jUM CCjMmrCsKWu1D
-Estimated Similarity of Meta-ID: 87.50 %
+Estimated Similarity of Meta-ID: 78.00 % (8 of 64 bits different)
 ```
 
 You may also compare full four-component ISCC Codes.
@@ -198,6 +199,12 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.8] - 2020-05-13
+- Updated Content-ID-Audio for robustness against transcoding (breaking change)
+- Changed similarity calculation to match with web demo
+- Fixed bug in mime-type detection
+- Updated dependencies
 
 ### [0.9.7] - 2020-05-01
 - Add support for flac and opus audio formats
