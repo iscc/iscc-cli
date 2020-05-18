@@ -10,7 +10,7 @@ def is_linux():
 
 
 def is_py36():
-    return sys.version.major == 3 and sys.version.minor == 6
+    return sys.version.startswith('3.6')
 
 
 def test_exe_path():
