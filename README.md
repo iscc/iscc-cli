@@ -57,7 +57,7 @@ aif, mp3, ogg, wav ...
 | NOTE: Requires JAVA to be installed and on your path! |
 | --- |
 
-**iscc-cli** is tested on Linux and Windows with Python 3.6/3.7/3.8 but should also work on macOS.
+**iscc-cli** is tested on Linux, Windows, and macOS with Python 3.6/3.7/3.8.
 
 This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/) is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
 
@@ -199,6 +199,11 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.9] - 2020-05-18
+- Fixed issue with tika & macOS
+- Added macOS ci testing
+- Updated dependencies
 
 ### [0.9.8] - 2020-05-13
 - Updated Content-ID-Audio for robustness against transcoding (breaking change)
