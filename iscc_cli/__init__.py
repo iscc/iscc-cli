@@ -10,6 +10,7 @@ os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
 os.environ["TIKA_PATH"] = APP_DIR
 os.environ["TIKA_LOG_PATH"] = APP_DIR
 os.environ["TIKA_VERSION"] = "1.24"
+os.environ["TIKA_STARTUP_MAX_RETRY"] = "5"
 os.environ["LOGURU_AUTOINIT"] = "False"
 
 
