@@ -2,7 +2,7 @@
 import io
 import click
 import requests
-from tika import detector
+from iscc_cli.tika import detector
 from iscc_cli import fpcalc
 
 

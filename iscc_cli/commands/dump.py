@@ -4,7 +4,7 @@ import shutil
 import click
 import mobi
 from click import UsageError
-from tika import parser, detector
+from iscc_cli.tika import parser, detector
 from iscc_cli.utils import DefaultHelp
 from iscc_cli.const import SUPPORTED_MIME_TYPES
 import json
