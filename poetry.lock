@@ -431,12 +431,16 @@ description = "Apache Tika Python library"
 name = "tika"
 optional = false
 python-versions = "*"
-version = "1.23"
+version = "1.24"
 
 [package.dependencies]
 requests = "*"
 setuptools = "*"
 
+[package.source]
+reference = "9f718ccff8f5923bd01b9ca79dac32fd7556f0f1"
+type = "git"
+url = "https://github.com/chrismattmann/tika-python.git"
 [[package]]
 category = "dev"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -510,7 +514,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "5aa0be2e86fb9177eeb09ff1a5b7a1ca6e47fbcf3a5d402ee18053e7503548fd"
+content-hash = "2652eaec22a75aa64f8bda8a8880929cee170ff4b2386cbf0ce7eb73bf74c20b"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -748,10 +752,7 @@ six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
     {file = "six-1.14.0.tar.gz", hash = "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a"},
 ]
-tika = [
-    {file = "tika-1.23-py2.7.egg", hash = "sha256:9b361ac715ce764fd75ceb8a0faf9f847129f4e293960313221ff1301ab155b3"},
-    {file = "tika-1.23.tar.gz", hash = "sha256:1894ed9f55caab0b191261b5d9243cf310d4e9c497b894c1cc003ee502aa02e2"},
-]
+tika = []
 toml = [
     {file = "toml-0.10.1-py2.py3-none-any.whl", hash = "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"},
     {file = "toml-0.10.1.tar.gz", hash = "sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f"},

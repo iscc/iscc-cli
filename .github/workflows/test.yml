@@ -26,6 +26,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install ffmpeg
 
+    - name: Update pip
+      if: runner.os == 'Windoes'
+      run: python -m pip install -U pip
+
     - name: Install poetry
       run: pip install poetry
 
