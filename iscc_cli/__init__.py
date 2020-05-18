@@ -13,6 +13,6 @@ os.environ["TIKA_STARTUP_MAX_RETRY"] = "5"
 os.environ["LOGURU_AUTOINIT"] = "False"
 
 
-from tika import tika
+from iscc_cli.tika import tika
 
 tika.log.disabled = True
