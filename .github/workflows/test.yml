@@ -23,6 +23,7 @@ jobs:
     - name: Install poetry
       run: |
         pip install -U pip
+        pip install -U wheel
         pip install poetry
 
     - name: Install dependencies
