@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+import pytest
 import platform
-
 from iscc_cli import fpcalc
 
 
@@ -13,6 +14,7 @@ def test_is_installed():
     assert isinstance(fpcalc.is_installed(), bool)
 
 
+@pytest.mark.skipif(sys.platform == "darwin", reason="fpcalc broke naming convention")
 def test_download_url():
     url = fpcalc.download_url()
     assert platform.system().lower() in url

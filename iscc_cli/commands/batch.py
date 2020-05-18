@@ -4,7 +4,7 @@ import shutil
 from os.path import basename, abspath
 import click
 import mobi
-from tika import detector, parser
+from iscc_cli.tika import detector, parser
 import iscc
 
 from iscc_cli import video_id

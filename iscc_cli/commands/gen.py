@@ -6,7 +6,7 @@ from os.path import abspath
 import click
 import iscc
 import mobi
-from tika import detector, parser
+from iscc_cli.tika import detector, parser
 
 from iscc_cli import audio_id, video_id, fpcalc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT

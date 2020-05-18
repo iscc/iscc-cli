@@ -3,11 +3,10 @@
 
 See: https://en.wikipedia.org/wiki/Video_file_format
 """
-import os
 import subprocess
 from collections import defaultdict
 from os.path import exists, abspath
-from tika import detector
+from iscc_cli.tika import detector
 from iscc_cli import ffmpeg
 from iscc_cli import video_id
 
@@ -68,7 +67,6 @@ def build_media_types():
         media_type = detector.from_file(abspath(outf))
         sigs = video_id.get_frame_vectors(abspath(outf))
         vid = video_id.content_id_video(sigs)
-        # os.remove(outf)
         print("{} -> {} -> {}".format(vid, outf, media_type))
         mt[media_type].append(fmt)
     for m, e in mt.items():

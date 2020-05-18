@@ -3,16 +3,16 @@ import os
 import click
 
 
-__version__ = "0.9.8"
+__version__ = "0.9.9"
 APP_NAME = "iscc-cli"
 APP_DIR = click.get_app_dir(APP_NAME, roaming=False)
 os.makedirs(iscc_cli.APP_DIR, exist_ok=True)
 os.environ["TIKA_PATH"] = APP_DIR
 os.environ["TIKA_LOG_PATH"] = APP_DIR
-os.environ["TIKA_VERSION"] = "1.24"
+os.environ["TIKA_STARTUP_MAX_RETRY"] = "5"
 os.environ["LOGURU_AUTOINIT"] = "False"
 
 
-from tika import tika
+from iscc_cli.tika import tika
 
 tika.log.disabled = True
