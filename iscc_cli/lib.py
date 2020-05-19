@@ -12,8 +12,8 @@ def iscc_from_file(file, guess=False, title="", extra="") -> Dict:
     return gen.callback(file, guess, title, extra, False)
 
 
-def isccs_from_dir(path, recursive=False, guess=False) -> List[Dict]:
-    return batch.callback(path, recursive, guess)
+def isccs_from_dir(path, recursive=False, guess=False, debug=False) -> List[Dict]:
+    return batch.callback(path, recursive, guess, debug)
 
 
 def iscc_from_url(url, guess=False, title="", extra="") -> Dict:
