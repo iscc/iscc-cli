@@ -58,8 +58,8 @@ def sim(a, b):
                 hamming_sim = 64 - hamming_dist
                 similarity = round(hamming_sim / (2 * 64 - hamming_sim) * 100)
                 click.echo(
-                    "Estimated Similarity of {}: {:.2f} % ({} of 64 bits different)".format(
-                        type_a, similarity, hamming_dist
+                    "Estimated Similarity of {}: {:.2f} % ({} of 64 bits match)".format(
+                        type_a, similarity, hamming_sim
                     )
                 )
             if type_a == "Instance-ID" and type_b == "Instance-ID":
