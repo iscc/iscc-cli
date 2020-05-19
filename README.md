@@ -164,7 +164,7 @@ The `sim` command computes estimated similarity of two ISCC Codes:
 
 ```console
 $ iscc sim CCUcKwdQc1jUM CCjMmrCsKWu1D
-Estimated Similarity of Meta-ID: 78.00 % (8 of 64 bits different)
+Estimated Similarity of Meta-ID: 78.00 % (56 of 64 bits match)
 ```
 
 You may also compare full four-component ISCC Codes.
@@ -198,6 +198,13 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.10] - 2020-05-19
+- Fixed issue with mime-type detection
+- Changed wording of similarity output
+- Added CSV-compatible output for batch command
+- Added debug option for batch command
+- Updated dependencies
 
 ### [0.9.9] - 2020-05-18
 - Fixed issue with tika & macOS
