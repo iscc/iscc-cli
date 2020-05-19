@@ -9,7 +9,7 @@ import iscc
 
 from iscc_cli import video_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp
+from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp, clean_mime
 from iscc_cli import audio_id, fpcalc
 
 
@@ -38,7 +38,7 @@ def batch(path, recursive, guess):
             click.echo("Cannot proccess empty file: {}".format(f))
             continue
 
-        media_type = detector.from_file(f)
+        media_type = clean_mime(detector.from_file(f))
         if media_type not in SUPPORTED_MIME_TYPES:
             fname = basename(f)
             click.echo(

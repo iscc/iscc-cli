@@ -16,6 +16,7 @@ from iscc_cli.utils import (
     DefaultHelp,
     download_file,
     is_youtube_url,
+    clean_mime,
 )
 import pytube
 
@@ -66,7 +67,7 @@ def web(url, guess, title, extra, verbose):
         raise click.BadArgumentUsage(e)
 
     data = BytesIO(resp.content)
-    media_type = detector.from_buffer(data)
+    media_type = clean_mime(detector.from_buffer(data))
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
