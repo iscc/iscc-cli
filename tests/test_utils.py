@@ -77,3 +77,15 @@ def test_iscc_split():
 
     i = "CCcdAr6GDoF3p"
     assert utils.iscc_split(i) == ["CCcdAr6GDoF3p"]
+
+
+def test_clean_mime():
+    assert utils.clean_mime("") == ""
+    assert utils.clean_mime("text/html ") == "text/html"
+    assert utils.clean_mime(["text/html", "audio/mp3"]) == "text/html"
+    assert utils.clean_mime([" text/html", "audio/mp3"]) == "text/html"
+    assert utils.clean_mime(" text/plain; charset=windows-1252 ") == "text/plain"
+    assert (
+        utils.clean_mime([" text/plain; charset=windows-1252 ", "audio/mp3"])
+        == "text/plain"
+    )

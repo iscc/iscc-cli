@@ -9,6 +9,7 @@ from os.path import exists, abspath
 from iscc_cli.tika import detector
 from iscc_cli import ffmpeg
 from iscc_cli import video_id
+from utils import clean_mime
 
 FORMATS = (
     "rm",
@@ -64,7 +65,7 @@ def build_media_types():
             else:
                 cmd = [ffmpeg.exe_path(), "-i", "master.3gp", "-loglevel", "2", outf]
             subprocess.run(cmd)
-        media_type = detector.from_file(abspath(outf))
+        media_type = clean_mime(detector.from_file(abspath(outf)))
         sigs = video_id.get_frame_vectors(abspath(outf))
         vid = video_id.content_id_video(sigs)
         print("{} -> {} -> {}".format(vid, outf, media_type))
