@@ -33,23 +33,25 @@ doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md, xls, mobi ...
 
 gif, jpg, png, tif, bmp, psd, eps ...
 
-**Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
+| NOTE: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.) |
+| --- |
 
 
 #### Audio
 
 aif, mp3, ogg, wav ...
 
-
-**Note**: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
+| NOTE: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/) |
+| --- |
 
 
 #### Video
 
 3gp, 3g2, asf, avi, flv, gif, mpg, mp4, mkv, mov, ogv, webm, wmv ...
 
+| NOTE: Support for the Video-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/) |
+| --- |
 
-**Note**: Support for the Video-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
 
 ## Requirements
 
