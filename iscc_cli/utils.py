@@ -12,7 +12,6 @@ import click
 import iscc
 import requests
 from PIL import Image
-from pytube.helpers import safe_filename
 
 import iscc_cli
 from iscc_cli.const import (
@@ -209,10 +208,34 @@ class cd:
         os.chdir(self.savedPath)
 
 
-YOUTUBE_URL_REGEX = re.compile(
-    r"(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
-)
-
-
-def is_youtube_url(url):
-    return bool(YOUTUBE_URL_REGEX.match(url))
+def safe_filename(s: str, max_len: int = 255) -> str:
+    """Sanitize a string making it safe to use as a filename.
+    See: https://en.wikipedia.org/wiki/Filename.
+    """
+    ntfs_chars = [chr(i) for i in range(0, 31)]
+    chars = [
+        r'"',
+        r"\#",
+        r"\$",
+        r"\%",
+        r"'",
+        r"\*",
+        r"\,",
+        r"\.",
+        r"\/",
+        r"\:",
+        r'"',
+        r"\;",
+        r"\<",
+        r"\>",
+        r"\?",
+        r"\\",
+        r"\^",
+        r"\|",
+        r"\~",
+        r"\\\\",
+    ]
+    pattern = "|".join(ntfs_chars + chars)
+    regex = re.compile(pattern, re.UNICODE)
+    fname = regex.sub("", s)
+    return fname[:max_len].rsplit(" ", 0)[0]

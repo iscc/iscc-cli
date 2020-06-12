@@ -147,17 +147,6 @@ $ iscc web https://iscc.foundation/news/images/lib-arch-ottawa.jpg
 ISCC:CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy
 ```
 
-YouTube URLs will be auto-detected to create ISCC Video-IDs:
-
-```console
-$ iscc web -v https://www.youtube.com/watch?v=yJY-aLoEqDo
-ISCC:CCjWDapxeWTnN-CVFUpwJuisZMt-CDhA7ieazQx8K-CR9ZnCAdvSyCy
-Norm Title: anokato kali spiral sessions
-Tophash:    312554214e3d17e8aafc0d0bc54382b5b4c1b2ce0fa20d7bde1ff12aa34e911b
-Filepath:   https://www.youtube.com/watch?v=yJY-aLoEqDo
-GMT:        video
-```
-
 ### Similarity of ISCC Codes
 
 The `sim` command computes estimated similarity of two ISCC Codes:
@@ -198,6 +187,10 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+### [0.9.11] - 2020-06-12
+- Update dependencies
+- Remove support for creating ISCC codes from youtube urls
 
 ### [0.9.10] - 2020-05-19
 - Fixed issue with mime-type detection
