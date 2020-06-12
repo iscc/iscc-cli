@@ -1,9 +1,9 @@
-import iscc_cli.monkeys
 import os
 import click
+import iscc_cli
 
 
-__version__ = "0.9.10"
+__version__ = "0.9.11"
 APP_NAME = "iscc-cli"
 APP_DIR = click.get_app_dir(APP_NAME, roaming=False)
 os.makedirs(iscc_cli.APP_DIR, exist_ok=True)

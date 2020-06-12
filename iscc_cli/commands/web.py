@@ -15,10 +15,8 @@ from iscc_cli.utils import (
     mime_to_gmt,
     DefaultHelp,
     download_file,
-    is_youtube_url,
     clean_mime,
 )
-import pytube
 
 HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
@@ -41,25 +39,6 @@ def web(url, guess, title, extra, verbose):
     """Generate ISCC Code from URL."""
 
     extra = extra or ""
-
-    if is_youtube_url(url):
-        try:
-            from iscc_cli.lib import iscc_from_file
-
-            yt = pytube.YouTube(url)
-            stream = yt.streams.filter(progressive=True).order_by("resolution").first()
-            file_path = stream.download(iscc_cli.APP_DIR)
-            r = iscc_from_file(file_path, guess, yt.title, extra)
-            if verbose:
-                click.echo("Norm Title: %s" % r["norm_title"])
-                click.echo("Tophash:    %s" % r["tophash"])
-                click.echo("Filepath:   %s" % url)
-                click.echo("GMT:        %s" % r["gmt"])
-            os.remove(file_path)
-            return
-        except Exception as e:
-            click.echo("YouTube URL failed with %s" % str(e))
-            click.echo("Falling back to Text-ID")
 
     try:
         resp = requests.get(url, headers=HEADERS, stream=True)
