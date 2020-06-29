@@ -41,6 +41,7 @@ imageio-ffmpeg = "^0.4"
 lxml = "^4.4"
 mobi = "^0"
 requests = "^2.23.0"
+pymupdf = "^1.17.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0"
