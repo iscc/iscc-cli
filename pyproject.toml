@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "0.9.10"
+version = "0.9.11"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -39,7 +39,6 @@ click-default-group = "^1.2"
 colorama = "^0.4"
 imageio-ffmpeg = "^0.4"
 lxml = "^4.4"
-pytube = "9.5.3"
 mobi = "^0"
 requests = "^2.23.0"
 
