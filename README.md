@@ -41,7 +41,7 @@ gif, jpg, png, tif, bmp, psd, eps ...
 aif, mp3, ogg, wav ...
 
 
-**Note**: Support for the Audio-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
+**Note**: Support for the Audio-ID is experimental and not yet part of the [specification](https://iscc.codes/specification/)
 
 
 #### Video

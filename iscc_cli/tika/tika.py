@@ -18,7 +18,7 @@
 
 # Module documentation
 """
-Tika Python module provides Python API client to Aapche Tika Server.
+Tika Python module provides Python API client to Apache Tika Server.
 
 **Example usage**::
 
