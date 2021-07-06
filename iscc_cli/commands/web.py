@@ -6,7 +6,7 @@ import click
 import iscc
 import mobi
 import requests
-from iscc_cli.tika import parser, detector
+from iscc_cli.tika import parser
 import iscc_cli
 from iscc_cli import fpcalc, audio_id, video_id
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
@@ -15,8 +15,8 @@ from iscc_cli.utils import (
     mime_to_gmt,
     DefaultHelp,
     download_file,
-    clean_mime,
 )
+from iscc_cli.mediatype import mime_guess, mime_clean
 
 HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
@@ -46,7 +46,7 @@ def web(url, guess, title, extra, verbose):
         raise click.BadArgumentUsage(e)
 
     data = BytesIO(resp.content)
-    media_type = clean_mime(detector.from_buffer(data))
+    media_type = mime_clean(mime_guess(data))
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")

@@ -12,7 +12,6 @@ import click
 import iscc
 import requests
 from PIL import Image
-
 import iscc_cli
 from iscc_cli.const import (
     SUPPORTED_EXTENSIONS,
@@ -88,11 +87,12 @@ def mime_to_gmt(mime_type, file_path=None):
 
 def get_title(tika_result: dict, guess=False, uri=None):
     title = ""
+    gmt = None
     meta = tika_result.get("metadata")
-    mime_type = clean_mime(meta.get("Content-Type"))
-    gmt = mime_to_gmt(mime_type)
 
     if meta:
+        mime_type = clean_mime(meta.get("Content-Type"))
+        gmt = mime_to_gmt(mime_type)
         title = meta.get("dc:title", "")
         title = title[0].strip() if isinstance(title, list) else title.strip()
         if not title:
@@ -166,7 +166,7 @@ def iscc_split(i):
 def download_file(url, md5=None, sanitize=False):
     """Download file to app dir and return path."""
     url_obj = urlparse(url)
-    file_name = os.path.basename(url_obj.path)
+    file_name = os.path.basename(url_obj.path) or "temp.file"
     if sanitize:
         file_name = safe_filename(file_name)
     out_path = os.path.join(iscc_cli.APP_DIR, file_name)

@@ -3,7 +3,7 @@ import click
 import iscc_cli
 
 
-__version__ = "0.9.11"
+__version__ = "0.9.12"
 APP_NAME = "iscc-cli"
 APP_DIR = click.get_app_dir(APP_NAME, roaming=False)
 os.makedirs(iscc_cli.APP_DIR, exist_ok=True)

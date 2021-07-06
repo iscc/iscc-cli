@@ -188,6 +188,10 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## Change Log
 
+### [0.9.12] - 2021-07-16
+- Update to custom mediatype detection (without Tika requirement)
+- Update dependencies
+
 ### [0.9.11] - 2020-06-12
 - Update dependencies
 - Remove support for creating ISCC codes from youtube urls
@@ -303,5 +307,5 @@ You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>
 
 ## License
 
-MIT © 2019-2020 Titusz Pan
+MIT © 2019-2021 Titusz Pan
 

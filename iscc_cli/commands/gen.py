@@ -6,11 +6,11 @@ from os.path import abspath
 import click
 import iscc
 import mobi
-from iscc_cli.tika import detector, parser
-
+from iscc_cli.tika import parser
 from iscc_cli import audio_id, video_id, fpcalc
 from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
-from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp, clean_mime
+from iscc_cli.utils import get_title, mime_to_gmt, DefaultHelp
+from iscc_cli.mediatype import mime_guess, mime_clean
 
 
 @click.command(cls=DefaultHelp)
@@ -33,7 +33,7 @@ def gen(file, guess, title, extra, verbose):
     if not filesize:
         raise click.BadParameter("Cannot proccess empty file: {}".format(file.name))
 
-    media_type = clean_mime(detector.from_file(file.name))
+    media_type = mime_clean(mime_guess(file.name))
     if media_type not in SUPPORTED_MIME_TYPES:
         click.echo("Unsupported media type {}.".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
