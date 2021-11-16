@@ -13,12 +13,6 @@ import iscc
 import requests
 from PIL import Image
 import iscc_cli
-from iscc_cli.const import (
-    SUPPORTED_EXTENSIONS,
-    SUPPORTED_MIME_TYPES,
-    ISCC_COMPONENT_CODES,
-    GMT,
-)
 
 
 def iter_files(root, exts=None, recursive=False):

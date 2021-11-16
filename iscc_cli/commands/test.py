@@ -3,7 +3,6 @@ import io
 import click
 import requests
 import iscc
-from iscc_cli import const
 
 
 @click.command()

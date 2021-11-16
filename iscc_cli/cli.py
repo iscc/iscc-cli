@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
+import sys
 import click
 from iscc_cli import __version__
 from iscc_cli.commands import init, gen, batch, sim, info, web, dump, test
 from click_default_group import DefaultGroup
+from loguru import logger as log
 
 
 @click.group(cls=DefaultGroup, default="gen", default_if_no_args=False)
 @click.version_option(version=__version__, message="ISCC CLI - %(version)s")
-def cli():
-    pass
+@click.option("-d", "--debug", is_flag=True, default=False, help="Show debug output")
+def cli(debug):
+    if debug:
+        log.add(sys.stderr)
+        log.info("Debug messages activated!")
 
 
 cli.add_command(init.init)

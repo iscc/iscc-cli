@@ -2,8 +2,6 @@
 import sys
 import click
 import iscc
-
-from iscc_cli.const import ISCC_COMPONENT_CODES
 from iscc_cli.utils import DefaultHelp, iscc_verify, iscc_split, iscc_clean
 
 

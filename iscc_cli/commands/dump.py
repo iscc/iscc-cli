@@ -4,9 +4,7 @@ import shutil
 import click
 import mobi
 from click import UsageError
-from iscc_cli.tika import parser
 from iscc_cli.utils import DefaultHelp
-from iscc_cli.const import SUPPORTED_MIME_TYPES
 import json
 from iscc_cli.mediatype import mime_guess, mime_clean
 

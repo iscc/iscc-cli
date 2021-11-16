@@ -6,10 +6,7 @@ import click
 import iscc
 import mobi
 import requests
-from iscc_cli.tika import parser
 import iscc_cli
-from iscc_cli import fpcalc, audio_id, video_id
-from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import (
     get_title,
     mime_to_gmt,

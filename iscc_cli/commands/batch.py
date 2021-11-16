@@ -5,12 +5,8 @@ import sys
 from os.path import basename, abspath
 import click
 import mobi
-from iscc_cli.tika import parser
 import iscc
-from iscc_cli import video_id
-from iscc_cli.const import SUPPORTED_MIME_TYPES, GMT
 from iscc_cli.utils import get_files, mime_to_gmt, get_title, DefaultHelp
-from iscc_cli import audio_id, fpcalc
 from loguru import logger as log
 from iscc_cli.mediatype import mime_guess, mime_clean
 
