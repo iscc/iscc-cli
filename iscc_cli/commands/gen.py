@@ -7,27 +7,26 @@ from iscc_cli.utils import DefaultHelp
 
 @click.command(cls=DefaultHelp)
 @click.argument("file", type=click.File("rb"))
-@click.option("-t", "--title", type=click.STRING, help="Title for Meta-ID creation.")
-@click.option(
-    "-e", "--extra", type=click.STRING, help="Extra text for Meta-ID creation."
-)
-@click.option(
-    "-g",
-    "--granular",
-    is_flag=True,
-    default=False,
-    help="Extract granular features (experimental)",
-)
-@click.option(
-    "-p",
-    "--preview",
-    is_flag=True,
-    default=False,
-    help="Extract preview (experimental)",
-)
-def gen(file, title, extra, granular, preview):
+@click.option("-t", "--title", type=click.STRING, help="Title for Meta-Code.")
+@click.option("-e", "--extra", type=click.STRING, help="Extra text for Meta-Code.")
+@click.pass_context
+def gen(ctx, file, title, extra):
     """Generate ISCC Code for FILE."""
-    r = iscc.code_iscc(
-        file, title=title, extra=extra, all_granular=granular, all_preview=preview
+
+    result = iscc.code_iscc(
+        file,
+        title=title,
+        extra=extra,
+        all_granular=ctx.obj.granular,
+        all_preview=ctx.obj.preview,
     )
-    click.echo(json.dumps(r, indent=2))
+
+    if ctx.obj.store:
+        ctx.obj.index.add(result)
+
+    if ctx.obj.unpack:
+        components = iscc.decompose(result["iscc"])
+        decomposed = "-".join([c.code for c in components])
+        result["iscc"] = decomposed
+
+    click.echo(json.dumps(result, indent=2))
