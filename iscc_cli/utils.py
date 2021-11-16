@@ -13,6 +13,7 @@ import iscc
 import requests
 from PIL import Image
 import iscc_cli
+from iscc.mediatype import SUPPORTED_EXTENSIONS, SUPPORTED_MEDIATYPES
 
 
 def iter_files(root, exts=None, recursive=False):
