@@ -1,18 +1,51 @@
 # -*- coding: utf-8 -*-
 import sys
+from typing import Optional
+
 import click
+import iscc
+from dataclasses import dataclass
 from iscc_cli import __version__
-from iscc_cli.commands import init, gen, batch, sim, info, web, dump, test
+from iscc_cli.commands import init, gen, batch, sim, info, web, dump, test, explain, db
 from click_default_group import DefaultGroup
 from loguru import logger as log
+
+
+@dataclass
+class GlobalOptions:
+    debug: bool
+    granular: bool
+    preview: bool
+    store: bool
+    unpack: bool
+    index: Optional[iscc.Index] = None
 
 
 @click.group(cls=DefaultGroup, default="gen", default_if_no_args=False)
 @click.version_option(version=__version__, message="ISCC CLI - %(version)s")
 @click.option("-d", "--debug", is_flag=True, default=False, help="Show debug output")
-def cli(debug):
+@click.option(
+    "-g", "--granular", is_flag=True, default=False, help="Extract granular features"
+)
+@click.option(
+    "-p", "--preview", is_flag=True, default=False, help="Extract asset preview",
+)
+@click.option(
+    "-s", "--store", is_flag=True, default=False, help="Store ISCC in local index",
+)
+@click.option(
+    "-u", "--unpack", is_flag=True, default=False, help="Unpack ISCC into components"
+)
+@click.pass_context
+def cli(ctx, debug, granular, preview, store, unpack):
+    ctx.obj = GlobalOptions(
+        debug=debug, granular=granular, preview=preview, store=store, unpack=unpack
+    )
+
+    ctx.obj.index = iscc.Index("cli-db", index_features=True, index_metadata=True)
+
     if debug:
-        log.add(sys.stderr)
+        log.add(sys.stdout)
         log.info("Debug messages activated!")
 
 
@@ -24,6 +57,8 @@ cli.add_command(sim.sim)
 cli.add_command(info.info)
 cli.add_command(dump.dump)
 cli.add_command(test.test)
+cli.add_command(explain.explain)
+cli.add_command(db.db)
 
 
 if __name__ == "__main__":
