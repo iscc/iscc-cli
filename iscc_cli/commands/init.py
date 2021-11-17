@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import click
-import iscc
+from iscc.audio import fpcalc_install
+from iscc.bin import ffmpeg_install, ffprobe_install
 
 
 @click.command()
 def init():
     """Inititalize and check environment."""
-    iscc.bin.ffmpeg_install()
-    iscc.bin.ffprobe_install()
-    iscc.audio.fpcalc_install()
+    ffmpeg_install()
+    ffprobe_install()
+    fpcalc_install()
+    click.echo("Enviroment initialized")
