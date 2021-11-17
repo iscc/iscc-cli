@@ -3,8 +3,7 @@ import click
 import iscc
 import iscc_cli
 import requests
-from iscc.bin import ffmpeg_version_info, ffprobe_version_info
-from iscc.audio import fpcalc_version_info
+from iscc.bin import ffmpeg_version_info, ffprobe_version_info, fpcalc_version_info
 from iscc.mediatype import SUPPORTED_EXTENSIONS
 import importlib
 import importlib.machinery
