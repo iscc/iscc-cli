@@ -29,6 +29,12 @@ def test_iscc_web_video():
     assert "KMDZPDVSLFQXGF54AWZFNUBT5AD43O2Z4IECXHVCCOBTQ4MXONZ5BOY" in result.output
 
 
+def test_iscc_web_domain_root():
+    result = r.invoke(cli, ["web", "https://heise.de"])
+    assert result.exit_code == 0
+    assert "heise" in result.output
+
+
 def test_iscc_web_invalid_url():
     result = r.invoke(cli, ["web", "heise.de"])
     assert result.exit_code == 2

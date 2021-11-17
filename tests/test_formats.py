@@ -11,7 +11,7 @@ r = CliRunner()
 def test_unsupported():
     result = r.invoke(cli, ["gen", "tests/text/demo.sqlite"])
     assert result.exit_code == 1
-    assert "Error: Unknown mediatype" in result.output
+    assert "Error: Unsupported mediatype: application/x-sqlite" in result.output
 
 
 def test_xhtml():

@@ -43,6 +43,6 @@ def test_no_command_with_valid_file_granular():
 
 
 def test_no_command_with_valid_file_preview():
-    result = r.invoke(cli, ["--granular", "tests/image/demo.jpg"])
+    result = r.invoke(cli, ["--preview", "tests/image/demo.jpg"])
     assert result.exit_code == 0
     assert "preview" in json.loads(result.output)

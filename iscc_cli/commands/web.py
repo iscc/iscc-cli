@@ -36,7 +36,7 @@ def web(ctx, url, title, extra):
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
         return
 
-    local_path = download_file(url, sanitize=True)
+    local_path = download_file(url, iscc_cli.APP_DIR, sanitize=True)
     try:
         result = iscc.code_iscc(
             local_path,
@@ -44,11 +44,10 @@ def web(ctx, url, title, extra):
             extra=extra,
             all_granular=ctx.obj.granular,
             all_preview=ctx.obj.preview,
+            text_store=ctx.obj.store_text,
         )
     except ValueError as e:
         raise click.ClickException(e)
-    finally:
-        os.remove(local_path)
 
     if ctx.obj.store:
         ctx.obj.index.add(result)
