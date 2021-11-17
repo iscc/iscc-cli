@@ -17,7 +17,7 @@ def test_gen_no_arg_shows_help():
 def test_gen_single_file():
     result = r.invoke(cli, ["gen", "tests/image/demo.jpg"])
     assert result.exit_code == 0
-    assert "CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv" in result.output
+    assert "KED6D635YTR5XNF6YNBTBHR4T2HGP3HKVFO7TYUP2BKVFG724W63HVI" in result.output
 
 
 def test_gen_empty_file():
@@ -26,33 +26,17 @@ def test_gen_empty_file():
     assert "empty file" in result.output
 
 
-def test_gen_single_guess():
+def test_gen_single_demo():
     result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
-    assert (
-        "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
-    )
-    result = r.invoke(cli, ["gen", "-g", "tests/text/demo.doc"])
-    assert result.exit_code == 0
-    assert (
-        "ISCC:CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye" in result.output
-    )
+    assert "KADV5PDFXBL7HGBXFFW64KVNP6UGTUZC2CJTDBKMFYTTZPLQQVX22FI" in result.output
 
 
-def test_gen_image_guess():
-    result = r.invoke(cli, ["gen", "-g", "tests/image/demo.bmp"])
+def test_gen_image_bmp():
+    result = r.invoke(cli, ["gen", "tests/image/demo.bmp"])
     assert result.exit_code == 0
 
 
-def test_gen_image_no_title():
-    result = r.invoke(cli, ["gen", "-g", "tests/image/demo.png"])
-    assert "CCh7QKroUdKnH-CYDfTq7Qc7Fre-CDij3vGU1BkCZ-CRNssh4Qc1x5B" in result.output
-
-
-def test_gen_python_call():
-    from iscc_cli.commands.gen import gen
-
-    file = open("tests/text/demo.doc")
-    result = gen.callback(file, True, "", "", True)
-    assert result["iscc"] == "CCKzUpp6U5hU7-CTMjk4o5H96BV-CDM6E14HcCZjQ-CR1LUvGDVrWye"
-    assert result["norm_title"] == "demo doc title from metadata"
+def test_gen_image_png():
+    result = r.invoke(cli, ["gen", "tests/image/demo.png"])
+    assert "KED6D6L5YDT5DNN4YNBTBHR4T2HGO6RDNMJX4P6UMT7LQXYXBH2R5PY" in result.output

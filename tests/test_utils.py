@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from os.path import join
-
 import pytest
-
-from iscc_cli.const import GMT
 from tests import TEST_DIR
 from iscc_cli import utils
 
@@ -37,30 +34,10 @@ def test_get_files():
     assert len(list(result)) == 4
 
 
-def test_mime_to_gmt():
-    result = utils.mime_to_gmt("image/jpeg")
-    assert result == GMT.IMAGE
-
-
-def test_mime_to_gmt_gif_image():
-    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "image", "demo.gif"))
-    assert result == GMT.IMAGE
-
-
-def test_mime_to_gmt_gif_video():
-    result = utils.mime_to_gmt("image/gif", join(TEST_DIR, "video", "demo.gif"))
-    assert result == GMT.VIDEO
-
-
 def test_iscc_clean():
     assert utils.iscc_clean("ISCC: SOME-CODE") == "SOMECODE"
     assert utils.iscc_clean(" SOMECODE ") == "SOMECODE"
     assert utils.iscc_clean("ISCC:") == ""
-
-
-def test_iscc_verify():
-    with pytest.raises(ValueError):
-        utils.iscc_verify("I")
 
 
 def test_iscc_split():

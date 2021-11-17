@@ -19,7 +19,7 @@ def test_iscc_no_args():
 def test_iscc_no_ars_but_opt():
     result = r.invoke(cli, ["-p"])
     assert result.exit_code == 2
-    assert "Error: Missing argument" in result.output
+    assert "Error: Missing" in result.output
 
 
 def test_version():
