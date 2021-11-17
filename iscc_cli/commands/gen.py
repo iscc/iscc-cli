@@ -26,6 +26,7 @@ def gen(ctx, file, title, extra):
             extra=extra,
             all_granular=ctx.obj.granular,
             all_preview=ctx.obj.preview,
+            text_store=ctx.obj.store_text,
         )
     except ValueError as e:
         raise click.ClickException(e)

@@ -28,11 +28,19 @@ def batch(ctx, path, recursive):
             continue
         try:
             result = iscc.code_iscc(
-                f, all_granular=ctx.obj.granular, all_preview=ctx.obj.preview
+                f,
+                all_granular=ctx.obj.granular,
+                all_preview=ctx.obj.preview,
+                text_store=ctx.obj.store_text,
             )
 
             if ctx.obj.store:
                 ctx.obj.index.add(result)
+
+            if ctx.obj.unpack:
+                components = iscc.decompose(result["iscc"])
+                decomposed = "-".join([c.code for c in components])
+                result["iscc"] = decomposed
 
             click.echo(json.dumps(result, indent=2))
         except Exception as e:

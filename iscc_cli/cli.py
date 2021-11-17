@@ -30,6 +30,7 @@ class GlobalOptions:
     preview: bool
     store: bool
     unpack: bool
+    store_text: bool
     index: Optional[iscc.Index] = None
 
 
@@ -46,12 +47,20 @@ class GlobalOptions:
     "-s", "--store", is_flag=True, default=False, help="Store ISCC in local index",
 )
 @click.option(
-    "-u", "--unpack", is_flag=True, default=False, help="Unpack ISCC into components"
+    "-u", "--unpack", is_flag=True, default=False, help="Unpack ISCC into components",
+)
+@click.option(
+    "-st", "--store_text", is_flag=True, default=False, help="Store extracted text",
 )
 @click.pass_context
-def cli(ctx, debug, granular, preview, store, unpack):
+def cli(ctx, debug, granular, preview, store, unpack, store_text):
     ctx.obj = GlobalOptions(
-        debug=debug, granular=granular, preview=preview, store=store, unpack=unpack
+        debug=debug,
+        granular=granular,
+        preview=preview,
+        store=store,
+        unpack=unpack,
+        store_text=store_text,
     )
 
     ctx.obj.index = iscc.Index("cli-db", index_features=True, index_metadata=True)
