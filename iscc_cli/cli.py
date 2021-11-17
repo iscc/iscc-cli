@@ -6,7 +6,19 @@ import click
 import iscc
 from dataclasses import dataclass
 from iscc_cli import __version__
-from iscc_cli.commands import init, gen, batch, sim, info, web, dump, test, explain, db
+from iscc_cli.commands import (
+    init,
+    gen,
+    batch,
+    sim,
+    info,
+    web,
+    dump,
+    test,
+    explain,
+    db,
+    detect,
+)
 from click_default_group import DefaultGroup
 from loguru import logger as log
 
@@ -59,6 +71,7 @@ cli.add_command(dump.dump)
 cli.add_command(test.test)
 cli.add_command(explain.explain)
 cli.add_command(db.db)
+cli.add_command(detect.detect)
 
 
 if __name__ == "__main__":
