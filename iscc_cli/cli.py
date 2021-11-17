@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
 from typing import Optional
-
 import click
 import iscc
 from dataclasses import dataclass
