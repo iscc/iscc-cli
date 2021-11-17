@@ -4,6 +4,8 @@ import shutil
 import click
 import mobi
 from click import UsageError
+from iscc.mediatype import SUPPORTED_MEDIATYPES
+
 from iscc_cli.utils import DefaultHelp
 import json
 from iscc_cli.mediatype import mime_guess, mime_clean
@@ -18,10 +20,11 @@ from iscc_cli.mediatype import mime_guess, mime_clean
 @click.option("-c", "--content", is_flag=True, default=False, help="Dump content only.")
 def dump(path, strip, meta, content):
     """Dump Tika extraction results for PATH (file or url path)."""
+    from tika import parser
 
     media_type = mime_clean(mime_guess(path))
 
-    if media_type not in SUPPORTED_MIME_TYPES:
+    if media_type not in SUPPORTED_MEDIATYPES:
         click.echo("Unsupported media type {}.".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
 
