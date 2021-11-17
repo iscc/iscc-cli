@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+
 import click
 import json
 import iscc
@@ -13,13 +15,20 @@ from iscc_cli.utils import DefaultHelp
 def gen(ctx, file, title, extra):
     """Generate ISCC Code for FILE."""
 
-    result = iscc.code_iscc(
-        file,
-        title=title,
-        extra=extra,
-        all_granular=ctx.obj.granular,
-        all_preview=ctx.obj.preview,
-    )
+    filesize = os.path.getsize(file.name)
+    if not filesize:
+        raise click.BadParameter("Cannot proccess empty file: {}".format(file.name))
+
+    try:
+        result = iscc.code_iscc(
+            file,
+            title=title,
+            extra=extra,
+            all_granular=ctx.obj.granular,
+            all_preview=ctx.obj.preview,
+        )
+    except ValueError as e:
+        raise click.ClickException(e)
 
     if ctx.obj.store:
         ctx.obj.index.add(result)
