@@ -19,46 +19,22 @@
 
 The **International Standard Content Code** is a proposal for an [open standard](https://en.wikipedia.org/wiki/Open_standard) for decentralized content identification. **ISCC Codes** are generated algorithmically **from the content itself** and offer many powerful features like content similarity clustering and partial integrity checks. If you want to learn more about the **ISCC** please check out https://iscc.codes.
 
-This tool offers an easy way to generate ISCC codes from the command line. It supports content extraction via [Apache Tika](https://tika.apache.org/) and uses the [ISCC reference implementation](https://github.com/iscc/iscc-specs).
+This tool offers an easy way to generate ISCC codes from the command line. It supports content extraction and uses the [ISCC reference implementation](https://github.com/iscc/iscc-specs).
 
 
 ### Supported Media File Types
 
-#### Text
-
-doc, docx, epub, html, odt, pdf, rtf, txt, xml, ibooks, md, xls, mobi ...
-
-
-#### Image
-
-gif, jpg, png, tif, bmp, psd, eps ...
-
-**Note**: EPS (postscript) support requires [Ghostscript](https://www.ghostscript.com/download.html) to be installed on your system and available on your PATH. (Make sure you can run `gs` from your command line.)
-
-
-#### Audio
-
-aif, mp3, ogg, wav ...
-
-
-**Note**: Support for the Audio-ID is experimental and not yet part of the [specification](https://iscc.codes/specification/)
-
-
-#### Video
-
-3gp, 3g2, asf, avi, flv, gif, mpg, mp4, mkv, mov, ogv, webm, wmv ...
-
-
-**Note**: Support for the Video-ID is experimentel and not yet part of the [specification](https://iscc.codes/specification/)
+3g2, 3gp, aif, aif, asf, avi, azw, azw3, azw4, bmp, doc, docx, drc, eps, epub, f4v, flac, flv, gif, h264, html, ibooks, jpeg, jpg, json, m1v, m4v, markdown, md, mkv, mobi, mov, mp3, mp4, mpeg, mpg, odt, ogg, ogg, ogv, opus, pdf, p
+ng, pptx, prc, psd, rm, rtf, swf, tif, txt, vob, wav, wav, webm, wmv, xhtml, xls, xlsx, xml
 
 ## Requirements
 
-| NOTE: Requires JAVA to be installed and on your path! |
+| NOTE: Requires JAVA to be installed and on your path if you need support for text extraction! |
 | --- |
 
 **iscc-cli** is tested on Linux, Windows, and macOS with Python 3.6/3.7/3.8.
 
-This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/) is used for extracting metadata and content from media files before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server with `$ iscc init`
+This tool depends on [tika-python](https://github.com/chrismattmann/tika-python).  [Tika](https://tika.apache.org/) is used for extracting text from documents before generating ISCC Codes. On first execution of the `iscc` command line tool it will automatically download and launch the Java Tika Server in the background (this may take some time). Consecutive runs will access the existing Tika instance. You may explicitly pre-launch the Tika server and install content extraction dependencies with `$ iscc init`
 
 ## Install
 
@@ -66,6 +42,7 @@ The ISCC command line tool is published with the package name `iscc-cli` on the 
 
 ```console
 $ pip3 install iscc-cli
+$ iscc init
 ```
 
 Self-contained Windows binary executables are available for download at:
@@ -82,18 +59,27 @@ $ iscc
 Usage: iscc [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  --version  Show the version and exit.
-  --help     Show this message and exit.
+  --version          Show the version and exit.
+  -d, --debug        Show debug output
+  -g, --granular     Extract granular features
+  -p, --preview      Extract asset preview
+  -s, --store        Store ISCC in local index
+  -u, --unpack       Unpack ISCC into components
+  -st, --store_text  Store extracted text
+  --help             Show this message and exit.
 
 Commands:
-  gen*   Generate ISCC Code for FILE.
-  batch  Create ISCC Codes for all files in PATH.
-  dump   Dump Tika extraction results for PATH (file or url path).
-  info   Show information about environment.
-  init   Inititalize and check environment.
-  sim    Estimate Similarity of ISCC Codes A & B.
-  test   Test conformance with latest reference data.
-  web    Generate ISCC Code from URL.
+  gen*     Generate ISCC Code for FILE.
+  batch    Create ISCC Codes for all files in PATH.
+  db       Manage ISCC database
+  detect   Detect mediatype of file.
+  dump     Dump Tika extraction results for PATH (file or url path).
+  explain  Explain details of an ISCC code.
+  info     Show information about environment.
+  init     Inititalize and check environment.
+  sim      Estimate Similarity of ISCC Codes A & B.
+  test     Test conformance with latest reference data.
+  web      Generate ISCC Code from URL.
 ```
 
 Get help for a specific command by entering `iscc <command>`:
@@ -105,10 +91,8 @@ Usage: iscc gen [OPTIONS] FILE
   Generate ISCC Code for FILE.
 
 Options:
-  -g, --guess       Guess title (first line of text).
-  -t, --title TEXT  Title for Meta-ID creation.
-  -e, --extra TEXT  Extra text for Meta-ID creation.
-  -v, --verbose     Enables verbose mode.
+  -t, --title TEXT  Title for Meta-Code.
+  -e, --extra TEXT  Extra text for Meta-Code.
   -h, --help        Show this message and exit.
 ```
 
@@ -129,11 +113,20 @@ To get a more detailed result use the `-v` (`--verbose`) option:
 
 ```console
 $ iscc -v tests/image/demo.jpg
-ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
-Norm Title: concentrated cat
-Tophash:    7a8d0c513142c45f417e761355bf71f11ad61d783cd8958ffc0712d00224a4d0
-Filepath:   tests/image/demo.jpg
-GMT:        image
+{
+  "version": "0-0-0",
+  "iscc": "KED6D635YTR5XNF6YNBTBHR4T2HGP3HKVFO7TYUP2BKVFG724W63HVI",
+  "title": "Concentrated Cat",
+  "filename": "demo.jpg",
+  "filesize": 35393,
+  "mediatype": "image/jpeg",
+  "tophash": "ec87e69e73dfaf886200f90d4ba03d2f8593367543393dea8c3aa5f06422087a",
+  "metahash": "9ce5052a03004657d8657167f53812718e9426d85b4cdd5106ef3d87412e6f64",
+  "datahash": "55529bfae5bdb3d530c52f44d13ccd6a7c710f63620dc2db1c43c5592ae2dc97",
+  "gmt": "image",
+  "width": 200,
+  "height": 133
+}
 ```
 
 See `iscc batch` for help on how to generate ISCC codes for multiple files at once.
@@ -144,7 +137,20 @@ The `web` command allows you to create ISCC codes from URLs:
 
 ```console
 $ iscc web https://iscc.foundation/news/images/lib-arch-ottawa.jpg
-ISCC:CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy
+{
+  "version": "0-0-0",
+  "iscc": "KEDYT2F222OCBGQRQBD7M4HPDLUZJZAA2JO4DE76UQWNVH76MP2AK2Q",
+  "title": "Library and Archives Canada, Ottawa",
+  "filename": "lib-arch-ottawajpg",
+  "filesize": 643177,
+  "mediatype": "image/jpeg",
+  "tophash": "ff5c5a115da98a89ae51cdada1c0747a0e802b3670227aefe7b18a60da984b21",
+  "metahash": "4458bd689ff47d679d783e9536bcd31b261ffcb7b006a91d5194e4d520013641",
+  "datahash": "2cda9ffe63f4056a72c035a8bac2286d66fcbc90d507451fe323eeb3488dcaf9",
+  "gmt": "image",
+  "width": 1199,
+  "height": 901
+}
 ```
 
 ### Similarity of ISCC Codes
@@ -152,27 +158,25 @@ ISCC:CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy
 The `sim` command computes estimated similarity of two ISCC Codes:
 
 ```console
-$ iscc sim CCUcKwdQc1jUM CCjMmrCsKWu1D
+$ iscc sim EAASS3POFKWX7KDJ EAASS2POFKWX7KDJ
 Estimated Similarity of Meta-ID: 78.00 % (56 of 64 bits match)
+{
+  "cdist": 1
+}
 ```
 
 You may also compare full four-component ISCC Codes.
-
-### Using from your python code
-
-While this package is not built to be used as a library, some of the high level commands to generate ISCC Codes are exposed as vanilla python functions:
-
-```python
-from iscc_cli import lib
-from pprint import pprint
-
-pprint(lib.iscc_from_url("https://iscc.foundation/news/images/lib-arch-ottawa.jpg"))
-
-{'gmt': 'image',
- 'iscc': 'CCbUCUSqQpyJo-CYaHPGcucqwe3-CDt4nQptEGP6M-CRestDoG7xZFy',
- 'norm_title': 'library and archives canada ottawa',
- 'tophash': 'e264cc07209bfaecc291f97c7f8765229ce4c1d36ac6901c477e05b2422eea3e'}
+```console
+$ iscc sim KADV5PDFXBL7HGBXFFW64KVNP6UGTUZC2CJTDBKMFYTTZPLQQVX22FI KAD3M6R7CS3367D3FFU64KVNP6UGSGETKMSM36EQI37B2Y4KEBSQLPI
+Estimated Similarity of Meta-ID: 78.00 % (56 of 64 bits match)
+{
+  "mdist": 29,
+  "cdist": 1,
+  "ddist": 38,
+  "imatch": false
+}
 ```
+
 
 ## Maintainers
 
@@ -187,6 +191,9 @@ Please make sure to update tests as appropriate.
 You may also want join our developer chat on Telegram at <https://t.me/iscc_dev>.
 
 ## Change Log
+
+## [1.1.0] - Unreleased
+- Complete rewrite based on ISCC v1.1
 
 ### [0.9.12] - 2021-07-16
 - Update to custom mediatype detection (without Tika requirement)
