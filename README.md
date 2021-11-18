@@ -104,15 +104,32 @@ The `gen` command generates an ISCC Code for a single file:
 
 ```console
 $ iscc gen tests/image/demo.jpg
-ISCC:CC1GG3hSxtbWU-CYDfTq7Qc7Fre-CDYkLqqmQJaQk-CRAPu5NwQgAhv
+{
+  "version": "0-0-0",
+  "iscc": "KED6D635YTR5XNF6YNBTBHR4T2HGP3HKVFO7TYUP2BKVFG724W63HVI",
+  "title": "Concentrated Cat",
+  "filename": "demo.jpg",
+  "filesize": 35393,
+  "mediatype": "image/jpeg",
+  "tophash": "ec87e69e73dfaf886200f90d4ba03d2f8593367543393dea8c3aa5f06422087a",
+  "metahash": "9ce5052a03004657d8657167f53812718e9426d85b4cdd5106ef3d87412e6f64",
+  "datahash": "55529bfae5bdb3d530c52f44d13ccd6a7c710f63620dc2db1c43c5592ae2dc97",
+  "gmt": "image",
+  "width": 200,
+  "height": 133
+}
 ```
 
 The `gen` command is default so you can skip it and simply do `$ iscc tests/demo.jpg`
 
-To get a more detailed result use the `-v` (`--verbose`) option:
+To get debug output use the `-d` (`--debug`) option:
 
 ```console
-$ iscc -v tests/image/demo.jpg
+$ iscc -d tests/image/demo.jpg
+2021-11-18 10:27:49.537 | INFO     | iscc_cli.cli:cli:69 - Debug messages activated!
+2021-11-18 10:27:49.539 | DEBUG    | codetiming._timer:stop:61 - instance code creation took 0.0007s
+2021-11-18 10:27:49.542 | DEBUG    | codetiming._timer:stop:61 - data code creation took 0.0019s
+2021-11-18 10:27:49.560 | DEBUG    | codetiming._timer:stop:61 - content code image creation took 0.0148s
 {
   "version": "0-0-0",
   "iscc": "KED6D635YTR5XNF6YNBTBHR4T2HGP3HKVFO7TYUP2BKVFG724W63HVI",
