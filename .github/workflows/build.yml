@@ -1,0 +1,33 @@
+name: Build
+
+on: [workflow_dispatch]
+
+jobs:
+  build_iscc_cli:
+    name: build iscc-cli / ${{ matrix.os }} / py ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [Ubuntu, MacOS, Windows]
+        python-version: [3.9]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install poetry
+      run: pip install poetry
+
+    - name: Install iscc-cli dependencies
+      run: poetry install
+
+    - name: Build iscc-cli
+      run: python build.py
+
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*.*
+
