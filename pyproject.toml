@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "1.1.0-beta.10"
+version = "1.1.0-beta.11"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -32,24 +32,16 @@ classifiers = [
 iscc = 'iscc_cli.cli:cli'
 
 [tool.poetry.dependencies]
-python = ">=3.6.1,<3.10"
+python = ">=3.7,<3.10"
 click = "^7.0"
-iscc = { version = "1.1.0b10", allow-prereleases = true}
+iscc = { version = "1.1.0b11", allow-prereleases = true}
 click-default-group = "^1.2"
 colorama = "^0.4"
-imageio-ffmpeg = "^0.4"
-lxml = "^4.4"
-mobi = "^0"
-requests = "^2.23.0"
-python-magic-bin = { version = "^0.4.14", markers = "sys_platform == 'win32' or sys_platform == 'darwin'" }
-python-magic = { version = "^0.4.22", markers = "sys_platform == 'linux'" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0"
 black = { version = "^19.10b0", python = "^3.6" }
 pyinstaller = "^4.7"
-pywin32-ctypes = { version = "0.2.0", markers = "sys_platform == 'win32'" }
-pefile = { version = "2019.4.18", markers = "sys_platform == 'win32'" }
 pytest-ordering = "^0.6"
 
 [build-system]
