@@ -28,6 +28,9 @@ jobs:
     - name: Build iscc-cli
       run: poetry run python build.py
 
+    - name: Test build
+      run: ./dist/iscc info
+
     - uses: actions/upload-artifact@v2
       with:
         name: iscc-cli-${{ matrix.os }}
