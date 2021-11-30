@@ -4,6 +4,7 @@ import click
 import requests
 import iscc
 
+
 TEST_DATA_URL = "https://raw.githubusercontent.com/iscc/iscc-specs/version-1.1/tests/"
 
 
@@ -13,8 +14,6 @@ def test():
     click.echo("Running confromance tests.\n")
     test_data = requests.get(TEST_DATA_URL + "test_data.json").json()
     for funcname, tests in test_data.items():
-        if not tests["required"]:
-            continue
         for testname, testdata in tests.items():
             if not testname.startswith("test_"):
                 continue
