@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-
 import click
 import json
 import iscc
 from iscc_cli.utils import DefaultHelp
+from loguru import logger as log
 
 
 @click.command(cls=DefaultHelp)
@@ -15,6 +15,7 @@ from iscc_cli.utils import DefaultHelp
 def gen(ctx, file, title, extra):
     """Generate ISCC Code for FILE."""
 
+    log.info(f"processing: {os.path.basename(file.name)}")
     filesize = os.path.getsize(file.name)
     if not filesize:
         raise click.BadParameter("Cannot proccess empty file: {}".format(file.name))

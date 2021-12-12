@@ -22,6 +22,7 @@ def batch(ctx, path, recursive):
     """
 
     for f in get_files(path, recursive=recursive):
+        log.info(f"processing: {os.path.basename(f)}")
         filesize = os.path.getsize(f)
         if not filesize:
             msg = "Cannot proccess empty file: {}".format(f)
