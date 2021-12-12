@@ -18,4 +18,4 @@ def sim(a, b):
 
     You may also compare fully qualified ISCC Codes with each other.
     """
-    click.echo(json.dumps(iscc.compare(a, b), indent=2))
+    click.echo(json.dumps(iscc.metrics.compare(a, b), indent=2))

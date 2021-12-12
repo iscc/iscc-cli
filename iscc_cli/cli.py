@@ -2,8 +2,8 @@
 import sys
 from typing import Optional
 import click
-import iscc
 from dataclasses import dataclass
+from iscc.index import Index
 from iscc_cli import __version__
 from iscc_cli.commands import (
     init,
@@ -30,7 +30,7 @@ class GlobalOptions:
     store: bool
     unpack: bool
     store_text: bool
-    index: Optional[iscc.Index] = None
+    index: Optional[Index] = None
 
 
 @click.group(cls=DefaultGroup, default="gen", default_if_no_args=False)
@@ -62,7 +62,7 @@ def cli(ctx, debug, granular, preview, store, unpack, store_text):
         store_text=store_text,
     )
 
-    ctx.obj.index = iscc.Index("cli-db", index_features=True, index_metadata=True)
+    ctx.obj.index = Index("cli-db", index_features=True, index_metadata=True)
 
     if debug:
         log.add(sys.stdout)

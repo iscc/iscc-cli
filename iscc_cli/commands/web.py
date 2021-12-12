@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 from io import BytesIO
 import click
 import iscc
 import requests
 from iscc.mediatype import SUPPORTED_MEDIATYPES
 from iscc.utils import download_file
-
 import iscc_cli
 from iscc_cli.utils import DefaultHelp
+from iscc.wrappers import decompose
 
 HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
@@ -30,7 +29,7 @@ def web(ctx, url, title, extra):
         raise click.BadArgumentUsage(e)
 
     data = BytesIO(resp.content)
-    media_type = iscc.mime_clean(iscc.mime_guess(data))
+    media_type = iscc.mediatype.mime_clean(iscc.mediatype.mime_guess(data))
     if media_type not in SUPPORTED_MEDIATYPES:
         click.echo("Unsupported media type {}".format(media_type))
         click.echo("Please request support at https://github.com/iscc/iscc-cli/issues")
@@ -53,7 +52,7 @@ def web(ctx, url, title, extra):
         ctx.obj.index.add(result)
 
     if ctx.obj.unpack:
-        components = iscc.decompose(result["iscc"])
+        components = decompose(result["iscc"])
         decomposed = "-".join([c.code for c in components])
         result["iscc"] = decomposed
 

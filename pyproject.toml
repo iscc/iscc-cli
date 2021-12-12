@@ -34,7 +34,7 @@ iscc = 'iscc_cli.cli:cli'
 [tool.poetry.dependencies]
 python = ">=3.7,<3.10"
 click = "^7.0"
-iscc = { version = "1.1.0b11", allow-prereleases = true}
+iscc = { version = "1.1.0b12", allow-prereleases = true}
 click-default-group = "^1.2"
 colorama = "^0.4"
 
