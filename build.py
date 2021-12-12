@@ -18,9 +18,8 @@ if platform.system() == "Darwin":
         os.rename(libexiv2_dylib_original_path, libexiv2_dylib_path)
 
     with fileinput.input(
-            os.path.join(pyexiv2_path, "lib", "__init__.py"),
-            inplace=True
-            ) as f:
+        os.path.join(pyexiv2_path, "lib", "__init__.py"), inplace=True
+    ) as f:
         for line in f:
             print(line.replace("libexiv2.dylib", "libexiv2.27.dylib"))
 
