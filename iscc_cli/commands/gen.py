@@ -5,6 +5,7 @@ import json
 import iscc
 from iscc_cli.utils import DefaultHelp
 from loguru import logger as log
+from iscc.wrappers import decompose
 
 
 @click.command(cls=DefaultHelp)
@@ -36,7 +37,7 @@ def gen(ctx, file, title, extra):
         ctx.obj.index.add(result)
 
     if ctx.obj.unpack:
-        components = iscc.decompose(result["iscc"])
+        components = decompose(result["iscc"])
         decomposed = "-".join([c.code for c in components])
         result["iscc"] = decomposed
 
