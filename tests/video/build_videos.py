@@ -6,10 +6,9 @@ See: https://en.wikipedia.org/wiki/Video_file_format
 import subprocess
 from collections import defaultdict
 from os.path import exists, abspath
-from iscc_cli.tika import detector
-from iscc_cli import ffmpeg
-from iscc_cli import video_id
+import iscc
 from utils import clean_mime
+from tika import detector
 
 FORMATS = (
     "rm",
@@ -45,7 +44,7 @@ def build_media_types():
         if not exists(outf):
             if fmt in ("3gp", "3g2"):
                 cmd = [
-                    ffmpeg.exe_path(),
+                    iscc.bin.ffmpeg_bin(),
                     "-i",
                     "master.3gp",
                     "-f",
@@ -63,12 +62,21 @@ def build_media_types():
                     outf,
                 ]
             else:
-                cmd = [ffmpeg.exe_path(), "-i", "master.3gp", "-loglevel", "2", outf]
+                cmd = [
+                    iscc.bin.ffmpeg_bin(),
+                    "-i",
+                    "master.3gp",
+                    "-loglevel",
+                    "2",
+                    outf,
+                ]
             subprocess.run(cmd)
-        media_type = clean_mime(detector.from_file(abspath(outf)))
-        sigs = video_id.get_frame_vectors(abspath(outf))
-        vid = video_id.content_id_video(sigs)
-        print("{} -> {} -> {}".format(vid, outf, media_type))
+        media_type = iscc.mediatype.mime_clean(iscc.mediatype.mime_guess(abspath(outf)))
+        try:
+            vid = iscc.code_video(abspath(outf))["iscc"]
+            print("{} -> {} -> {}".format(vid, outf, media_type))
+        except Exception as e:
+            print(f"Error with {outf}: {e}")
         mt[media_type].append(fmt)
     for m, e in mt.items():
         if len(e) == 1:
