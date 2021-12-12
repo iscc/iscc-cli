@@ -28,6 +28,10 @@ def batch(ctx, path, recursive):
             msg = "Cannot proccess empty file: {}".format(f)
             log.warning(msg)
             continue
+        media_type = iscc.mediatype.mime_clean(iscc.mediatype.mime_guess(f))
+        if media_type not in iscc.mediatype.SUPPORTED_MEDIATYPES:
+            log.warning(f"skip unsupported media-type {media_type}")
+            continue
         try:
             result = iscc.code_iscc(
                 f,
