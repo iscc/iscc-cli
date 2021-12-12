@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import io
+import sys
 import click
+from click.exceptions import Exit
 import requests
+from iscc_core.conformance import selftest
 import iscc
-
+from loguru import logger as log
 
 TEST_DATA_URL = "https://raw.githubusercontent.com/iscc/iscc-specs/version-1.1/tests/"
 
@@ -11,8 +14,19 @@ TEST_DATA_URL = "https://raw.githubusercontent.com/iscc/iscc-specs/version-1.1/t
 @click.command()
 def test():
     """Test conformance with latest reference data."""
-    click.echo("Running confromance tests.\n")
+    log.remove()
+    log.add(sys.stdout)
+    log.info("Running iscc-core confromance tests")
+    passed = selftest()
+    if passed:
+        log.info("iscc-core conformance tests passed")
+    else:
+        log.error("iscc-core conformance tests failed")
+        raise Exit(1)
+
+    log.info("Running iscc-sdk tests")
     test_data = requests.get(TEST_DATA_URL + "test_data.json").json()
+    passed = True
     for funcname, tests in test_data.items():
         for testname, testdata in tests.items():
             if not testname.startswith("test_"):
@@ -34,7 +48,13 @@ def test():
             try:
                 assert result == expected, "%s %s " % (funcname, args)
             except AssertionError:
-                click.echo("FAILED %s" % testname)
-                click.echo("Result %s != Expected %s" % (result, expected))
+                passed = False
+                log.warning("FAILED %s" % testname)
+                log.warning("Result %s != Expected %s" % (result, expected))
             else:
-                click.echo("PASSED %s" % testname)
+                log.info("PASSED %s" % testname)
+    if passed:
+        log.info("iscc-sdk tests passed")
+    else:
+        log.error("iscc-sdk tests failed")
+        raise Exit(1)
