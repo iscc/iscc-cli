@@ -1,11 +1,10 @@
-name: Tests
+name: Test & Build
 
 on: [push, pull_request]
 
 jobs:
-  Tests:
-
-    name: ${{ matrix.os }} / ${{ matrix.python-version }}
+  Test:
+    name: test ${{ matrix.os }} / ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
@@ -28,3 +27,34 @@ jobs:
 
     - name: Run pytest
       run: poetry run pytest -q tests
+  Build:
+    name: build iscc-cli / ${{ matrix.os }} / py ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [Ubuntu, MacOS, Windows]
+        python-version: [3.9]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install poetry
+      run: pip install poetry
+
+    - name: Install iscc-cli dependencies
+      run: poetry install
+
+    - name: Build iscc-cli
+      run: poetry run python build.py
+
+    - name: Test iscc-cli build
+      run: ./dist/iscc test
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: iscc-cli-${{ matrix.os }}
+        path: dist/*
