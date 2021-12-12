@@ -3,6 +3,7 @@ import json
 import os
 import click
 import iscc
+from iscc.wrappers import decompose
 from iscc_cli.utils import get_files, DefaultHelp
 from loguru import logger as log
 
@@ -38,7 +39,7 @@ def batch(ctx, path, recursive):
                 ctx.obj.index.add(result)
 
             if ctx.obj.unpack:
-                components = iscc.decompose(result["iscc"])
+                components = decompose(result["iscc"])
                 decomposed = "-".join([c.code for c in components])
                 result["iscc"] = decomposed
 
