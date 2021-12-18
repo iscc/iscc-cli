@@ -51,7 +51,10 @@ jobs:
     - name: Build iscc-cli
       run: poetry run python build.py
 
-    - name: Test iscc-cli build
+    - name: Test iscc-cli
+    - if: matrix.os == 'MacOS'
+      run: ./dist/iscc/iscc test
+    - if: matrix.os != 'MacOS'
       run: ./dist/iscc test
 
     - uses: actions/upload-artifact@v2
