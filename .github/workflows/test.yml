@@ -34,11 +34,11 @@ jobs:
         os: [Ubuntu, MacOS, Windows]
         python-version: [3.9]
         include:
-          - os: ubuntu-latest
+          - os: Ubuntu
             file: dist/iscc
-          - os: windows-latest
+          - os: Windows
             file: dist/iscc.exe
-          - os: macos-latest
+          - os: MacOS
             file: dist/iscc/iscc
     steps:
     - uses: actions/checkout@v2
