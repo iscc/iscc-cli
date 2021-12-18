@@ -8,6 +8,7 @@ import iscc.bin
 def init():
     """Inititalize and check environment."""
     from loguru import logger as log
+
     log.add(sys.stdout)
     iscc.bin.install()
     click.echo("Enviroment initialized")

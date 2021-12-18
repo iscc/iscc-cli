@@ -2,7 +2,6 @@
 import json
 import click
 import iscc
-import iscc_core
 from iscc_core.codec import Code
 from click_default_group import DefaultGroup
 

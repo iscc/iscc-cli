@@ -10,6 +10,7 @@ import iscc_cli
 from iscc_cli.utils import DefaultHelp
 from iscc.wrappers import decompose
 
+
 HEADERS = {"User-Agent": "ISCC {}".format(iscc_cli.__version__)}
 
 

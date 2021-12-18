@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 import shutil
-from dataclasses import asdict
-
 import click
 import mobi
 from PIL import Image
 from click import UsageError
 from iscc.mp7 import read_ffmpeg_signature
 from iscc.schema import GMT
-
 from iscc_cli.utils import DefaultHelp
 import json
 import iscc
@@ -17,7 +14,11 @@ import iscc
 @click.command(cls=DefaultHelp)
 @click.argument("path", type=click.STRING)
 @click.option(
-    "-s", "--strip", type=click.INT, default=0, help="Strip content to first X elements."
+    "-s",
+    "--strip",
+    type=click.INT,
+    default=0,
+    help="Strip content to first X elements.",
 )
 @click.option("-m", "--meta", is_flag=True, default=False, help="Dump metadata only.")
 @click.option("-c", "--content", is_flag=True, default=False, help="Dump content only.")
