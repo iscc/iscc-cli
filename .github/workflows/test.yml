@@ -10,7 +10,6 @@ jobs:
       matrix:
         os: [Ubuntu, MacOS, Windows]
         python-version: [3.7, 3.8, 3.9]
-
     steps:
     - uses: actions/checkout@v2
 
@@ -34,6 +33,13 @@ jobs:
       matrix:
         os: [Ubuntu, MacOS, Windows]
         python-version: [3.9]
+        include:
+          - os: ubuntu-latest
+            file: dist/iscc
+          - os: windows-latest
+            file: dist/iscc.exe
+          - os: macos-latest
+            file: dist/iscc/iscc
     steps:
     - uses: actions/checkout@v2
 
@@ -58,6 +64,12 @@ jobs:
     - name: Test iscc-cli MacOS
       if: matrix.os == 'MacOS'
       run: ./dist/iscc/iscc test
+
+    - name: Compress binaries
+      uses: svenstaro/upx-action@v2
+      with:
+        file: ${{ matrix.file }}
+
 
     - uses: actions/upload-artifact@v2
       with:
