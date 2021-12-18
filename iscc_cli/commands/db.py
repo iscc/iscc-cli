@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
-
 import click
 import iscc
+import iscc_core
+from iscc_core.codec import Code
 from click_default_group import DefaultGroup
 
 
@@ -18,7 +19,7 @@ def db(ctx):
 @click.pass_context
 def add(ctx, iscc_code):
     """Add ISCC to database."""
-    code_obj = iscc.Code(iscc_code)
+    code_obj = Code(iscc_code)
     idx = ctx.obj.index
     key = idx.add(code_obj)
     click.echo("Added with key: %s" % key)
@@ -29,8 +30,8 @@ def add(ctx, iscc_code):
 @click.pass_context
 def search(ctx, iscc_code):
     """Search ISCC (nearest neighbors)."""
-    code_obj = iscc.Code(iscc_code)
-    idx: iscc.Index = ctx.obj.index
+    code_obj = Code(iscc_code)
+    idx: iscc.index.Index = ctx.obj.index
     result = idx.query(code_obj)
     click.echo(result.json(indent=2))
 
@@ -41,7 +42,7 @@ def list(ctx):
     """List ISCCs from database."""
     idx = ctx.obj.index
     for entry in idx.iter_isccs():
-        code_obj = iscc.Code(entry)
+        code_obj = Code(entry)
         click.echo(code_obj)
 
 

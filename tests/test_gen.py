@@ -29,7 +29,7 @@ def test_gen_empty_file():
 def test_gen_single_demo():
     result = r.invoke(cli, ["gen", "tests/text/demo.doc"])
     assert result.exit_code == 0
-    assert "KADV5PDFXBL7HGBXFFW64KVNP6UGTUZC2CJTDBKMFYTTZPLQQVX22FI" in result.output
+    assert "KADV5PDFXBL7HGBXFFU64KVNP6UGTUZC2CJTDBKMFYTTZPLQQVX22FI" in result.output
 
 
 def test_gen_image_bmp():

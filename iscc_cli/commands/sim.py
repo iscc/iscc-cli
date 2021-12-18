@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-
 import click
 import iscc
 from iscc_cli.utils import DefaultHelp

@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
+import subprocess
+import sys
+
 import click
 import iscc
 import iscc_cli
 import requests
-from iscc.bin import ffmpeg_version_info, ffprobe_version_info, fpcalc_version_info
+from iscc.bin import (
+    ffmpeg_version_info,
+    ffprobe_version_info,
+    fpcalc_version_info,
+    java_version_info,
+    tika_version_info,
+)
 from iscc.mediatype import SUPPORTED_EXTENSIONS
 import importlib
 import importlib.machinery
@@ -45,20 +54,18 @@ def isnativemodule(module):
     return ext in EXTENSION_SUFFIXES
 
 
-def tika_version():
-    from tika import tika
-
-    url = tika.ServerEndpoint + "/version"
+def get_java_version():
     try:
-        return requests.get(url).text
-    except Exception:
-        return 'WARNING: Not Installed - run "iscc init" to install!'
+        jp = iscc.bin.java_bin()
+        res = subprocess.run([jp, "-version"], stderr=subprocess.PIPE)
+        return res.stderr.decode(sys.stdout.encoding).splitlines()[0]
+    except subprocess.CalledProcessError:
+        return "java --version command failed"
 
 
 @click.command()
 def info():
     """Show information about environment."""
-    from tika import tika
     from iscc_core import minhash, simhash, cdc
 
     click.echo("ISCC Cli Version: %s" % iscc_cli.__version__)
@@ -66,8 +73,8 @@ def info():
     click.echo("FFMPEG Version: %s" % ffmpeg_version_info())
     click.echo("FFPROBE Version: %s" % ffprobe_version_info())
     click.echo("FPCALC Version: %s" % fpcalc_version_info())
-    click.echo("Tika Version: %s" % tika_version())
-    click.echo("Tika Jar Path: %s" % tika.TikaJarPath)
+    click.echo("JAVA Version: %s" % get_java_version())
+    click.echo("TIKA Version: %s" % tika_version_info().strip())
     click.echo("Simhash Native: %s" % isnativemodule(simhash))
     click.echo("Minhash Native: %s" % isnativemodule(minhash))
     click.echo("CDC Native: %s" % isnativemodule(cdc))

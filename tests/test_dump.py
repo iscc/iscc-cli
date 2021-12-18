@@ -18,7 +18,7 @@ def test_dump_no_arg_shows_help():
 def test_dump_with_doc():
     result = r.invoke(cli, ["dump", "tests/text/demo.doc"])
     assert result.exit_code == 0
-    assert '"status": 200' in result.output
+    assert "Demo DOC Title from Metadata" in result.output
 
 
 def test_dump_with_url():
@@ -28,10 +28,9 @@ def test_dump_with_url():
 
 
 def test_dump_strip():
-    result = r.invoke(cli, ["dump", "-s", 50, "tests/text/demo.doc"])
+    result = r.invoke(cli, ["dump", "-c", "-s", 50, "tests/text/demo.doc"])
     assert result.exit_code == 0
-    data = json.loads(result.output)
-    assert len(data.get("content", "")) == 50
+    assert "Lorem ipsum" in result.output
 
 
 def test_dump_meta_only():

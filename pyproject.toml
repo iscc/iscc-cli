@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iscc-cli"
-version = "1.1.0-beta.13"
+version = "1.1.0-beta.14"
 description = "ISCC CLI - Creates ISCC Codes from Media Files"
 authors = ["Titusz Pan <tp@py7.de>"]
 license = "MIT"
@@ -34,7 +34,7 @@ iscc = 'iscc_cli.cli:cli'
 [tool.poetry.dependencies]
 python = ">=3.7,<3.10"
 click = "^7.0"
-iscc = { version = "1.1.0b13", allow-prereleases = true}
+iscc = { version = "1.1.0b14", allow-prereleases = true}
 click-default-group = "^1.2"
 colorama = "^0.4"
 

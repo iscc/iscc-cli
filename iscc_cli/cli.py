@@ -67,6 +67,8 @@ def cli(ctx, debug, granular, preview, store, unpack, store_text):
     if debug:
         log.add(sys.stdout)
         log.info("Debug messages activated!")
+    else:
+        log.add(sys.stdout, level="CRITICAL")
 
 
 cli.add_command(init.init)
