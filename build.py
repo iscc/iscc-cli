@@ -23,19 +23,22 @@ if platform.system() == "Darwin":
         for line in f:
             print(line.replace("libexiv2.dylib", "libexiv2.27.dylib"))
 
-
 # fmt: off
-PyInstaller.__main__.run(
-    [
+cmd = [
         "iscc_cli/cli.py",
         "--clean",
-        "--onefile",
         "--console",
         "--hidden-import", "dotenv",
         "--additional-hooks-dir", "extra-hooks/",
         "--collect-all", "pyexiv2",
         "--collect-data", "iscc_core",
         "--name", "iscc",
-    ]
-)
+]
+
+if platform.system() != "Darwin":
+    cmd.append("--onefile")
+
+# fmt: on
+
+PyInstaller.__main__.run(cmd)
 # fmt: on
