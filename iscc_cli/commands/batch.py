@@ -51,3 +51,4 @@ def batch(ctx, path, recursive):
             click.echo(json.dumps(result, indent=2))
         except Exception as e:
             log.exception(e)
+    ctx.obj.index.close()
