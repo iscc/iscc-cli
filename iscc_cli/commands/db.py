@@ -19,9 +19,22 @@ def db(ctx):
 def add(ctx, iscc_code):
     """Add ISCC to database."""
     code_obj = Code(iscc_code)
-    idx = ctx.obj.index
+    idx: iscc.index.Index = ctx.obj.index
     key = idx.add(code_obj)
     click.echo("Added with key: %s" % key)
+
+
+@click.command(name="get")
+@click.argument("iscc_code", nargs=1)
+@click.pass_context
+def get(ctx, iscc_code):
+    """Get ISCC from database."""
+    code_obj = Code(iscc_code)
+    idx: iscc.index.Index = ctx.obj.index
+    key = idx.get_key(code_obj)
+    result = idx.get_metadata(key)
+    if result:
+        click.echo(json.dumps(result, indent=2))
 
 
 @click.command(name="search")
@@ -39,7 +52,7 @@ def search(ctx, iscc_code):
 @click.pass_context
 def list(ctx):
     """List ISCCs from database."""
-    idx = ctx.obj.index
+    idx: iscc.index.Index = ctx.obj.index
     for entry in idx.iter_isccs():
         code_obj = Code(entry)
         click.echo(code_obj)
@@ -49,7 +62,7 @@ def list(ctx):
 @click.pass_context
 def stats(ctx):
     """Show database statistics."""
-    idx = ctx.obj.index
+    idx: iscc.index.Index = ctx.obj.index
     click.echo(json.dumps(idx.stats, indent=2))
 
 
@@ -57,12 +70,13 @@ def stats(ctx):
 @click.pass_context
 def destroy(ctx):
     """Delete database from disk."""
-    idx = ctx.obj.index
+    idx: iscc.index.Index = ctx.obj.index
     idx.destroy()
 
 
 db.add_command(list)
 db.add_command(add)
+db.add_command(get)
 db.add_command(search)
 db.add_command(stats)
 db.add_command(destroy)
