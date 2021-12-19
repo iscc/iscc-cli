@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import PyInstaller.__main__
+import platform
 
 # fmt: off
 cmd = [
@@ -9,9 +10,11 @@ cmd = [
         "--hidden-import", "dotenv",
         "--collect-binaries", "exiv2",
         "--collect-data", "iscc_core",
-        "--onefile",
         "--name", "iscc",
 ]
 # fmt: on
+
+if platform.system() != "Darwin":
+    cmd.append("--onefile")
 
 PyInstaller.__main__.run(cmd)
