@@ -57,7 +57,7 @@ jobs:
 
     - name: Install UPX Ubuntu
       if: matrix.os == 'Ubuntu'
-      run: apt-get install -y upx
+      run: sudo apt-get install -y upx
 
     - name: Build iscc-cli
       run: poetry run python build.py
