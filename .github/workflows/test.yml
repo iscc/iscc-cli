@@ -28,10 +28,10 @@ jobs:
       run: poetry run pytest -q tests
   Build:
     name: build iscc-cli / ${{ matrix.os }} / py ${{ matrix.python-version }}
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [Ubuntu, MacOS, Windows]
+        os: [ubuntu-18.04, macos-10.15, windows-2016]
         python-version: [3.9]
     steps:
     - uses: actions/checkout@v2
@@ -63,11 +63,11 @@ jobs:
       run: poetry run python build.py
 
     - name: Test iscc-cli Ubuntu/Windows
-      if: matrix.os != 'MacOS'
+      if: matrix.os != 'macos-10.15'
       run: ./dist/iscc test
 
     - name: Test iscc-cli MacOS
-      if: matrix.os == 'MacOS'
+      if: matrix.os == 'macos-10.15'
       run: ./dist/iscc/iscc test
 
     - uses: actions/upload-artifact@v2
