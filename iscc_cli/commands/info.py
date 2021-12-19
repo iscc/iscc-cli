@@ -8,6 +8,7 @@ from iscc.bin import (
     ffmpeg_version_info,
     ffprobe_version_info,
     fpcalc_version_info,
+    java_version_info,
     tika_version_info,
 )
 from iscc.mediatype import SUPPORTED_EXTENSIONS
@@ -51,31 +52,28 @@ def isnativemodule(module):
     return ext in EXTENSION_SUFFIXES
 
 
-def get_java_version():
-    try:
-        jp = iscc.bin.java_bin()
-        res = subprocess.run([jp, "-version"], stderr=subprocess.PIPE)
-        return res.stderr.decode(sys.stdout.encoding).splitlines()[0]
-    except subprocess.CalledProcessError:
-        return "java --version command failed"
-
-
 @click.command()
-def info():
+@click.pass_context
+def info(ctx):
     """Show information about environment."""
     from iscc_core import minhash, simhash, cdc
+
+    # TODO add more organized table based and/or json output
 
     click.echo("ISCC Cli Version: %s" % iscc_cli.__version__)
     click.echo("ISCC Version: %s" % iscc.__version__)
     click.echo("FFMPEG Version: %s" % ffmpeg_version_info())
     click.echo("FFPROBE Version: %s" % ffprobe_version_info())
     click.echo("FPCALC Version: %s" % fpcalc_version_info())
-    click.echo("JAVA Version: %s" % get_java_version())
+    click.echo("JAVA Version: %s" % java_version_info())
     click.echo("TIKA Version: %s" % tika_version_info().strip())
     click.echo("Simhash Native: %s" % isnativemodule(simhash))
     click.echo("Minhash Native: %s" % isnativemodule(minhash))
     click.echo("CDC Native: %s" % isnativemodule(cdc))
     click.echo("Supported File Types: %s" % ", ".join(sorted(SUPPORTED_EXTENSIONS)))
+    idx: iscc.index.Index = ctx.obj.index
+    click.echo("ISCC db stats: %s" % idx.stats)
+    click.echo("Appdata dir: %s" % iscc_cli.APP_DIR)
 
 
 if __name__ == "__main__":
