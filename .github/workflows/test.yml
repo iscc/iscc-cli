@@ -33,13 +33,6 @@ jobs:
       matrix:
         os: [Ubuntu, MacOS, Windows]
         python-version: [3.9]
-        include:
-          - os: Ubuntu
-            file: dist/iscc
-          - os: Windows
-            file: dist/iscc.exe
-          - os: MacOS
-            file: dist/iscc/iscc
     steps:
     - uses: actions/checkout@v2
 
@@ -54,6 +47,18 @@ jobs:
     - name: Install iscc-cli dependencies
       run: poetry install
 
+    - name: Install UPX MacOS
+      if: matrix.os == 'MacOS'
+      run: brew install upx
+
+    - name: Install UPX Windows
+      if: matrix.os == 'Windows'
+      run: choco install upx
+
+    - name: Install UPX Ubuntu
+      if: matrix.os == 'Ubuntu'
+      run: apt-get install -y upx
+
     - name: Build iscc-cli
       run: poetry run python build.py
 
@@ -64,12 +69,6 @@ jobs:
     - name: Test iscc-cli MacOS
       if: matrix.os == 'MacOS'
       run: ./dist/iscc/iscc test
-
-    - name: Compress binaries
-      uses: svenstaro/upx-action@v2
-      with:
-        file: ${{ matrix.file }}
-
 
     - uses: actions/upload-artifact@v2
       with:
