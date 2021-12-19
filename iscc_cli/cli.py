@@ -4,6 +4,7 @@ from typing import Optional
 import click
 from dataclasses import dataclass
 from iscc.index import Index
+import iscc_cli
 from iscc_cli import __version__
 from iscc_cli.commands import (
     init,
@@ -62,7 +63,13 @@ def cli(ctx, debug, granular, preview, store, unpack, store_text):
         store_text=store_text,
     )
 
-    ctx.obj.index = Index("cli-db", index_features=True, index_metadata=True)
+    ctx.obj.index = Index(
+        "cli-db",
+        index_root=iscc_cli.APP_DIR,
+        index_components=True,
+        index_features=True,
+        index_metadata=True,
+    )
 
     if debug:
         log.add(sys.stdout)
