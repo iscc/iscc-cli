@@ -18,6 +18,7 @@ from iscc_cli.commands import (
     explain,
     db,
     detect,
+    sum_,
 )
 from click_default_group import DefaultGroup
 from loguru import logger as log
@@ -89,6 +90,7 @@ cli.add_command(test.test)
 cli.add_command(explain.explain)
 cli.add_command(db.db)
 cli.add_command(detect.detect)
+cli.add_command(sum_.sum_)
 
 
 if __name__ == "__main__":
