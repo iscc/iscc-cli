@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import subprocess
-import sys
+import json
 import click
 import iscc
 import iscc_cli
@@ -72,7 +71,7 @@ def info(ctx):
     click.echo("CDC Native: %s" % isnativemodule(cdc))
     click.echo("Supported File Types: %s" % ", ".join(sorted(SUPPORTED_EXTENSIONS)))
     idx: iscc.index.Index = ctx.obj.index
-    click.echo("ISCC db stats: %s" % idx.stats)
+    click.echo("ISCC db stats: %s" % json.dumps(idx.stats, indent=2))
     click.echo("Appdata dir: %s" % iscc_cli.APP_DIR)
 
 
