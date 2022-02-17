@@ -12,10 +12,10 @@ r = CliRunner()
 def test_batch():
     result = r.invoke(cli, ["batch", "./tests/batch"])
     assert result.exit_code == 0
-    assert "KADV5PDFXBL7HGBXFFU64KVNP6UGTUZC2CJTDBKMFYTTZPLQQVX22FI" in result.output
+    assert "KAD5YBQODD5TOV365LNE5MM5OM245IFU4H2JIVUSWE24XQFCJCLPUWY" in result.output
 
 
 def test_batch_recursive():
     result = r.invoke(cli, ["batch", "-r", "./tests/batch"])
     assert result.exit_code == 0
-    assert "KED6D6L5YDT5DNN4YNBTBHR4T2HGO6RDNMJX4P6UMT7LQXYXBH2R5PY" in result.output
+    assert "KED6P2X7C73P72Z4YNBTBHR4T2HGO6RDNMJX4P6UMT7LQXYXBH2R5PY" in result.output

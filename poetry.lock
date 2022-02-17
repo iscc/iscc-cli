@@ -98,7 +98,7 @@ python-versions = "*"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.0.11"
+version = "2.0.12"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "main"
 optional = false
@@ -178,7 +178,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "importlib-metadata"
-version = "4.10.1"
+version = "4.11.1"
 description = "Read metadata from Python packages"
 category = "main"
 optional = false
@@ -191,7 +191,7 @@ zipp = ">=0.5"
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 perf = ["ipython"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)", "importlib-resources (>=1.3)"]
 
 [[package]]
 name = "install-jdk"
@@ -203,11 +203,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "iscc"
-version = "1.1.0b16"
+version = "1.1.0b17"
 description = "ISCC: Reference Implementation"
 category = "main"
 optional = false
-python-versions = ">=3.6.1,<3.10"
+python-versions = ">=3.7,<3.10"
 
 [package.dependencies]
 annoy = ">=1.17,<2.0"
@@ -224,7 +224,6 @@ mobi = ">=0.3,<0.4"
 msgpack = ">=1.0,<2.0"
 numpy = "1.19.3"
 Pillow = ">=8.4,<9.0"
-python-exiv2 = ">=0.8.3,<0.9.0"
 python-magic = {version = ">=0.4.22,<0.5.0", markers = "sys_platform == \"linux\""}
 python-magic-bin = {version = ">=0.4.14,<0.5.0", markers = "sys_platform == \"win32\" or sys_platform == \"darwin\""}
 requests = ">=2.26,<3.0"
@@ -450,11 +449,11 @@ hook_testing = ["pytest (>=2.7.3)", "execnet (>=1.5.0)", "psutil"]
 
 [[package]]
 name = "pyinstaller-hooks-contrib"
-version = "2022.0"
+version = "2022.2"
 description = "Community maintained hooks for PyInstaller"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 
 [[package]]
 name = "pyparsing"
@@ -511,14 +510,6 @@ python-versions = ">=3.5"
 
 [package.extras]
 cli = ["click (>=5.0)"]
-
-[[package]]
-name = "python-exiv2"
-version = "0.8.3"
-description = "Python interface to libexiv2"
-category = "main"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "python-magic"
@@ -607,7 +598,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "typing-extensions"
-version = "4.0.1"
+version = "4.1.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
 category = "main"
 optional = false
@@ -676,7 +667,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<3.10"
-content-hash = "51aa0df3a47f36c24058f62eb4ba065165e2cfcf2704d797c662bba031b046b8"
+content-hash = "85182209ee177116a6cc7f9573831b3bd28f824561d5f1a56fe76d3803c091e6"
 
 [metadata.files]
 altgraph = [
@@ -780,8 +771,8 @@ certifi = [
     {file = "certifi-2021.10.8.tar.gz", hash = "sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.0.11.tar.gz", hash = "sha256:98398a9d69ee80548c762ba991a4728bfc3836768ed226b3945908d1a688371c"},
-    {file = "charset_normalizer-2.0.11-py3-none-any.whl", hash = "sha256:2842d8f5e82a1f6aa437380934d5e1cd4fcf2003b06fed6940769c164a480a45"},
+    {file = "charset-normalizer-2.0.12.tar.gz", hash = "sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597"},
+    {file = "charset_normalizer-2.0.12-py3-none-any.whl", hash = "sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
@@ -810,14 +801,14 @@ idna = [
     {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},
 ]
 importlib-metadata = [
-    {file = "importlib_metadata-4.10.1-py3-none-any.whl", hash = "sha256:899e2a40a8c4a1aec681feef45733de8a6c58f3f6a0dbed2eb6574b4387a77b6"},
-    {file = "importlib_metadata-4.10.1.tar.gz", hash = "sha256:951f0d8a5b7260e9db5e41d429285b5f451e928479f19d80818878527d36e95e"},
+    {file = "importlib_metadata-4.11.1-py3-none-any.whl", hash = "sha256:e0bc84ff355328a4adfc5240c4f211e0ab386f80aa640d1b11f0618a1d282094"},
+    {file = "importlib_metadata-4.11.1.tar.gz", hash = "sha256:175f4ee440a0317f6e8d81b7f8d4869f93316170a65ad2b007d2929186c8052c"},
 ]
 install-jdk = [
     {file = "install-jdk-0.3.0.tar.gz", hash = "sha256:889965b0af68bb4669166804f33d5dce9cd6cf57f02a045e427e508998d569a1"},
 ]
 iscc = [
-    {file = "iscc-1.1.0b16.tar.gz", hash = "sha256:014b0b98282ead59840fbe31dfc141f25568aa35a56d455fef8b97fe65e6cd78"},
+    {file = "iscc-1.1.0b17.tar.gz", hash = "sha256:efe996de051be19c3295c0b7bfca7f41ca869c50382b85a5144028a9f029b2fe"},
 ]
 iscc-core = [
     {file = "iscc-core-0.1.9.tar.gz", hash = "sha256:f9783472c0bf407c58daa0bb1d49cc1b60398b351f2cd2a985d8b690a3f098b9"},
@@ -1063,8 +1054,8 @@ pyinstaller = [
     {file = "pyinstaller-4.9.tar.gz", hash = "sha256:75a180a658871bc41f9cf94b6f90ffa54e98f5d6a7cdb02d7530f0360afe24f9"},
 ]
 pyinstaller-hooks-contrib = [
-    {file = "pyinstaller-hooks-contrib-2022.0.tar.gz", hash = "sha256:61b667f51b2525377fae30793f38fd9752a08032c72b209effabf707c840cc38"},
-    {file = "pyinstaller_hooks_contrib-2022.0-py2.py3-none-any.whl", hash = "sha256:29f0bd8fbb2ff6f2df60a0c147e5b5ad65ae5c1a982d90641a5f712de03fa161"},
+    {file = "pyinstaller-hooks-contrib-2022.2.tar.gz", hash = "sha256:ab1d14fe053016fff7b0c6aea51d980bac6d02114b04063b46ef7dac70c70e1e"},
+    {file = "pyinstaller_hooks_contrib-2022.2-py2.py3-none-any.whl", hash = "sha256:7605e440ccb55904cb2a87d72e83642ef176fb7030c77e52ac4d9679bb3d1537"},
 ]
 pyparsing = [
     {file = "pyparsing-3.0.7-py3-none-any.whl", hash = "sha256:a6c06a88f252e6c322f65faf8f418b16213b51bdfaece0524c1c1bc30c63c484"},
@@ -1082,25 +1073,6 @@ pytest-ordering = [
 python-dotenv = [
     {file = "python-dotenv-0.19.2.tar.gz", hash = "sha256:a5de49a31e953b45ff2d2fd434bbc2670e8db5273606c1e737cc6b93eff3655f"},
     {file = "python_dotenv-0.19.2-py2.py3-none-any.whl", hash = "sha256:32b2bdc1873fd3a3c346da1c6db83d0053c3c62f28f1f38516070c4c8971b1d3"},
-]
-python-exiv2 = [
-    {file = "python-exiv2-0.8.3.zip", hash = "sha256:706963592faf8aa81ae968e9948e0f84d76e108d31b4bc0ce299693b5bd133cc"},
-    {file = "python_exiv2-0.8.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:1f8d6070599fb47e1c7756a6bffa220007a076521c560ef804b6e0054f42b01b"},
-    {file = "python_exiv2-0.8.3-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:4a5d24d679b77c9f697dd0a7adaaeaac602e7569423f979ac0d49bf6d6470f0f"},
-    {file = "python_exiv2-0.8.3-cp310-cp310-win_amd64.whl", hash = "sha256:e5b69518bf35c70e4390cbeda475494261e920b32af9803c103f56beeb438b35"},
-    {file = "python_exiv2-0.8.3-cp35-cp35m-win_amd64.whl", hash = "sha256:be3e25877434c6bb930799a76bf352b633be5e71bf05ff5317b9830282fbd895"},
-    {file = "python_exiv2-0.8.3-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:091b04ff4bf31d4ab1bac9ee0cc849699d379c5ae93b9426dc55e70c501d99ab"},
-    {file = "python_exiv2-0.8.3-cp36-cp36m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:ae7bb149ca543805b6eb3f4775f4b4989bb4b116444893f3d9335eb70e2866e2"},
-    {file = "python_exiv2-0.8.3-cp36-cp36m-win_amd64.whl", hash = "sha256:eda220e5d4329219c818272f70ee07c22e74a3bac81d71521cb95042cfe5f3ba"},
-    {file = "python_exiv2-0.8.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:3a1bad437f65ad0f4a4e7f30a337160fdb83f743f66cfad36512db8418c02887"},
-    {file = "python_exiv2-0.8.3-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:4e8e3742a03c3f0d3d8e09e2094698f6a27c03752c976e9000f39b89dc354b27"},
-    {file = "python_exiv2-0.8.3-cp37-cp37m-win_amd64.whl", hash = "sha256:253d6ce8fe097837fd1db9a0c8c94bc2d9982cdf022493526d08d30a31f73e94"},
-    {file = "python_exiv2-0.8.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:81c91dcd6babf87ba65ba654dae3439044c16a76b32380160e5b2df8dcd7d28e"},
-    {file = "python_exiv2-0.8.3-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:b31073ba5ff3225044a1a442003bda6eefb80ea0f4ed2fca41a002d97aed1783"},
-    {file = "python_exiv2-0.8.3-cp38-cp38-win_amd64.whl", hash = "sha256:b82ed82d188599ba3dbdd8c1734350a389933aca995d367ac94c67d0be1ffc43"},
-    {file = "python_exiv2-0.8.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:15ac652d8ffaded6371caf4d14c2f415d7a06605afe871439ea4ad5b825617e3"},
-    {file = "python_exiv2-0.8.3-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:f8a66f5ebe25a6c00088f3c40ccb56ccb78b3d0c2fa29f4ce3c067288a491697"},
-    {file = "python_exiv2-0.8.3-cp39-cp39-win_amd64.whl", hash = "sha256:3875affd57aff156b759ce70fd3b0fc1622c3c4233de8c1448f74ad7b544cce3"},
 ]
 python-magic = [
     {file = "python-magic-0.4.25.tar.gz", hash = "sha256:21f5f542aa0330f5c8a64442528542f6215c8e18d2466b399b0d9d39356d83fc"},
@@ -1233,8 +1205,8 @@ typed-ast = [
     {file = "typed_ast-1.5.2.tar.gz", hash = "sha256:525a2d4088e70a9f75b08b3f87a51acc9cde640e19cc523c7e41aa355564ae27"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
-    {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
+    {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
+    {file = "typing_extensions-4.1.1.tar.gz", hash = "sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.8-py2.py3-none-any.whl", hash = "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed"},

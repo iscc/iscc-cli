@@ -8,7 +8,6 @@ cmd = [
         "--clean",
         "--console",
         "--hidden-import", "dotenv",
-        "--collect-binaries", "exiv2",
         "--collect-data", "iscc_core",
         "--name", "iscc",
 ]

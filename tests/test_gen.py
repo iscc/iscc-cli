@@ -39,4 +39,4 @@ def test_gen_image_bmp():
 
 def test_gen_image_png():
     result = r.invoke(cli, ["gen", "tests/image/demo.png"])
-    assert "KED6D6L5YDT5DNN4YNBTBHR4T2HGO6RDNMJX4P6UMT7LQXYXBH2R5PY" in result.output
+    assert "KED6P2X7C73P72Z4YNBTBHR4T2HGO6RDNMJX4P6UMT7LQXYXBH2R5PY" in result.output
