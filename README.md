@@ -1,8 +1,10 @@
 # iscc-cli  - Command Line Tool
 
-[![Linux/Windows/macOS Tests](https://github.com/iscc/iscc-cli/workflows/Tests/badge.svg)](https://github.com/iscc/iscc-cli/actions?query=workflow%3ATests)
 [![Version](https://img.shields.io/pypi/v/iscc-cli.svg)](https://pypi.python.org/pypi/iscc-cli/)
 [![Downloads](https://pepy.tech/badge/iscc-cli)](https://pepy.tech/project/iscc-cli)
+
+> [!CAUTION]
+> This implementation is currently not up to date and does **NOT** generate valid ISCCs.
 
 > A command line tool that creates **ISCC Codes** for digital media files based on the [reference implementation](<https://github.com/iscc/iscc-specs>).
 
